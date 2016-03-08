@@ -1,0 +1,109 @@
+\documentclass[openany]{now} % creates the journal version
+% \documentclass{now}  % creates the book pdf version
+
+% a few definitions that are *not* needed in general:
+\newcommand{\ie}{\emph{i.e.}}
+\newcommand{\eg}{\emph{e.g.}}
+\newcommand{\etc}{\emph{etc}}
+\newcommand{\now}{\textsc{now}}
+
+\title{User Centric Offline Evaluation for IR}
+
+\author{
+Jin Young Kim \\
+Microsoft \\
+jink@microsoft.com
+\and
+Emine Yilmaz \\
+University College London \\
+emine.yilmaz@ucl.ac.uk
+}
+
+\begin{document}
+
+% the following settings can be set or left blank at first
+%\copyrightowner{N.~Parikh and S.~Boyd}
+% \volume{1}
+% \issue{3}
+% \pubyear{2014}
+% \isbn{978-0521833783}
+% \doi{1234567890}
+% \firstpage{23}
+% \lastpage{94}
+
+\frontmatter  % title page, contents, catalog information
+
+\maketitle
+
+\tableofcontents
+
+\mainmatter
+
+\begin{abstract}
+
+\end{abstract}
+
+\chapter{Introduction}
+\label{c-intro} % a label for the chapter, to refer to it later
+
+Offline evaluation
+•	What is it? Why is it important? How is it used? 
+•	How does it compare with online evaluation in terms of advantages/disadvantages?
+
+\section{Components of Offline Evaluation}
+
+•	Search Task (Query / context)
+•	Judging Method (Interface / rating scale) 
+•	Metric
+•	Experiment
+•	Test collections for offline evaluation (combining all the components)
+
+\section{On the Mismatch between Traditional Metrics and User Satisfaction}
+•	Traditional metrics seem to not agree much with online signals, as well as each other
+	o	Need methodologies to better estimate user satisfaction
+	o	Need for cross-metric study to diagnose the issue
+•	How to address this issue?
+	o	Metric design
+	o	Judgment design
+
+\chapter{User Modeling Based Evaluation Metrics}
+
+•	Evaluation metrics that are based on explicit models of user behaviour
+	o	ERR, EBU, GAP, etc.
+•	Diversity based evaluation
+	o	Alpha-NDCG, IA metrics, etc.
+•	Novelty based evaluation
+
+\chapter{Judging Method for User-centric Evaluation}
+•	SERP-level evaluation 
+	o	Side by side / SASI \cite{Chandar2013}
+•	Session/Task-based evaluation
+	o	User study for search experience
+•	Effort based judgments
+•	Usefulness-based evaluation
+
+\chapter{Crowdsourcing for obtaining judgments representing user satisfaction}
+
+Crowd judges are closer to the user
+•	Different components (experiment, interface design, payment)
+•	Reducing noise in judging
+	o	Multiple judgments and majority voting, etc.
+	o	Statistics to measure judge agreement/noise
+•	Incentivising judges and how to make it more attractive (payment / I/F)
+•	Design decisions that need to be tackled
+	o	Trade-off between how many labels per item 
+		(fewer items with many labels versus more items with fewer labels)
+
+\chapter{Offline Evaluation Practices from Industry}
+How are the companies doing?
+•	Google / Bing
+•	Netflix
+•	Facebook
+
+
+\backmatter  % references
+
+\bibliographystyle{plainnat}
+\bibliography{ireval}
+
+\end{document}
