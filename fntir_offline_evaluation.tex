@@ -7,7 +7,7 @@
 \newcommand{\etc}{\emph{etc}}
 \newcommand{\now}{\textsc{now}}
 
-\title{User Centric Offline Evaluation for IR}
+\title{End-to-End Offline Evaluation for IR}
 
 \author{
 Jin Young Kim \\
@@ -46,64 +46,116 @@ emine.yilmaz@ucl.ac.uk
 \chapter{Introduction}
 \label{c-intro} % a label for the chapter, to refer to it later
 
+\begin{verbatim}
 Offline evaluation
-•	What is it? Why is it important? How is it used? 
-•	How does it compare with online evaluation in terms of advantages/disadvantages?
+- What is it? Why is it important? How is it used?
+- How does it compare with online evaluation?
+ (advantages/disadvantages?)
 
-\section{Components of Offline Evaluation}
+Online evaluation
+- What is it? Why is it important? How is it used?
 
-•	Search Task (Query / context)
-•	Judging Method (Interface / rating scale) 
-•	Metric
-•	Experiment
-•	Test collections for offline evaluation (combining all the components)
+Online-Offline Hybrid approaches
+- Log-based offline evaluation (i.e, click models)
+- Collecting feedback directly from users (Kim et al.)
 
-\section{On the Mismatch between Traditional Metrics and User Satisfaction}
-•	Traditional metrics seem to not agree much with online signals, as well as each other
-	o	Need methodologies to better estimate user satisfaction
-	o	Need for cross-metric study to diagnose the issue
-•	How to address this issue?
+Components of Offline Evaluation
+-	Search Task (Query / context)
+-	Judging Method (Interface / rating scale) 
+-	Metric
+-	Experiment
+-	Test collections for offline evaluation (combining all the components)
+\end{verbatim}
+
+\cite{INR-009}
+
+\section{Recent Trends in Offline Evaluation}
+
+\begin{verbatim}
+Traditional Approaches in Offline Evaluation
+- Concept of relevance 
+
+Need for User-centric Evaluation
+- Definition of User-centric
+	- Aiming for user satisfaction
+	- Evaluation based on models of user behavior
+-	Traditional metrics seem to not agree much with online signals, as well as each other
+	o	Need methodologies to better estimate user satisfaction (metric / judgments)
+-	How to address this issue?
 	o	Metric design
 	o	Judgment design
 
-\chapter{User Modeling Based Evaluation Metrics}
+Whole-page / Session-level evaluation
 
-•	Evaluation metrics that are based on explicit models of user behaviour
-	o	ERR, EBU, GAP, etc.
-•	Diversity based evaluation
+Crowdsourcing / agile experimentation
+
+\end{verbatim}
+
+\chapter{Metrics}
+
+\begin{verbatim}
+-	Basic IR evaluation metrics 
+-	Ranking-based metrics (Tau/TauAP)
+-	Evaluation metrics that are based on explicit models of user behaviour
+	o	ERR, EBU, GAP, Time-biased gain, etc.
 	o	Alpha-NDCG, IA metrics, etc.
-•	Novelty based evaluation
+\end{verbatim}
 
-\chapter{Judging Method for User-centric Evaluation}
-•	SERP-level evaluation 
-	o	Side by side / SASI \cite{Chandar2013}
-•	Session/Task-based evaluation
+\chapter{Judging Method}
+
+\begin{verbatim}
+-	SERP-level evaluation 
+	o	Side by side / SASI
+-	Session/Task-based evaluation
 	o	User study for search experience
-•	Effort based judgments
-•	Usefulness-based evaluation
+-	Effort based judgments
+-	Usefulness-based evaluation
+\end{verbatim}
 
-\chapter{Crowdsourcing for obtaining judgments representing user satisfaction}
+\cite{Chandar2013} \cite{Al-Maskari2007} \cite{Bailey2010} \cite{CarteretteBCD08}
 
+\chapter{Crowdsourcing Judgment Collection}
+
+\begin{verbatim}
 Crowd judges are closer to the user
-•	Different components (experiment, interface design, payment)
-•	Reducing noise in judging
+-	Different components (experiment, interface design, payment)
+-	Reducing noise in judging
 	o	Multiple judgments and majority voting, etc.
 	o	Statistics to measure judge agreement/noise
-•	Incentivising judges and how to make it more attractive (payment / I/F)
-•	Design decisions that need to be tackled
+-	Incentivising judges and how to make it more attractive (payment / I/F)
+-	Design decisions that need to be tackled
 	o	Trade-off between how many labels per item 
-		(fewer items with many labels versus more items with fewer labels)
+(fewer items with many labels versus more items with fewer labels)
+\end{verbatim}
 
-\chapter{Offline Evaluation Practices from Industry}
+\cite{Megorskaya2015}
+
+\chapter{Evaluating Evaluation Methods}
+
+\begin{verbatim}
+Power analysis
+Sensitivity analysis
+Informativeness (MaxEnt)
+\end{verbatim}
+
+\chapter{Evaluation Practices from Industry}
+
+\begin{verbatim}
 How are the companies doing?
-•	Google / Bing
-•	Netflix
-•	Facebook
+-	Google / Bing
+-	Netflix
+-	Facebook
+Common features
+- Online + offline evaluation
+Practical tips
 
+\end{verbatim}
+
+\cite{Gomez-Uribe2015}
 
 \backmatter  % references
 
 \bibliographystyle{plainnat}
-\bibliography{ireval}
+\bibliography{ireval,eval_survey,judging_methods}
 
 \end{document}
