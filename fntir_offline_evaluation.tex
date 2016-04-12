@@ -7,7 +7,7 @@
 \newcommand{\etc}{\emph{etc}}
 \newcommand{\now}{\textsc{now}}
 
-\title{End-to-End Offline Evaluation for IR}
+\title{Offline Evaluation for Information Retrieval}
 
 \author{
 Jin Young Kim \\
@@ -46,18 +46,26 @@ emine.yilmaz@ucl.ac.uk
 \chapter{Introduction}
 \label{c-intro} % a label for the chapter, to refer to it later
 
-\begin{verbatim}
-Offline evaluation
-- What is it? Why is it important? How is it used?
-- How does it compare with online evaluation?
- (advantages/disadvantages?)
+\section{Overview of Evaluation Paradigms in IR}
 
-Online evaluation
+\begin{verbatim}
+Online vs. Offline evaluation
 - What is it? Why is it important? How is it used?
+- How are they different?
+ (advantages/disadvantages?)
 
 Online-Offline Hybrid approaches
 - Log-based offline evaluation (i.e, click models)
 - Collecting feedback directly from users (Kim et al.)
+\end{verbatim}
+
+\cite{INR-XYZ}
+
+\section{Offline Evaluation for IR}
+
+\begin{verbatim}
+Traditional Approaches in Offline Evaluation
+- Concept of relevance 
 
 Components of Offline Evaluation
 -	Search Task (Query / context)
@@ -67,28 +75,28 @@ Components of Offline Evaluation
 -	Test collections for offline evaluation (combining all the components)
 \end{verbatim}
 
-\cite{INR-009}
+\cite{INR-009} \cite{borlund2003} \cite{cleverdon67}
 
 \section{Recent Trends in Offline Evaluation}
 
 \begin{verbatim}
-Traditional Approaches in Offline Evaluation
-- Concept of relevance 
-
 Need for User-centric Evaluation
 - Definition of User-centric
 	- Aiming for user satisfaction
 	- Evaluation based on models of user behavior
--	Traditional metrics seem to not agree much with online signals, as well as each other
+- Traditional metrics seem to not agree much with online signals, as well as each other
 	o	Need methodologies to better estimate user satisfaction (metric / judgments)
 -	How to address this issue?
 	o	Metric design
 	o	Judgment design
 
-Whole-page / Session-level evaluation
+Extending the realms of evaluation
+-	Whole-page evaluation
+-	Session-level evaluation
 
-Crowdsourcing / agile experimentation
-
+New approaches
+-	Online/Offline hybrid
+-	Crowdsourcing / agile experimentation
 \end{verbatim}
 
 \chapter{Metrics}
@@ -112,6 +120,7 @@ Crowdsourcing / agile experimentation
 -	Usefulness-based evaluation
 \end{verbatim}
 
+\cite{Thomas2006}
 \cite{Chandar2013} \cite{Al-Maskari2007} \cite{Bailey2010} \cite{CarteretteBCD08}
 
 \chapter{Crowdsourcing Judgment Collection}
@@ -128,9 +137,9 @@ Crowd judges are closer to the user
 (fewer items with many labels versus more items with fewer labels)
 \end{verbatim}
 
-\cite{Megorskaya2015}
+\cite{Megorskaya2015} \cite{Davtyan2015}
 
-\chapter{Evaluating Evaluation Methods}
+\chapter{Experiment Design and Analysis}
 
 \begin{verbatim}
 Power analysis
@@ -156,6 +165,6 @@ Practical tips
 \backmatter  % references
 
 \bibliographystyle{plainnat}
-\bibliography{ireval,eval_survey,judging_methods}
+\bibliography{ireval,eval_survey,judging_methods,crowdsourcing}
 
 \end{document}
