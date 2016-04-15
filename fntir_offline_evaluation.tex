@@ -9,6 +9,7 @@
 
 \title{Offline Evaluation for Information Retrieval}
 
+% THe following author list is tentative
 \author{
 Jin Young Kim \\
 Microsoft \\
@@ -17,7 +18,12 @@ jink@microsoft.com
 Emine Yilmaz \\
 University College London \\
 emine.yilmaz@ucl.ac.uk
+\and
+Paul Thomas \\
+Microsoft \\
+pathom@microsoft.com
 }
+
 
 \begin{document}
 
@@ -54,6 +60,15 @@ Online vs. Offline evaluation
 - How are they different?
  (advantages/disadvantages?)
 
+Offline evaluation vs. Log study (Click Modeling)
+- Label-based vs. Behavior-based
+- Experimental control(?)
+
+Offline evaluation vs. User study
+- Focus: system-to-system evaluation vs. understanding interaction/user behavior
+- Scale(?) / Richness(?)
+- Blurred distinction recently
+
 Online-Offline Hybrid approaches
 - Log-based offline evaluation (i.e, click models)
 - Collecting feedback directly from users (Kim et al.)
@@ -66,13 +81,16 @@ Online-Offline Hybrid approaches
 \begin{verbatim}
 Traditional Approaches in Offline Evaluation
 - Concept of relevance 
+- Labels/Metrics based on Query-URLs
 
 Components of Offline Evaluation
--	Search Task (Query / context)
--	Judging Method (Interface / rating scale) 
--	Metric
--	Experiment
--	Test collections for offline evaluation (combining all the components)
+	-	Search Task (Query / context)
+	-	Judging Method (Interface / rating scale) 
+	-	Metric
+	-	Experiment
+
+=>	Test collections for offline evaluation (combining all the components)
+
 \end{verbatim}
 
 \cite{INR-009} \cite{borlund2003} \cite{cleverdon67}
@@ -85,18 +103,23 @@ Need for User-centric Evaluation
 	- Aiming for user satisfaction
 	- Evaluation based on models of user behavior
 - Traditional metrics seem to not agree much with online signals, as well as each other
-	o	Need methodologies to better estimate user satisfaction (metric / judgments)
--	How to address this issue?
+	o	Need methodologies to better estimate user satisfaction & behavior
+- How to address this issue?
 	o	Metric design
 	o	Judgment design
+
+% Malone et al?
 
 Extending the realms of evaluation
 -	Whole-page evaluation
 -	Session-level evaluation
+-	Desktop vs. Mobile / Typed vs. Spoken IR
 
 New approaches
--	Online/Offline hybrid
+-	Online-Offline hybrid (Li & Kim)
 -	Crowdsourcing / agile experimentation
+-	???
+
 \end{verbatim}
 
 \chapter{Metrics}
@@ -107,6 +130,8 @@ New approaches
 -	Evaluation metrics that are based on explicit models of user behaviour
 	o	ERR, EBU, GAP, Time-biased gain, etc.
 	o	Alpha-NDCG, IA metrics, etc.
+	o	RBP / INST (notion of residual)
+-	Estimating the distribution of parameters/metric values based on user data
 \end{verbatim}
 
 \chapter{Judging Method}
@@ -116,8 +141,8 @@ New approaches
 	o	Side by side / SASI
 -	Session/Task-based evaluation
 	o	User study for search experience
--	Effort based judgments
--	Usefulness-based evaluation
+-	Effort based judgments 
+-	Relevance vs. Usefulness-based evaluation 
 \end{verbatim}
 
 \cite{Thomas2006}
@@ -138,6 +163,7 @@ Crowd judges are closer to the user
 \end{verbatim}
 
 \cite{Megorskaya2015} \cite{Davtyan2015}
+% Gabriella's work 
 
 \chapter{Experiment Design and Analysis}
 
@@ -146,6 +172,8 @@ Power analysis
 Sensitivity analysis
 Informativeness (MaxEnt)
 \end{verbatim}
+
+% Diane's tutorial
 
 \chapter{Evaluation Practices from Industry}
 
@@ -157,7 +185,6 @@ How are the companies doing?
 Common features
 - Online + offline evaluation
 Practical tips
-
 \end{verbatim}
 
 \cite{Gomez-Uribe2015}
