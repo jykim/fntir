@@ -26,173 +26,173 @@
 
 
 \begin{document}
+
+% the following settings can be set or left blank at first
+%\copyrightowner{N.~Parikh and S.~Boyd}
+% \volume{1}
+% \issue{3}
+% \pubyear{2014}
+% \isbn{978-0521833783}
+% \doi{1234567890}
+% \firstpage{23}
+% \lastpage{94}
+
+\frontmatter  % title page, contents, catalog information
+
+\maketitle
+
+\tableofcontents
+
+\mainmatter
+
+\begin{abstract}
 	
-	% the following settings can be set or left blank at first
-	%\copyrightowner{N.~Parikh and S.~Boyd}
-	% \volume{1}
-	% \issue{3}
-	% \pubyear{2014}
-	% \isbn{978-0521833783}
-	% \doi{1234567890}
-	% \firstpage{23}
-	% \lastpage{94}
-	
-	\frontmatter  % title page, contents, catalog information
-	
-	\maketitle
-	
-	\tableofcontents
-	
-	\mainmatter
-	
-	\begin{abstract}
-		
-	\end{abstract}
-	
-	\chapter{Introduction}
-	\label{c-intro}
-	
-	\section{Evaluation Paradigms in IR}
-	
-	
-	Online vs. Offline evaluation
-	- What is it? Why is it important? How is it used?
-	- How are they different?
-	\cite{INR-XYZ}\cite{INR-009} 
-	
-	Offline evaluation vs. Log study (Click Modeling)
-	- Label-based vs. Behavior-based
-	- Experimental control(?)
-	
-	Offline evaluation vs. User study
-	- Focus: system-to-system evaluation vs. understanding interaction/user behavior
-	- Scale(?) / Richness(?)
-	- Blurred distinction recently
-	\cite{Bron:2013}
-	\cite{Liu:2014}
-	\cite{Shah:2011}
-	
-	
-	\section{Offline Evaluation for IR}
-	
-	Traditional Approaches in Offline Evaluation
-	- Concept of relevance 
-	- Labels/Metrics based on Query-URLs
-	- Test collections 
-	\cite{borlund2003} \cite{cleverdon67} \cite{voor:trec05}
-	
-	General Components of Offline Evaluation
-	-	Search Task (Query / context)
-	-	Judging Method (Interface / rating scale) 
-	-	Metric
-	-	Experiment
-	
-	\section{Recent Trends in Offline Evaluation}
-	
-	Need for User-centric Evaluation
-	- Definition of User-centric
-	- Aiming for user satisfaction
-	- Evaluation based on models of user behavior
-	
-	Traditional metrics seem to not agree much with online signals, as well as each other
-	\cite{radl:comp10}
-	
-	
-	Need methodologies to better estimate user satisfaction and behavior
-	-	Metric design
-	-	Judgment design
-	
-	% Malone et al?
-	
-	Extending the realms of evaluation
-	-	Whole-page evaluation
-	-	Session-level evaluation
-	-	Desktop vs. Mobile / Typed vs. Spoken IR
-	\cite{Bailey2010} \cite{Thomas2006} \cite{CarteretteBCD08}
-	
-	Online-Offline Hybrid approaches
-	- Log-based offline evaluation \cite{Li:2015} \cite{li2010contextual}
-	- Collecting feedback directly from users (Kim et al.)
-	- Crowdsourcing / Agile Experiment
-	
-	\chapter{Human Judgment}
-	Collecting labels at scale
-	
-	\section{Judgment Design}
-	
-	SERP-level evaluation 
-	Side by side / SASI
-	\cite{Thomas2006}
-	\cite{Chandar2013} \cite{Al-Maskari2007} 
-	\cite{Bailey2010} \cite{CarteretteBCD08}
-	
-	Session/Task-based evaluation
-	User study for search experience
-	
-	Effort based judgments \cite{Yilmaz:2014}
-	
-	Relevance vs. Usefulness-based evaluation 
-	
-	\section{Judgment Collection}
-	
-	Choosing Judges: 
-	Crowd vs. Expert vs. Real-Users \cite{Scholer:2013} \cite{Kazai:2013} \cite{Alonso20121053}
-	
-	Reducing noise in judging: 
-	Multiple judgments and majority voting, etc. \cite{Venanzi:2014}
-	
-	More efficient judgment collection
-	-	Design decisions that need to be tackled  \cite{Blanco:2011} \cite{Kazai2012} \cite{Alonso2012} \cite{Alonso:2015}
-	-	Incentivising judges and how to make it more attractive (payment / I/F)
-	\cite{Megorskaya2015} \cite{Davtyan2015}  \cite{Rokicki:2014}  \cite{Eickhoff:2012}
-	
-	\chapter{Evaluation Metrics}
-	From labels to meaningful numbers
-	
-	
-	Basic IR evaluation metrics 
-	-	Ranking-based metrics (Tau/TauAP)
-	
-	Evaluation metrics that are based on explicit models of user behaviour
-	o	ERR, EBU, GAP, Time-biased gain, etc.
-	o	Alpha-NDCG, IA metrics, etc.
-	o	RBP / INST (notion of residual)
-	
-	Estimating the distribution of parameters/metric values based on user data
-	
-	Metrics for other domains
-	Aggregate search \cite{Zhou:2013}
-	
-	\chapter{Experiment Design}
-	Drawing conclusions from metrics
-	
-	Hypothesis Testing
-	\cite{Dincer:2014}
-	
-	Analysis of Results
-	Power analysis
-	Sensitivity analysis
-	Informativeness (MaxEnt)
-	\cite{Bron:2013} \cite{Urbano:2013} \cite{Boytsov:2013} \cite{Sakai:2014} \cite{Robertson:2012}
-	
-	% Diane's tutorial
-	
-	
-	\chapter{Evaluation Practices from Industry}
-	How are the companies doing?
-	-	Google / Bing
-	-	Netflix \cite{gunawardana2015evaluating} \cite{Gomez-Uribe2015}
-	-	Facebook
-	
-	Common features
-	- Online + offline evaluation
-	
-	Practical tips
-	
-	
-	\backmatter  % references
-	
-	\bibliographystyle{plainnat}
-	\bibliography{ch1_intro,ch1_user_study,ch2_judgment,ch2_crowdsourcing,ch3_metrics,ch4_experiment,ch5_industry}
+\end{abstract}
+
+\chapter{Introduction}
+\label{c-intro}
+
+\section{Evaluation Paradigms in IR}
+
+
+Online vs. Offline evaluation
+- What is it? Why is it important? How is it used?
+- How are they different?
+\cite{INR-XYZ}\cite{INR-009} 
+
+Offline evaluation vs. Log study (Click Modeling)
+- Label-based vs. Behavior-based
+- Experimental control(?)
+
+Offline evaluation vs. User study
+- Focus: system-to-system evaluation vs. understanding interaction/user behavior
+- Scale(?) / Richness(?)
+- Blurred distinction recently
+\cite{Bron:2013}
+\cite{Liu:2014}
+\cite{Shah:2011}
+
+
+\section{Offline Evaluation for IR}
+
+Traditional Approaches in Offline Evaluation
+- Concept of relevance 
+- Labels/Metrics based on Query-URLs
+- Test collections 
+\cite{borlund2003} \cite{cleverdon67} \cite{voor:trec05}
+
+General Components of Offline Evaluation
+-	Search Task (Query / context)
+-	Judging Method (Interface / rating scale) 
+-	Metric
+-	Experiment
+
+\section{Recent Trends in Offline Evaluation}
+
+Need for User-centric Evaluation
+- Definition of User-centric
+- Aiming for user satisfaction
+- Evaluation based on models of user behavior
+
+Traditional metrics seem to not agree much with online signals, as well as each other
+\cite{radl:comp10}
+
+
+Need methodologies to better estimate user satisfaction and behavior
+-	Metric design
+-	Judgment design
+
+% Malone et al?
+
+Extending the realms of evaluation
+-	Whole-page evaluation
+-	Session-level evaluation
+-	Desktop vs. Mobile / Typed vs. Spoken IR
+\cite{Bailey2010} \cite{Thomas2006} \cite{CarteretteBCD08}
+
+Online-Offline Hybrid approaches
+- Log-based offline evaluation \cite{Li:2015} \cite{li2010contextual}
+- Collecting feedback directly from users (Kim et al.)
+- Crowdsourcing / Agile Experiment
+
+\chapter{Human Judgment}
+Collecting labels at scale
+
+\section{Judgment Design}
+
+SERP-level evaluation 
+Side by side / SASI
+\cite{Thomas2006}
+\cite{Chandar2013} \cite{Al-Maskari2007} 
+\cite{Bailey2010} \cite{CarteretteBCD08}
+
+Session/Task-based evaluation
+User study for search experience
+
+Effort based judgments \cite{Yilmaz:2014}
+
+Relevance vs. Usefulness-based evaluation 
+
+\section{Judgment Collection}
+
+Choosing Judges: 
+Crowd vs. Expert vs. Real-Users \cite{Scholer:2013} \cite{Kazai:2013} \cite{Alonso20121053}
+
+Reducing noise in judging: 
+Multiple judgments and majority voting, etc. \cite{Venanzi:2014}
+
+More efficient judgment collection
+-	Design decisions that need to be tackled  \cite{Blanco:2011} \cite{Kazai2012} \cite{Alonso2012} \cite{Alonso:2015}
+-	Incentivising judges and how to make it more attractive (payment / I/F)
+\cite{Megorskaya2015} \cite{Davtyan2015}  \cite{Rokicki:2014}  \cite{Eickhoff:2012}
+
+\chapter{Evaluation Metrics}
+From labels to meaningful numbers
+
+
+Basic IR evaluation metrics 
+-	Ranking-based metrics (Tau/TauAP)
+
+Evaluation metrics that are based on explicit models of user behaviour
+o	ERR, EBU, GAP, Time-biased gain, etc.
+o	Alpha-NDCG, IA metrics, etc.
+o	RBP / INST (notion of residual)
+
+Estimating the distribution of parameters/metric values based on user data
+
+Metrics for other domains
+Aggregate search \cite{Zhou:2013}
+
+\chapter{Experiment Design}
+Drawing conclusions from metrics
+
+Hypothesis Testing
+\cite{Dincer:2014}
+
+Analysis of Results
+Power analysis
+Sensitivity analysis
+Informativeness (MaxEnt)
+\cite{Bron:2013} \cite{Urbano:2013} \cite{Boytsov:2013} \cite{Sakai:2014} \cite{Robertson:2012}
+
+% Diane's tutorial
+
+
+\chapter{Evaluation Practices from Industry}
+How are the companies doing?
+-	Google / Bing
+-	Netflix \cite{gunawardana2015evaluating} \cite{Gomez-Uribe2015}
+-	Facebook
+
+Common features
+- Online + offline evaluation
+
+Practical tips
+
+
+\backmatter  % references
+
+\bibliographystyle{plainnat}
+\bibliography{ch1_intro,ch1_user_study,ch2_judgment,ch2_crowdsourcing,ch3_metrics,ch4_experiment,ch5_industry}
 	
 \end{document}
