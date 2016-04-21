@@ -6,6 +6,7 @@
 \newcommand{\eg}{\emph{e.g.}}
 \newcommand{\etc}{\emph{etc}}
 \newcommand{\now}{\textsc{now}}
+\newcommand{\newpar}{\bigskip\noindent}
 
 \title{Offline Evaluation for Information Retrieval}
 
@@ -61,23 +62,37 @@ This survey aims to provide an overview of recent research in IR evaluation pert
 \section{Evaluation Paradigms in IR}
 
 New Landscape in IR Evaluation Research
+
 - More endpoints / models
+
 - User-centric view (understanding user)
+
 - Online evaluation (industry)
+
 - Agile experimentation (crowdsourcing)
 
-Online vs. Offline evaluation
-- What is it? Why is it important? How is it used?
-- How are they different?
-\cite{INR-XYZ}\cite{INR-009} 
+\newpar
+Online \cite{INR-XYZ} vs. Offline evaluation \cite{INR-009} 
 
-Offline evaluation vs. Log study (Click Modeling)
+- What is it? Why is it important? How is it used?
+
+- How are they different?
+
+
+\newpar
+Offline evaluation vs. Log study (Click Modeling) \cite{chuklin2015click}
+
 - Label-based vs. Behavior-based
+
 - Experimental control(?)
 
-Offline evaluation vs. User study
+\newpar
+Offline evaluation vs. User study \cite{kelly2009methods}
+
 - Focus: system-to-system evaluation vs. understanding interaction/user behavior
+
 - Scale(?) / Richness(?)
+
 - Blurred distinction recently
 \cite{Bron:2013}
 \cite{Liu:2014}
@@ -87,117 +102,177 @@ Offline evaluation vs. User study
 \section{Offline Evaluation for IR}
 
 Traditional Approaches in Offline Evaluation
+
 - Concept of relevance 
+
 - Labels/Metrics based on Query-URLs
+
 - Test collections 
+
 \cite{borlund2003} \cite{cleverdon67} \cite{voor:trec05}
 
+\newpar
 General Components of Offline Evaluation
+
 -	Search Task (Query / context)
+
 -	Judging Method (Interface / rating scale) 
+
 -	Metric
+
 -	Experiment
 
 \section{Recent Trends in Offline Evaluation}
 
-Need for User-centric Evaluation
-- Definition of User-centric
-- Aiming for user satisfaction
+
+
+Definition of User-centric:
+
+- Aiming for user satisfaction 
+
 - Evaluation based on models of user behavior
 
-Traditional metrics seem to not agree much with online signals, as well as each other
-\cite{radl:comp10}
+\newpar
+Need for User-centric Evaluation
 
+- Cross-metric studies btw. online and offline evaluation \cite{radl:comp10}
 
+- Traditional metrics seem to not agree much with user behavior/satisfaction
+ \cite{Al-Maskari2007} 
+
+\newpar
 Need methodologies to better estimate user satisfaction and behavior
+
 -	Metric design
+
 -	Judgment design
 
 % Malone et al?
 
+\newpar
 Extending the realms of evaluation
--	Whole-page evaluation
--	Session-level evaluation
--	Desktop vs. Mobile / Typed vs. Spoken IR
-\cite{Bailey2010} \cite{Thomas2006} \cite{CarteretteBCD08}
 
+-	Whole-page evaluation
+
+-	Session-level evaluation
+
+-	Desktop vs. Mobile / Typed vs. Spoken IR
+
+\newpar
 Online-Offline Hybrid approaches
+
 - Log-based offline evaluation \cite{Li:2015} \cite{li2010contextual}
+
 - Collecting feedback directly from users (Kim et al.)
+
 - Crowdsourcing / Agile Experiment
 
 \chapter{Human Judgment}
-Collecting labels at scale
+Considerations in collecting high-quality labels from human judges at scale
 
 \section{Judgment Design}
 
-SERP-level evaluation 
-Side by side / SASI
-\cite{Thomas2006}
-\cite{Chandar2013} \cite{Al-Maskari2007} 
-\cite{Bailey2010} \cite{CarteretteBCD08}
+SERP-level evaluation: 
 
-Session/Task-based evaluation
-User study for search experience
+- Preference Judgment  \cite{Chandar2013} \cite{CarteretteBCD08}
 
+- Side by side \cite{Thomas2006} \cite{Kim:2013}
+
+- SASI \cite{Bailey2010} 
+
+\newpar
+Session/Task-based evaluation \cite{Moraveji:2011} \cite{Xu:2009}
+
+\newpar
 Effort based judgments \cite{Yilmaz:2014}
 
-Relevance vs. Usefulness-based evaluation 
+- Relevance vs. Usefulness-based evaluation 
 
 \section{Judgment Collection}
 
 Choosing Judges: 
-Crowd vs. Expert vs. Real-Users \cite{Scholer:2013} \cite{Kazai:2013} \cite{Alonso20121053}
 
+- Crowd vs. Expert \cite{Kazai:2013} \cite{Alonso20121053}
+
+- Query owner vs. non-owners \cite{Chouldechova:2013}
+
+\newpar
 Reducing noise in judging: 
-Multiple judgments and majority voting, etc. \cite{Venanzi:2014}
 
+- Multiple judgments and majority voting, etc. \cite{Venanzi:2014}
+
+\newpar
 More efficient judgment collection
--	Design decisions that need to be tackled  \cite{Blanco:2011} \cite{Kazai2012} \cite{Alonso2012} \cite{Alonso:2015}
+
+-	Design decisions that need to be tackled  \cite{Blanco:2011} \cite{Kazai2012} \cite{Alonso2012} \cite{Alonso:2015} \cite{Scholer:2013} 
+
 -	Incentivising judges and how to make it more attractive (payment / I/F)
 \cite{Megorskaya2015} \cite{Davtyan2015}  \cite{Rokicki:2014}  \cite{Eickhoff:2012}
 
 \chapter{Evaluation Metrics}
-From labels to meaningful numbers
+How to combine labels to meaningful numbers
 
 
-Basic IR evaluation metrics 
+Basic IR evaluation metrics
+
 -	Ranking-based metrics (Tau/TauAP)
 
+\newpar
 Evaluation metrics that are based on explicit models of user behaviour
-o	ERR, EBU, GAP, Time-biased gain, etc.
-o	Alpha-NDCG, IA metrics, etc.
-o	RBP / INST (notion of residual)
 
+-	ERR, EBU, GAP, Time-biased gain, etc.
+
+-	Alpha-NDCG, IA metrics, etc.
+
+-	RBP / INST (notion of residual)
+
+\newpar
 Estimating the distribution of parameters/metric values based on user data
 
-Metrics for other domains
-Aggregate search \cite{Zhou:2013}
+\newpar
+Metrics for other domains of search
+
+- Aggregate search \cite{Zhou:2013}
+- Recommendation systems \cite{gunawardana2015evaluating}
 
 \chapter{Experiment Design}
 Drawing conclusions from metrics
 
-Hypothesis Testing
-\cite{Dincer:2014}
+- Hypothesis Testing \cite{Dincer:2014}
 
+\newpar
 Analysis of Results
-Power analysis
-Sensitivity analysis
-Informativeness (MaxEnt)
-\cite{Bron:2013} \cite{Urbano:2013} \cite{Boytsov:2013} \cite{Sakai:2014} \cite{Robertson:2012}
+
+- Power analysis \cite{Sakai:2014}
+
+- Sensitivity and Reliability analysis \cite{Urbano:2013} 
+
+- Informativeness (MaxEnt)
+
+- ETC \cite{Bron:2013} \cite{Boytsov:2013}  \cite{Robertson:2012}
 
 % Diane's tutorial
 
 
 \chapter{Evaluation Practices from Industry}
-How are the companies doing?
--	Google / Bing
--	Netflix \cite{gunawardana2015evaluating} \cite{Gomez-Uribe2015}
--	Facebook
 
+How are the companies doing?
+
+-	Google \footnote{How Search Works (Google) https://www.google.com/insidesearch/howsearchworks/thestory/}
+
+-	Bing \footnote{The Role of Content Quality in Bing Ranking (Bing)
+	 http://bit.ly/1T1BaYN}
+
+-	Netflix \cite{Gomez-Uribe2015}
+
+-	Facebook \footnote{Who Controls Your Facebook Feed (Slate) http://slate.me/1T1BbvU}
+
+\newpar
 Common features
+
 - Online + offline evaluation
 
+\newpar
 Practical tips
 
 
