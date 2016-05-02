@@ -47,9 +47,9 @@
 \mainmatter
 
 \begin{abstract}
-Offline evaluation provides characterization of an IR system based on human judgments without relying on actual users in real-world environment. Offline evaluation, notably test collection based evaluation, has been dominant approaches in IR evaluation. It is no exaggeration that shared evaluation efforts such as TREC has defined the IR research over the years. The reason for this success lies in the ability to compare retrieval systems in a reusable manner.
+Offline evaluation provides characterization of an information retrieval (IR) system based on human judgments without relying on actual users in real-world environment. Offline evaluation, notably test collection based evaluation, has been dominant approaches in IR evaluation. It is no exaggeration that shared evaluation efforts such as TREC has defined the IR research over the years. The reason for this success lies in the ability to compare retrieval systems in a reusable manner.
 
-Recently, there has been several trends which necessitates the change in the role and method of offline evaluation. First and foremost, online search engines with large-scale user base has become commonplace, enabling online evaluation based on user behavior. Also, there are many endpoints for search beyond desktop web browser, and the types of search results has diversified beyond the list of web documents to include other results types and direct answers. Finally, crowdsourcing has provided ways for human judgments of any kind to be collected at an large scale. The overall outcome of this trend is the advent of IR evaluation paradigm which is more user-centric, diverse and agile.
+Recently, there has been several trends which necessitates the change in the role and method of offline evaluation. First and foremost, online search engines with large-scale user base has become commonplace, enabling online evaluation based on user behavior. Also, there are many endpoints for search beyond desktop web browser, and the types of search results has diversified beyond the list of web documents to include other results types and direct answers. Finally, crowdsourcing has provided ways for human judgments of any kind to be collected at an large scale. The overall outcome of this trend is the advent of new IR evaluation paradigms which are more user-centric, diverse and agile.
 
 This survey aims to provide an overview of recent research in IR evaluation pertaining to the trends above. We first introduce offline evaluation for IR, focusing on how it relates to other evaluation paradigms such as online evaluation. We also overview traditional offline evaluation for IR, and how recent trends have shaped the research so far. We then review research in offline evaluation mainly on three levels: human judgment, evaluation metric and experiment design. This organization will allow readers to follow recent developments in research from micro-level (human judgment) to macro-level (experiment). Finally, we discuss evaluation practices from industry, which has been a major driving force in research and development in IR.
 
@@ -61,13 +61,19 @@ This survey aims to provide an overview of recent research in IR evaluation pert
 
 \section{Evaluation Paradigms in IR}
 
-New Landscape in IR Evaluation Research
+An overview of different approaches to evaluation
 
-- More endpoints / models
+- Offline evaluation definition, applications and importance
+
+- New Landscape in IR Evaluation Research
 
 - User-centric view (understanding user)
 
 - Online evaluation (industry)
+
+- User studies
+
+- More endpoints / models
 
 - Agile experimentation (crowdsourcing)
 
@@ -103,27 +109,29 @@ Offline evaluation vs. User study \cite{kelly2009methods}
 
 Traditional Approaches in Offline Evaluation
 
-- Concept of relevance 
-
 - Labels/Metrics based on Query-URLs
 
 - Test collections 
+
+- Concept of relevance 
 
 \cite{borlund2003} \cite{cleverdon67} \cite{voor:trec05}
 
 \newpar
 General Components of Offline Evaluation
 
+-	Experiment
+
 -	Search Task (Query / context)
 
--	Judging Method (Interface / rating scale) 
+- 	Document collection 
 
 -	Metric
 
--	Experiment
+-	Judging Method (Interface / rating scale) 
+
 
 \section{Recent Trends in Offline Evaluation}
-
 
 
 Definition of User-centric:
@@ -144,9 +152,10 @@ Need for User-centric Evaluation
 Need methodologies to better estimate user satisfaction and behavior
 
 -	Metric design
+\cite{YilmazSCR10, CarteretteKY11, ChapelleMZG09}
 
 -	Judgment design
-
+\cite{VermaY16, VermaYC16}
 % Malone et al?
 
 \newpar
@@ -156,7 +165,11 @@ Extending the realms of evaluation
 
 -	Session-level evaluation
 
+\cite{KanoulasCCS11, CarteretteKHC14}
+
 -	Desktop vs. Mobile / Typed vs. Spoken IR
+
+\cite{VermaYC16}
 
 \newpar
 Online-Offline Hybrid approaches
@@ -223,7 +236,9 @@ How to combine labels to meaningful numbers
 
 Basic IR evaluation metrics
 
--	Ranking-based metrics (Tau/TauAP)
+- Metrics based on absolute judgments
+- Metrics based on preference based judgments	
+- Ranking-based metrics (Tau/TauAP)
 
 \newpar
 Evaluation metrics that are based on explicit models of user behaviour
@@ -237,6 +252,8 @@ Evaluation metrics that are based on explicit models of user behaviour
 \newpar
 Estimating the distribution of parameters/metric values based on user data
 
+\cite{CarteretteKY11}
+
 \newpar
 Metrics for other domains of search
 
@@ -248,19 +265,29 @@ Drawing conclusions from metrics
 
 - Hypothesis Testing \cite{Dincer:2014}
 
+- Comparison of different types of significance tests \cite{SmuckerAC09}
+
 \newpar
-Analysis of Results
+Analysis of Results and Metric Comparison (Which Metric?)
 
 - Power analysis \cite{Sakai:2014}
 
 - Sensitivity and Reliability analysis \cite{Urbano:2013} 
 
-- Informativeness (MaxEnt)
+- Informativeness (MaxEnt) \cite{AslamYP05}
 
 - ETC \cite{Bron:2013} \cite{Boytsov:2013}  \cite{Robertson:2012}
 
 % Diane's tutorial
 
+\newpar
+Design decisions
+
+- How many queries? \cite{Sakai:2014}
+
+- How many documents? \cite{CarterettePFK09}
+
+- How to distribute judgment effort across queries and documents? \cite{CarterettePKAA09, YilmazR09}
 
 \chapter{Evaluation Practices from Industry}
 
