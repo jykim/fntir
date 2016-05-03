@@ -180,7 +180,18 @@ Online-Offline Hybrid approaches
 
 - Crowdsourcing / Agile Experiment
 
+\section{A pipeline for offline evaluation}
+
+- Select an audience (who you want to talk to: end users, accountants, sysadmins, advertisers). In this work we are interested in user-centric evaluation; so we will focus on this audience.
+
+- Collect appropriate data: documents, tasks, queries, judgments. Much of this data may already exist; but Chapter~\ref{c-human-judgment} deals with gathering judgments, which need to be created for the purpose.
+
+- Choose a metric based on your tasks and on likely user models. Aggregate judgments, if needed, to compute the metric. Chapter~\ref{c-metrics} considers this.
+
+- Examine the metric to draw some conclusion. This is covered in Chapter~\ref{c-experiment-design}.
+
 \chapter{Human Judgment}
+\label{c-human-judgment}
 Considerations in collecting high-quality labels from human judges at scale
 
 \section{Judgment Design}
@@ -231,8 +242,9 @@ Efficient judgment collection using Crowdsourcing
 \cite{Megorskaya2015} \cite{Davtyan2015}  \cite{Rokicki:2014}  \cite{Eickhoff:2012}
 
 \chapter{Evaluation Metrics}
-How to combine labels to meaningful numbers
+\label{c-metrics}
 
+How to combine labels to meaningful numbers
 
 Basic IR evaluation metrics
 
@@ -261,6 +273,8 @@ Metrics for other domains of search
 - Recommendation systems \cite{gunawardana2015evaluating}
 
 \chapter{Experiment Design}
+\label{c-experiment-design}
+
 Drawing conclusions from metrics
 
 - Hypothesis Testing \cite{Dincer:2014}
