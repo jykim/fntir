@@ -59,11 +59,13 @@ This survey aims to provide an overview of recent research in IR evaluation pert
 \chapter{Introduction}
 \label{c-intro}
 
-\section{Evaluation Paradigms in IR}
-
 An overview of different approaches to evaluation
 
-- Offline evaluation definition, applications and importance
+Offline evaluation definition, applications and importance
+
+(~15 pages)
+
+\section{Evaluation Paradigms in IR}
 
 \newpar
 New Landscape in IR Evaluation Research
@@ -91,14 +93,14 @@ Offline evaluation vs. Log study (Click Modeling) \cite{chuklin2015click}
 
 - Label-based vs. Behavior-based
 
-- Experimental control(?)
+- Data from controlled experiments vs. Natural observations
 
 \newpar
 Offline evaluation vs. User study \cite{kelly2009methods}
 
 - Focus: system-to-system evaluation vs. understanding interaction/user behavior
 
-- Scale(?) / Richness(?)
+- Difference in scale and richness
 
 - Blurred distinction recently
 \cite{Bron:2013}
@@ -118,7 +120,49 @@ Traditional Approaches in Offline Evaluation
 
 \cite{borlund2003} \cite{cleverdon67} \cite{voor:trec05}
 
+\section{Recent Trends in Offline Evaluation}
+
+Definition of User-centric:
+
+- Aiming for user satisfaction, or other user-visible measure such as engagement or task completion (\cite{scholer13})
+
+- Evaluation based on models of user behavior
+
 \newpar
+Need for User-centric Evaluation
+
+- Traditional metrics seem to not agree much with user behavior/satisfaction
+ \cite{Al-Maskari2007} 
+
+- Cross-metric studies btw. online and offline evaluation \cite{radl:comp10}
+
+\newpar
+Need methodologies to better estimate user satisfaction and behavior
+
+-	Metric design \cite{YilmazSCR10, CarteretteKY11, ChapelleMZG09}
+
+-	Judgment design \cite{VermaY16, VermaYC16}
+
+\newpar
+Extending the realms of evaluation
+
+-	Whole-page evaluation \cite{Zhou:2012}
+
+-	Session-level evaluation \cite{KanoulasCCS11, CarteretteKHC14}
+
+-	Desktop vs. Mobile / Typed vs. Spoken IR \cite{VermaYC16}
+
+\newpar
+Online-Offline Hybrid approaches
+
+- Log-based offline evaluation \cite{Li:2015} \cite{li2010contextual}
+
+- Collecting feedback directly from users \cite{Kim2016}
+
+- Crowdsourcing / Agile Experiment
+
+\section{How this Paper is Organized}
+
 General Components of Offline Evaluation
 
 -	Experiment
@@ -131,57 +175,8 @@ General Components of Offline Evaluation
 
 -	Judging Method (Interface / rating scale) 
 
-
-\section{Recent Trends in Offline Evaluation}
-
-
-Definition of User-centric:
-
-- Aiming for user satisfaction, or other user-visible measure such as engagement or task completion (\cite{scholer13})
-
-- Evaluation based on models of user behavior
-
 \newpar
-Need for User-centric Evaluation
-
-- Cross-metric studies btw. online and offline evaluation \cite{radl:comp10}
-
-- Traditional metrics seem to not agree much with user behavior/satisfaction
- \cite{Al-Maskari2007} 
-
-\newpar
-Need methodologies to better estimate user satisfaction and behavior
-
--	Metric design
-\cite{YilmazSCR10, CarteretteKY11, ChapelleMZG09}
-
--	Judgment design
-\cite{VermaY16, VermaYC16}
-% Malone et al?
-
-\newpar
-Extending the realms of evaluation
-
--	Whole-page evaluation
-
--	Session-level evaluation
-
-\cite{KanoulasCCS11, CarteretteKHC14}
-
--	Desktop vs. Mobile / Typed vs. Spoken IR
-
-\cite{VermaYC16}
-
-\newpar
-Online-Offline Hybrid approaches
-
-- Log-based offline evaluation \cite{Li:2015} \cite{li2010contextual}
-
-- Collecting feedback directly from users (Kim et al.)
-
-- Crowdsourcing / Agile Experiment
-
-\section{A pipeline for offline evaluation}
+A pipeline for offline evaluation
 
 - Select an audience (who you want to talk to: end users, accountants, sysadmins, advertisers). In this work we are interested in user-centric evaluation; so we will focus on this audience.
 
@@ -193,7 +188,7 @@ Online-Offline Hybrid approaches
 
 \chapter{Human Judgment}
 \label{c-human-judgment}
-Considerations in collecting high-quality labels from human judges at scale
+Considerations in collecting high-quality labels from human judges at scale (~20 pages)
 
 \section{Judgment Design}
 
@@ -245,13 +240,14 @@ Efficient judgment collection using Crowdsourcing
 \chapter{Evaluation Metrics}
 \label{c-metrics}
 
-How to combine labels to meaningful numbers
+How to combine labels to meaningful numbers (~20 pages)
 
+\newpar
 Basic IR evaluation metrics
 
 - Metrics based on absolute judgments
 
-- Metrics based on preference based judgments	
+- Metrics based on preference based judgments 
 
 - Ranking-based metrics (Tau/TauAP)
 
@@ -262,7 +258,7 @@ Evaluation metrics that are based on explicit models of user behaviour
 
 -	Alpha-NDCG, IA metrics, etc.
 
--	RBP / INST (notion of residual)
+-	RBP / INST (notion of residual) \cite{Moffat2013}
 
 \newpar
 Estimating the distribution of parameters/metric values based on user data
@@ -273,12 +269,13 @@ Estimating the distribution of parameters/metric values based on user data
 Metrics for other domains of search
 
 - Aggregate search \cite{Zhou:2013}
+
 - Recommendation systems \cite{gunawardana2015evaluating}
 
 \chapter{Experiment Design}
 \label{c-experiment-design}
 
-Drawing conclusions from metrics
+Drawing conclusions from metrics (~ 15 pages)
 
 - Hypothesis Testing \cite{Dincer:2014}
 
@@ -295,7 +292,6 @@ Analysis of Results and Metric Comparison (Which Metric?)
 
 - ETC \cite{Bron:2013} \cite{Boytsov:2013}  \cite{Robertson:2012}
 
-% Diane's tutorial
 
 \newpar
 Design decisions
@@ -308,7 +304,7 @@ Design decisions
 
 \chapter{Evaluation Practices from Industry}
 
-How are the companies doing?
+How are the practitioners doing? (~15 pages)
 
 -	Google \footnote{How Search Works (Google) https://www.google.com/insidesearch/howsearchworks/thestory/}
 
@@ -322,10 +318,11 @@ How are the companies doing?
 \newpar
 Common features
 
-- Online + offline evaluation
+- Combine online and offline evaluation
 
-\newpar
-Practical tips
+- Offline evaluation for early iteration
+
+- Online evaluation for final ship decision
 
 
 \backmatter  % references
