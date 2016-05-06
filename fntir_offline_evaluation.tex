@@ -63,7 +63,7 @@ An overview of different approaches to evaluation
 
 Offline evaluation definition, applications and importance
 
-(~15 pages)
+(\ensuremath{\approx}15 pages)
 
 \section{Evaluation Paradigms in IR}
 
@@ -188,7 +188,7 @@ A pipeline for offline evaluation
 
 \chapter{Human Judgment}
 \label{c-human-judgment}
-Considerations in collecting high-quality labels from human judges at scale (~20 pages)
+Considerations in collecting high-quality labels from human judges at scale (\ensuremath{\approx}20 pages)
 
 \section{Judgment Design}
 
@@ -240,30 +240,55 @@ Efficient judgment collection using Crowdsourcing
 \chapter{Evaluation Metrics}
 \label{c-metrics}
 
-How to combine labels to meaningful numbers (~20 pages)
+How to combine labels to meaningful numbers (\ensuremath{\approx}20 pages)
 
-\newpar
-Basic IR evaluation metrics
+\section{Basic IR evaluation metrics}
 
-- Metrics based on absolute judgments
+- Metrics based on absolute judgments (e.g. \cite{cooper73selecting})
 
-- Metrics based on preference based judgments 
+- Metrics based on preference based judgments, including e.g.\ aggregated in-situ side-by-side \cite{Thomas2006}
 
 - Ranking-based metrics (Tau/TauAP)
 
-\newpar
-Evaluation metrics that are based on explicit models of user behaviour
+\section{Metrics based on simple aggregation of labels/qrels}
 
--	ERR, EBU, GAP, Time-biased gain, etc.
+- P, R, AP, RR
 
--	Alpha-NDCG, IA metrics, etc.
+\section{Models of behavior}
 
--	RBP / INST (notion of residual) \cite{Moffat2013}
+Evaluation metrics that are based on explicit models of user behavior
 
-\newpar
-Estimating the distribution of parameters/metric values based on user data
+- The cascade model and variants
 
-\cite{CarteretteKY11}
+- ERR, EBU, GAP, Time-biased gain, etc.
+
+- Weighted precision metrics such as RBP, INST; notion of residual
+
+- Alpha-NDCG, IA metrics, etc.
+
+- Cost-based/economic models and the prospects of metrics from these
+
+\section{Open issues}
+
+Open issues in behavior models and the corresponding metrics
+
+- Whole-page quality
+
+- Caption effects
+
+- Variation between users: behaviors, learning styles, cognitive styles, topic expertise, search system expertise, expectations of the system, query variation, \dots
+
+- Duplication in SERPs
+
+- Learning
+
+- Non-traditional tasks
+
+\section{Model fitting}
+
+Fit of metrics to models; estimating the distribution of parameters/metric values based on user data
+
+\cite{CarteretteKY11}, \cite{Moffat2013}
 
 \newpar
 Metrics for other domains of search
@@ -275,7 +300,7 @@ Metrics for other domains of search
 \chapter{Experiment Design}
 \label{c-experiment-design}
 
-Drawing conclusions from metrics (~ 15 pages)
+Drawing conclusions from metrics (\ensuremath{\approx} 15 pages)
 
 - Hypothesis Testing \cite{Dincer:2014}
 
@@ -302,9 +327,14 @@ Design decisions
 
 - How to distribute judgment effort across queries and documents? \cite{CarterettePKAA09, YilmazR09}
 
+\newpar
+Reporting
+
+- Effect sizes and distributions, vs point estimates and $p$ values
+
 \chapter{Evaluation Practices from Industry}
 
-How are the practitioners doing? (~15 pages)
+How are the practitioners doing? (\ensuremath{\approx}15 pages)
 
 -	Google \footnote{How Search Works (Google) https://www.google.com/insidesearch/howsearchworks/thestory/}
 
