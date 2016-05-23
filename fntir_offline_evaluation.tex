@@ -49,7 +49,7 @@
 \begin{abstract}
 Offline evaluation provides characterization of an information retrieval (IR) system based on human judgments without relying on actual users in real-world environment. Offline evaluation, notably test collection based evaluation, has been dominant approaches in IR evaluation. It is no exaggeration that shared evaluation efforts such as TREC has defined the IR research over the years. The reason for this success lies in the ability to compare retrieval systems in a reusable manner.
 
-Recently, there has been several trends which necessitates the change in the role and method of offline evaluation. First and foremost, online search engines with large-scale user base has become commonplace, enabling online evaluation based on user behavior. Also, there are many endpoints for search beyond desktop web browser, and the types of search results has diversified beyond the list of web documents to include other results types and direct answers. Finally, crowdsourcing has provided ways for human judgments of any kind to be collected at an large scale. The overall outcome of this trend is the advent of new IR evaluation paradigms which are more user-centric, diverse and agile.
+Recently, there has been several trends which necessitates the change in the role and method of offline evaluation. First and foremost, online search engines with large-scale user base has become commonplace, enabling online evaluation based on user behavior. Also, there are many endpoints for search beyond desktop web browser such as mobile phone and conversational agents, and the types of search results has diversified beyond the list of web documents to include other results types and direct answers. Finally, crowdsourcing has provided ways for human judgments of any kind to be collected at an large scale. The overall outcome of this trend is the advent of new IR evaluation paradigms which are more user-centric, diverse and agile.
 
 This survey aims to provide an overview of recent research in IR evaluation pertaining to the trends above. We first introduce offline evaluation for IR, focusing on how it relates to other evaluation paradigms such as online evaluation. We also overview traditional offline evaluation for IR, and how recent trends have shaped the research so far. We then review research in offline evaluation mainly on three levels: human judgment, evaluation metric and experiment design. This organization will allow readers to follow recent developments in research from micro-level (human judgment) to macro-level (experiment). Finally, we discuss evaluation practices from industry, which has been a major driving force in research and development in IR.
 
@@ -59,11 +59,7 @@ This survey aims to provide an overview of recent research in IR evaluation pert
 \chapter{Introduction}
 \label{c-intro}
 
-An overview of different approaches to evaluation
-
-Offline evaluation definition, applications and importance
-
-(\ensuremath{\approx}15 pages)
+In this chapter, we survey the area and lay conceptual foundation for the rest of the paper. We first provide an overview of different approaches to IR evaluation. We then focus on general overview of offline evaluation, explaining traditional approaches and recent trends. Finally, we introduce a conceptual framework and the outline for the rest of this paper. (15-20 pages)
 
 \section{Evaluation Paradigms in IR}
 
@@ -81,15 +77,14 @@ New Landscape in IR Evaluation Research
 - Agile experimentation (crowdsourcing)
 
 \newpar
-Online \cite{INR-XYZ} vs. Offline evaluation \cite{INR-009} 
+Online evaluation \cite{INR-XYZ} vs. Offline evaluation \cite{INR-009} 
 
 - What is it? Why is it important? How is it used?
 
 - How are they different?
 
-
 \newpar
-Offline evaluation vs. Log study (Click Modeling) \cite{chuklin2015click}
+Offline evaluation vs. Counterfactual online evaluation \cite{chuklin2015click} \cite{Li:2015, li2010contextual}
 
 - Label-based vs. Behavior-based
 
@@ -107,10 +102,19 @@ Offline evaluation vs. User study \cite{kelly2009methods}
 \cite{Liu:2014}
 \cite{Shah:2011}
 
+\newpar
+The role of offline evaluation
+
+- Evaluation at the early stage of development
+
+- Experimental control and resolution
+
+- Reusability across experiments
 
 \section{Offline Evaluation for IR}
+\subsection{Traditional Approaches in Offline Evaluation}
 
-Traditional Approaches in Offline Evaluation
+Conceptual Model
 
 - Labels/Metrics based on Query-URLs
 
@@ -118,18 +122,17 @@ Traditional Approaches in Offline Evaluation
 
 - Concept of relevance 
 
+History
+
+- TREC and related evaluation venues \cite{INR-009}
+
 \cite{borlund2003} \cite{cleverdon67} \cite{voor:trec05}
 
-\section{Recent Trends in Offline Evaluation}
+\subsection{Recent Trends in Offline Evaluation}
 
-Definition of User-centric:
-
-- Aiming for user satisfaction, or other user-visible measure such as engagement or task completion (\cite{scholer13})
-
-- Evaluation based on models of user behavior
-
-\newpar
 Need for User-centric Evaluation
+
+- Definition: Aiming for user satisfaction, or other user-visible measure such as engagement or task completion (\cite{scholer13}) / Evaluation based on models of user behavior
 
 - Traditional metrics seem to not agree much with user behavior/satisfaction
  \cite{Al-Maskari2007} 
@@ -161,7 +164,7 @@ Online-Offline Hybrid approaches
 
 - Crowdsourcing / Agile Experiment
 
-\section{How this Paper is Organized}
+\section{General Framework for Offline Evaluation}
 
 General Components of Offline Evaluation
 
@@ -169,16 +172,14 @@ General Components of Offline Evaluation
 
 -	Search Task (Query / context)
 
-- 	Document collection 
-
--	Metric
+-	Evaluation Metric
 
 -	Judging Method (Interface / rating scale) 
 
 \newpar
-A pipeline for offline evaluation
+Organization of this paper: A pipeline for offline evaluation
 
-- Select an audience (who you want to talk to: end users, accountants, sysadmins, advertisers). In this work we are interested in user-centric evaluation; so we will focus on this audience.
+- Select an audience (who you want to talk to: end users, accountants, sysadmins, advertisers). 
 
 - Collect appropriate data: documents, tasks, queries, judgments. Much of this data may already exist; but Chapter~\ref{c-human-judgment} deals with gathering judgments, which need to be created for the purpose.
 
@@ -186,13 +187,25 @@ A pipeline for offline evaluation
 
 - Examine the metric to draw some conclusion. This is covered in Chapter~\ref{c-experiment-design}.
 
-\chapter{Human Judgment}
+\chapter{Collecting Human Judgments}
 \label{c-human-judgment}
-Considerations in collecting high-quality labels from human judges at scale (\ensuremath{\approx}20 pages)
 
-\section{Judgment Design}
+The first step in offline evaluation is collecting human judgments. In this chapter, we describe various considerations in collecting high-quality labels from human judges at scale. We first discuss the method for collecting search tasks, followed by the design of a judging method. We then discuss the collection of judgments, which is an non-trivial task to perform at scale. (20-25 pages)
 
-SERP-level evaluation: 
+\section{Collecting Search Tasks}
+
+Collect hypothetical search tasks
+
+- Examples from user study papers
+
+\newpar
+Sample search tasks from existing system
+
+- Which sampling methods to use? \cite{Baeza-Yates:2015}
+
+\section{Designing a Judging Method}
+
+Judging Unit: URL vs. SERP-level evaluation
 
 - Preference Judgment  \cite{Chandar2013} \cite{CarteretteBCD08}
 
@@ -214,7 +227,7 @@ Effort based judgments \cite{Yilmaz:2014} \cite{Verma:2016:EBJ}
 
 - Relevance vs. Usefulness-based evaluation 
 
-\section{Judgment Collection}
+\section{Collecting Judgments}
 
 Choosing Judges: 
 
@@ -229,6 +242,8 @@ Reducing noise in judging:
 
 - Multiple judgments and majority voting, etc. \cite{Venanzi:2014}
 
+\cite{aroyo2013measuring} \cite{aroyo2013crowd}
+
 \newpar
 Efficient judgment collection using Crowdsourcing
 
@@ -237,7 +252,9 @@ Efficient judgment collection using Crowdsourcing
 -	Incentivising judges and how to make it more attractive (payment / I/F)
 \cite{Megorskaya2015} \cite{Davtyan2015}  \cite{Rokicki:2014}  \cite{Eickhoff:2012}
 
-\chapter{Evaluation Metrics}
+\section{Open Issues}
+
+\chapter{Designing Evaluation Metrics}
 \label{c-metrics}
 
 How to combine labels to meaningful numbers (\ensuremath{\approx}20 pages)
@@ -297,7 +314,7 @@ Metrics for other domains of search
 
 - Recommendation systems \cite{gunawardana2015evaluating}
 
-\chapter{Experiment Design}
+\chapter{Designing and Analyzing Experiments}
 \label{c-experiment-design}
 
 Drawing conclusions from metrics (\ensuremath{\approx} 15 pages)
@@ -332,16 +349,20 @@ Reporting
 
 - Effect sizes and distributions, vs point estimates and $p$ values
 
+\section{Open Issues}
+
 \chapter{Evaluation Practices from Industry}
 
 How are the practitioners doing? (\ensuremath{\approx}15 pages)
 
--	Google \footnote{How Search Works (Google) https://www.google.com/insidesearch/howsearchworks/thestory/}
+-	Google \footnote{How Search Works (Google) https://www.google.com/insidesearch/howsearchworks/thestory/} \footnote{Updating Our Search Quality Rating Guidelines
+	 https://webmasters.googleblog.com/2015/11/updating-our-search-quality-rating.html}
 
 -	Bing \footnote{The Role of Content Quality in Bing Ranking (Bing)
 	 http://bit.ly/1T1BaYN}
 
--	Netflix \cite{Gomez-Uribe2015}
+-	Netflix \cite{Gomez-Uribe2015}  \footnote{The Netflix Tech Blog: Learning a Personalized Homepage
+	http://techblog.netflix.com/2015/04/learning-personalized-homepage.html}
 
 -	Facebook \footnote{Who Controls Your Facebook Feed (Slate) http://slate.me/1T1BbvU}
 
@@ -354,6 +375,11 @@ Common features
 
 - Online evaluation for final ship decision
 
+\chapter{Conclusions}
+
+Emerging trends in the tech ecosystem
+
+Future of Offline Evaluation
 
 \backmatter  % references
 
