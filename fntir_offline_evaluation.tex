@@ -247,23 +247,29 @@ Reducing noise in judging:
 \newpar
 Efficient judgment collection using Crowdsourcing
 
--	Design decisions that need to be tackled  \cite{Blanco:2011} \cite{Kazai2012} \cite{Alonso2012} \cite{Alonso:2015} \cite{Scholer:2013} 
+- Design decisions that need to be tackled  \cite{Blanco:2011} \cite{Kazai2012} \cite{Alonso2012} \cite{Alonso:2015} \cite{Scholer:2013} 
 
--	Incentivising judges and how to make it more attractive (payment / I/F)
+- Incentivising judges and how to make it more attractive (payment / I/F)
 \cite{Megorskaya2015} \cite{Davtyan2015}  \cite{Rokicki:2014}  \cite{Eickhoff:2012}
 
 \section{Open Issues}
 
+- Collecting labels for contextual / personalized search results
+
+- Collecting labels for whole SERP / non-document results
+
+- Collecting labels for non-traditional endpoints (i.e., conversational agent)
+
 \chapter{Designing Evaluation Metrics}
 \label{c-metrics}
 
-How to combine labels to meaningful numbers (\ensuremath{\approx}20 pages)
+The second step in offline evaluation is designing a meaningful evaluation metric. This is essentially the question of how to combine labels to meaningful numbers. For traditional IR evaluation where the labels are collected at query-URL level, combining labels to a metric requires quite a few assumptions, or even a user model. In this chapter, we go over the various considerations of IR metric design, as well as the user models behind these metrics. (20-25 pages)
 
 \section{Basic IR evaluation metrics}
 
 - Metrics based on absolute judgments (e.g. \cite{cooper73selecting})
 
-- Metrics based on preference based judgments, including e.g.\ aggregated in-situ side-by-side \cite{Thomas2006}
+- Metrics based on preference-based judgments, including e.g.\ aggregated in-situ side-by-side \cite{Thomas2006}
 
 - Ranking-based metrics (Tau/TauAP)
 
@@ -285,6 +291,14 @@ Evaluation metrics that are based on explicit models of user behavior
 
 - Cost-based/economic models and the prospects of metrics from these
 
+- Session-level metrics \cite{kanoulas2011evaluating} \cite{Järvelin2008}
+
+\section{Model fitting}
+
+Fit of metrics to models; estimating the distribution of parameters/metric values based on user data
+
+\cite{CarteretteKY11}, \cite{Moffat2013}
+
 \section{Open issues}
 
 Open issues in behavior models and the corresponding metrics
@@ -297,25 +311,28 @@ Open issues in behavior models and the corresponding metrics
 
 - Duplication in SERPs
 
-- Learning
+- Learning (?)
 
 - Non-traditional tasks
 
-\section{Model fitting}
-
-Fit of metrics to models; estimating the distribution of parameters/metric values based on user data
-
-\cite{CarteretteKY11}, \cite{Moffat2013}
-
-\newpar
-Metrics for other domains of search
-
-- Aggregate search \cite{Zhou:2013}
-
-- Recommendation systems \cite{gunawardana2015evaluating}
 
 \chapter{Designing and Analyzing Experiments}
 \label{c-experiment-design}
+
+Experiments is defined as a set of labels and metrics defined on top of them. We first look over many considerations in order to design an experiment given a budget and time constraint. We then focus on a set of analyses we can perform once the data is collected.
+
+\section{Designing an Experiment}
+
+- How to select queries?
+
+- How many queries? \cite{Sakai:2014}
+
+- How many documents? \cite{CarterettePFK09}
+
+- How to distribute judgment effort across queries and documents? \cite{CarterettePKAA09, YilmazR09}
+
+
+\section{Analysis of Experimental Results}
 
 Drawing conclusions from metrics (\ensuremath{\approx} 15 pages)
 
@@ -324,9 +341,10 @@ Drawing conclusions from metrics (\ensuremath{\approx} 15 pages)
 - Comparison of different types of significance tests \cite{SmuckerAC09}
 
 \newpar
-Analysis of Results and Metric Comparison (Which Metric?)
-
+Various analysis
 - Power analysis \cite{Sakai:2014}
+
+- Failure analysis
 
 - Sensitivity and Reliability analysis \cite{Urbano:2013} 
 
@@ -334,24 +352,30 @@ Analysis of Results and Metric Comparison (Which Metric?)
 
 - ETC \cite{Bron:2013} \cite{Boytsov:2013}  \cite{Robertson:2012}
 
-
 \newpar
-Design decisions
-
-- How many queries? \cite{Sakai:2014}
-
-- How many documents? \cite{CarterettePFK09}
-
-- How to distribute judgment effort across queries and documents? \cite{CarterettePKAA09, YilmazR09}
-
-\newpar
-Reporting
+Reporting results
 
 - Effect sizes and distributions, vs point estimates and $p$ values
 
 \section{Open Issues}
 
-\chapter{Evaluation Practices from Industry}
+\chapter{IR Evaluation in Practice}
+
+In this chapter, we review evaluation practices happening in both academia and industry.
+
+\section{Evaluation Practices from Academia}
+
+- Dataset generation efforts (Living labs)
+
+
+\newpar
+Evaluation in related domains
+
+- Aggregate search \cite{Zhou:2013}
+
+- Recommendation systems \cite{gunawardana2015evaluating}
+
+\section{Evaluation Practices from Industry}
 
 How are the practitioners doing? (\ensuremath{\approx}15 pages)
 
