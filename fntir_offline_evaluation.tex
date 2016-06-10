@@ -269,7 +269,7 @@ Efficient judgment collection using Crowdsourcing
 \chapter{Designing Evaluation Metrics}
 \label{c-metrics}
 
-The second step in offline evaluation is designing a meaningful evaluation metric. This is essentially the question of how to combine labels to meaningful numbers. For traditional IR evaluation where the labels are collected at query-URL level, combining labels to a metric requires quite a few assumptions, or even a user model. In this chapter, we go over the various considerations of IR metric design, as well as the user models behind these metrics. (20-25 pages)
+The second step in offline evaluation is designing a meaningful evaluation metric. This is essentially the question of how to combine labels to meaningful numbers. For traditional IR evaluation where the labels are collected at query-URL level, combining labels to a metric requires quite a few assumptions, or even a user model. In this chapter, we go over the various considerations of IR metric design, as well as the user models behind these metrics. We briefly survey some established metrics but spend more time on recent developments: explicit models of user behavior, deriving metrics from these, and open issues including session-level measurement, dealing with variation, and considering rich SERPs. (20-25 pages)
 
 \section{Basic IR evaluation metrics}
 
@@ -281,7 +281,11 @@ The second step in offline evaluation is designing a meaningful evaluation metri
 
 \section{Metrics based on simple aggregation of labels/qrels}
 
-- P, R, AP, RR
+- Set-based: P, R
+
+- Rank-based: P@$k$, AP, RR
+
+- Criticisms: what tasks and behaviors are modeled here?
 
 \section{Models of behavior}
 
@@ -289,11 +293,13 @@ Evaluation metrics that are based on explicit models of user behavior
 
 - The cascade model and variants
 
+- Weights, the C/L/W framework \citep{Moffat2013}
+
 - ERR, EBU, GAP, Time-biased gain, etc.
 
-- Weighted precision metrics such as RBP, INST; notion of residual
+- Weighted precision metrics such as RBP, INST; notion of residual \citep{Moffat08,Moffat15}
 
-- Alpha-NDCG, IA metrics, etc.
+- $\alpha$-NDCG, IA metrics, etc.
 
 - Cost-based/economic models and the prospects of metrics from these
 
@@ -320,6 +326,10 @@ Open issues in behavior models and the corresponding metrics
 - Learning (?)
 
 - Non-traditional tasks
+
+- Choosing between metrics; sensitivity; finding evidence any of them correlates with user behavior or other important dependent variables
+
+- Measuring things outside the SERP: query formulation, source/engine selection
 
 \chapter{Designing and Analyzing Experiments}
 \label{c-experiment-design}
