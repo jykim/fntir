@@ -52,7 +52,7 @@ Offline evaluation provides characterization of an information retrieval (IR) sy
 Recently, there has been several trends which necessitates the change in the role and method of offline evaluation. First and foremost, online search engines with large-scale user base has become commonplace, enabling online evaluation based on user behavior. Also, there are many endpoints for search beyond desktop web browser such as mobile phone and conversational agents, and the types of search results has diversified beyond the list of web documents to include other results types and direct answers. Finally, crowdsourcing has provided ways for human judgments of any kind to be collected at an large scale. The overall outcome of this trend is the advent of new IR evaluation paradigms which are more user-centric, diverse and agile.
 
 This survey aims to provide an overview of recent research in IR evaluation pertaining to the trends above. We first introduce offline evaluation for IR, focusing on how it relates to other evaluation paradigms such as online evaluation. We also overview traditional offline evaluation for IR, and how recent trends have shaped the research so far. We then review research in offline evaluation mainly on three levels: human judgment, evaluation metric and experiment design. This organization will allow readers to follow recent developments in research from micro-level (human judgment) to macro-level (experiment). Finally, we discuss evaluation practices from industry, which has been a major driving force in research and development in IR.
-
+	
 
 \end{abstract}
 
@@ -63,18 +63,25 @@ In this chapter, we survey the area and lay conceptual foundation for the rest o
 
 \section{Evaluation Paradigms in IR}
 
-\newpar
-New Landscape in IR Evaluation Research
+Evaluating a search system, or any system that supports information access such as recommendation or filtering, is a complex problem in general. The performance of a search system is dependent on various contextual factors, such as the task at hand, user's preference and location, and even the timing of the interaction. Also, the ultimate source of ground truth, the judgment from the user, is subjective, volatile, and often hard to come by.
 
-- User-centric view (understanding user)
+In order to meet these challenges, IR researchers have built rich tradition in evaluation. Most of these work in IR evaluation has been based on a few simplifying assumptions. The document collection is static and the information need is represented as a description or a keyword query. The judgments from user has been replaced with the judgments collected from human judges, often in the form of binary or numeric-scale labels.
 
-- Online evaluation (industry)
+We can define this evaluation paradigm \textit{offline evaluation} in that the evaluation of the system can happen without requiring actual user. This makes offline evaluation particularly suitable for early-stage evaluation of an IR system. Another typical characteristic of offline evaluation is that the test collection (a set of tasks, judgments and documents) is 'reusable', in that once built it can be used to evaluate new systems.
 
-- HCIR / User studies (academia)
+As an evaluation paradigm contrasting with offline evaluation, we can think of \textit{online evaluation}. In a recent survey \cite{INR-XYZ} about this topic, online evaluation is defined as the evaluation of a fully functioning
+system based on implicit measurement of real users' experiences of the
+system in a natural usage environment. That is, online evaluation directly employs user behavior in natural environment for evaluation.
 
-- More endpoints / models (mobile / speech)
+(more details of online evaluation / and its populaity)
 
-- Agile experimentation (crowdsourcing)
+At this point, an astute reader may ask this question. Why don’t we always use online evaluation? While online metrics is certainly valuable and must-have, there are scenarios / reasons why we need input from human judges: First, user simply does not exist in initial stages of development. More importantly, user behavior is often not sufficient to measure true satisfaction of user. 
+
+Let's take clicks on results for evaluating a search engine. While click is certainly an indication that user is interested in the result, it is not clear whether the clicked result actually led to satisfaction. Also, click is often concentrated on the top of the page, making it difficult to interpret. That is, the ambiguity and bias inherent in user behavior often make it hard to infer true quality of our products.
+
+Another consideration is the reusability of the data collected. In offline evaluation, typically the label is collected at the level of individual information item (i.e., document) and the system is evaluated by its ability to put more relevant items on top. This means the labels can be reused to evaluate new systems that produce different rankings. By contrast, the data collected from online system is valid for the evaluation of the system user interacted with, and the data should be collected for every new system to be developed.
+
+
 
 \newpar
 Offline evaluation \cite{INR-009} vs. Online evaluation \cite{INR-XYZ}
@@ -135,6 +142,12 @@ History
 - Refer to \cite{borlund2003} \cite{cleverdon67} \cite{voor:trec05}
 
 \subsection{Recent Trends in Offline Evaluation}
+
+%While this tradition has served the community well for the past few decades, there has been several trends which necessitates the change in the role and method of IR evaluation. First and foremost, online search engines with large-scale user base has become commonplace, enabling online evaluation based on user behavior. 
+
+%Also, there are many endpoints for search beyond desktop web browser such as mobile phone and conversational agents, and the types of search results has diversified beyond the list of web documents to include other results types and direct answers. 
+
+%Finally, crowdsourcing has provided ways for human judgments of any kind to be collected at an large scale. The overall outcome of this trend is the advent of new IR evaluation paradigms which are more user-centric, diverse and agile.
 
 Need for User-centric Evaluation
 
