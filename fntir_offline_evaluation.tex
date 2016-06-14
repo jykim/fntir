@@ -67,7 +67,7 @@ Evaluating a search system, or any system that supports information access such 
 
 In order to meet these challenges, IR researchers have built rich tradition in evaluation. Most of these work in IR evaluation has been based on a few simplifying assumptions. The document collection is static and the information need is represented as a description or a keyword query. The judgments from user has been replaced with the judgments collected from human judges, often in the form of binary or numeric-scale labels.
 
-We can define this evaluation paradigm \textit{offline evaluation} in that the evaluation of the system can happen without requiring actual user. This makes offline evaluation particularly suitable for early-stage evaluation of an IR system. Another typical characteristic of offline evaluation is that the test collection (a set of tasks, judgments and documents) is 'reusable', in that once built it can be used to evaluate new systems.
+We can define this evaluation paradigm \textit{offline evaluation}\cite{INR-009} in that the evaluation of the system can happen without requiring actual user. This makes offline evaluation particularly suitable for early-stage evaluation of an IR system. Another typical characteristic of offline evaluation is that the test collection (a set of tasks, judgments and documents) is 'reusable', in that once built it can be used to evaluate new systems.
 
 As an evaluation paradigm contrasting with offline evaluation, we can think of \textit{online evaluation}. In a recent survey \cite{INR-XYZ} about this topic, online evaluation is defined as the evaluation of a fully functioning
 system based on implicit measurement of real users' experiences of the
@@ -81,47 +81,11 @@ Let's take clicks on results for evaluating a search engine. While click is cert
 
 Another consideration is the reusability of the data collected. In offline evaluation, typically the label is collected at the level of individual information item (i.e., document) and the system is evaluated by its ability to put more relevant items on top. This means the labels can be reused to evaluate new systems that produce different rankings. By contrast, the data collected from online system is valid for the evaluation of the system user interacted with, and the data should be collected for every new system to be developed.
 
+So far we have introduced two evaluation paradigms -- offline and online evaluation -- with distinctive characteristics. Offline evaluation is based on human judges, and has strengths in exeprimental control and reusability. Online evaluation is based on user log, and has strengths in fidelity and cost.
 
+While these two approaches comprise majority of evaluation efforts, there has been approaches which tries to break the middle ground. People have studied click modeling\cite{chuklin2015click} or counterfactual online evaluation\cite{Li:2015, li2010contextual} where the goal is to re-use online user data for future evaluation. These approaches, while enabling the re-use of online user data, are still limited in that they make numerous assumptions about how user behavior is interpreted.
 
-\newpar
-Offline evaluation \cite{INR-009} vs. Online evaluation \cite{INR-XYZ}
-
-- Signals from human judges vs. users
-
-- Early-stage vs. production-stage iteration
-
-- Explicit judgment vs. implicit behavior
-
-- Experimental control vs. realistic environment
-
-\newpar
-Offline evaluation vs. Counterfactual online evaluation \cite{chuklin2015click} \cite{Li:2015, li2010contextual}
-
-- Label-based vs. Behavior-based
-
-- Independent metric of quality vs. predictor of online evaluation results
-
-\newpar
-Offline evaluation vs. User study \cite{kelly2009methods}
-
-- Focus: system-to-system evaluation vs. understanding interaction/user behavior
-
-- Difference in scale and richness
-
-- Blurred distinction recently
-
-\cite{Bron:2013}
-\cite{Liu:2014}
-\cite{Shah:2011}
-
-\newpar
-The new role of offline evaluation
-
-- Evaluation at the early stage of development
-
-- Experimental control and resolution
-
-- Reusability across experiments
+Another related line of work is user study\cite{Bron:2013, Liu:2014, Shah:2011}, which is widely used methodology in interactive IR\cite{kelly2009methods} (or HCIR) literature. In such work, a group of subjects are typically brought into the lab environment and asked to perform a set of predetermined search task. It is common for this type of study to collect both the behavior and the labels from the participants to get the complete picture of search activity. User studies can be broadly classified into the realm of offline evaluation, and in fact some recent research has tried to use similar settings for system-to-system comparison.
 
 \section{Offline Evaluation for IR}
 \subsection{Traditional Approaches in Offline Evaluation}
