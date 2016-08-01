@@ -67,28 +67,31 @@ Evaluating a search system, or any system that supports information access such 
 
 In order to meet these challenges, IR researchers have built rich tradition in evaluation. Most of these work in IR evaluation has been based on a few simplifying assumptions. The document collection is static and the information need is represented as a description or a keyword query. The judgments from user has been replaced with the judgments collected from human judges, often in the form of binary or numeric-scale labels.
 
-We can define this evaluation paradigm \textit{offline evaluation}\cite{INR-009} in that the evaluation of the system can happen without requiring actual user. This makes offline evaluation particularly suitable for early-stage evaluation of an IR system. Another typical characteristic of offline evaluation is that the test collection (a set of tasks, judgments and documents) is 'reusable', in that once built it can be used to evaluate new systems.
+We can define this evaluation paradigm as \textit{offline evaluation} \cite{INR-009} in that the evaluation of the system can happen without requiring actual user. This makes offline evaluation particularly suitable for early-stage evaluation of an IR system. Another typical characteristic of offline evaluation is that the test collection (a set of tasks, judgments and documents) is 'reusable', in that once built it can be used to evaluate new systems.
 
-As an evaluation paradigm contrasting with offline evaluation, we can think of \textit{online evaluation}. In a recent survey \cite{INR-XYZ} about this topic, online evaluation is defined as the evaluation of a fully functioning system based on implicit measurement of real users' experiences of the system in a natural usage environment. That is, online evaluation directly employs user behavior in natural environment for evaluation.
+An evaluation paradigm contrasting with offline evaluation is called \textit{online evaluation}. In a recent survey \cite{INR-XYZ} on this topic, online evaluation is defined as the evaluation of a fully functioning system based on implicit measurement of real users' experiences of the system in a natural usage environment. That is, online evaluation directly employs user behavior in natural environment for evaluation.
 
 (more details of online evaluation / and its populaity)
 
-At this point, an astute reader may ask this question. Why don't we always use online evaluation? While online metrics is certainly valuable and must-have, there are scenarios / reasons why we need input from human judges: First, user simply does not exist in initial stages of development. More importantly, user behavior is often not sufficient to measure true satisfaction of user. 
+At this point, a reader may ask this question. Why don't we always use online evaluation? While online metrics is certainly valuable and must-have, there are scenarios / reasons why we need input from human judges: First, user simply does not exist in initial stages of development. More importantly, user behavior is often not sufficient to measure the true satisfaction of user. 
 
-Let's take clicks on results for evaluating a search engine. While click is certainly an indication that user is interested in the result, it is not clear whether the clicked result actually led to satisfaction. Also, click is often concentrated on the top of the page, making it difficult to interpret. That is, the ambiguity and bias inherent in user behavior often make it hard to infer true quality of our products.
+As an example, let's take clicks on results for evaluating a search engine. While click is certainly an indication that user is interested in the result, it is not clear whether the clicked result actually led to satisfaction. Also, click is often concentrated on the top of the page, making it difficult to interpret. That is, the ambiguity and bias inherent in user behavior often make it hard to infer true quality of our products.
 
 Another consideration is the reusability of the data collected. In offline evaluation, typically the label is collected at the level of individual information item (i.e., document) and the system is evaluated by its ability to put more relevant items on top. This means the labels can be reused to evaluate new systems that produce different rankings. By contrast, the data collected from online system is valid for the evaluation of the system user interacted with, and the data should be collected for every new system to be developed.
 
-So far we have introduced two evaluation paradigms -- offline and online evaluation -- with distinctive characteristics. Offline evaluation is based on human judges, and has strengths in exeprimental control and reusability. Online evaluation is based on user log, and has strengths in fidelity and cost.
+So far we have introduced two evaluation paradigms -- offline and online evaluation -- with distinctive characteristics. Offline evaluation is based on human judges, and has strengths in experimental control and reusability. Online evaluation is based on user log, and has strengths in fidelity and cost.
 
-While these two approaches comprise majority of evaluation efforts, there has been approaches which tries to break the middle ground. People have studied click modeling\cite{chuklin2015click} or counterfactual online evaluation\cite{Li:2015, li2010contextual} where the goal is to re-use online user data for future evaluation. These approaches, while enabling the re-use of online user data, are still limited in that they make numerous assumptions about how user behavior is interpreted.
+While these two approaches comprise majority of evaluation efforts, there has been several approaches which tries to break the middle ground. People have studied click modeling \cite{chuklin2015click} or counterfactual online evaluation \cite{Li:2015, li2010contextual} where the goal is to re-use online user data for future evaluation. These approaches, while enabling the re-use of online user data, are still limited in that they make numerous assumptions about how user behavior is interpreted.
 
-Another related line of work is user study\cite{Bron:2013, Liu:2014, Shah:2011}, which is widely used methodology in interactive IR\cite{kelly2009methods} (or HCIR) literature. In such work, a group of subjects are typically brought into the lab environment and asked to perform a set of predetermined search task. It is common for this type of study to collect both the behavior and the labels from the participants to get the complete picture of search activity. User studies can be broadly classified into the realm of offline evaluation, and in fact some recent research has tried to use similar settings for system-to-system comparison.
+Another related line of work is user study \cite{Bron:2013, Liu:2014, Shah:2011}, which is widely used methodology in interactive IR \cite{kelly2009methods} (or HCIR) literature. In such work, a group of subjects are typically brought into the lab environment and asked to perform a set of (usually predetermined) search task. It is common for this type of study to collect both the behavior and the labels from the participants to get the complete picture of search activity. 
+
+User studies can be broadly classified into the realm of offline evaluation, and in fact some recent research \cite{Xu:2009} has tried to use similar settings for system-to-system comparison. We will get to this point in Chapter~\ref{c-human-judgment}.
 
 \section{Offline Evaluation for IR}
+
 \subsection{Traditional Approaches in Offline Evaluation}
 
-The field of IR has rich tradition in evaluation. 
+The field of IR has rich tradition in evaluation. %Starting with the work of Cleverdon \cite{cleverdon67} and his Cranfield collection, IR evaluation followed a few 
 
 Conceptual Model
 
@@ -110,9 +113,9 @@ History
 So far we have looked at traditional approaches in IR evaluation. While this tradition has served the community well for the past few decades, there has been several trends which necessitates the change in the role and method of IR evaluation. In this section, we outline recent trends and delve into their implications for offline evaluation.
 
 \subsubsection{User-Centric Evaluation}
-First and foremost, online search engines with large-scale user base has become commonplace, enabling online evaluation based on user behavior. This availability of user data has opened up possibilities to validate assumptions of offline evaluation with actual user data. Also, recent work on evaluation metrics \cite{} \cite{} have embraced online user data to tune parameters of the metric.
+First and foremost, online search engines with large-scale user base has become commonplace, enabling online evaluation based on user behavior. This availability of user data has opened up possibilities to validate assumptions of offline evaluation with actual user data. Also, recent work on evaluation metrics \cite{} \cite{} have embraced online user data to tune parameters of the metrics.
 
-The overall outcome of this trend is the advent of new IR evaluation paradigms which are more user-centric, diverse and agile. Here, being user-centric means that the evaluation process is based on a model of user behavior, or evaluation aims to improve user satisfaction, or other user-visible measure such as engagement or task completion (\cite{scholer13}). 
+The overall outcome of this trend is the advent of new IR evaluation paradigms which are more user-centric, diverse and agile. Here, being user-centric means that the evaluation process is based on a model of user behavior, or/and aims to improve user satisfaction or other user-visible measure such as engagement or task completion (\cite{scholer13}). 
 
 There has been already new methodologies proposed to better estimate user satisfaction and behavior in judgment collection \cite{VermaY16, VermaYC16} or metric design\cite{YilmazSCR10, CarteretteKY11, ChapelleMZG09}. Also, several recent work looked at cross-metric correlation \cite{Al-Maskari2007} \cite{radl:comp10} which aim to align IR evaluation with user satisfaction or some proxy of it.
 
@@ -121,53 +124,94 @@ As a side note, there has been an increasing efforts to combine online and offli
 \subsubsection{Diverse Endpoints and Search Scenarios}
 
 There are also new endpoints for search beyond desktop web browser such as mobile phone and conversational agents. This opened up a whole venue of research which focuses on different interaction method and user experience in respective endpoints. For instance, mobile device has much smaller screen dimensions and the interaction is based on touch, and conversational agents use natural language, often in voice, to interact with the user.
-% Mobile search is reported more popular than desktop search according to Google, and major tech companies are committed to develop conversational agents and bots.
 
-Even for web search itself, the types of search results has diversified beyond the list of web documents to include other results types such as images, videos, news and even direct answers. This diverse set of results types and user interface design breaks many assumptions of traditional IR evaluation (i.e., ten blue links), providing rich opportunities for exploration.
+Even for web search itself, the types of search results has diversified beyond the list of web documents to include other results types such as images, videos, news and even direct answers. This diverse set of results types and user interface design breaks many assumptions of traditional IR evaluation, providing rich opportunities for exploration. In particular, many of these 'answers' can directly satisfy users' information needs on SERP, making it hard to apply click-based evaluation techniques \cite{Li2009GA} \cite{diriye2012leaving}.
 
 IR evaluation research has responded to this needs with various lines of work. There has been increased interests on whole-page evlauation and optimization \cite{Zhou:2012}, which encompasses wide variety of page elements beyond web results. %Side-by-side evaluation 
 
-Task and Session-level evaluation \cite{KanoulasCCS11, CarteretteKHC14} also drew interests, with TREC tracks of the same name \cite{}. Finally, there has been a new line of work focusing specifically on mobile interfaces \cite{VermaYC16}, or evaluation of search with spoken agents.
+Task and Session-level evaluation \cite{KanoulasCCS11, CarteretteKHC14} also drew interests, with TREC tracks of the same name \cite{}. Finally, there has been a new line of work focusing specifically on mobile interfaces \cite{VermaYC16}, or evaluation of search with spoken agents \cite{Kiseleva:2016}.
 
 \subsubsection{Crowdsourcing / Agile Evaluation}
 
-These diverse new endpoints and scenarios for search required ways to collect labels in a agile manner, because many of these services are new and exploratory by nature, with less investments compared to well-established services like web search.
+These diverse new endpoints and scenarios for search required ways to collect labels in a more agile manner, because many of these services are new and exploratory by nature, with less investments compared to well-established ones like web search.
 
 Fortunately, crowdsourcing services such as Amazon Mechanical Turk has provided ways for human judgments of any kind to be collected at an large scale. Accompanying this new data collection method is the challenge in quality control, since the labeling work is completed by a remote worker on the internet.
 
+(more on crowdsourcing for IR research)
+
+\section{Scenarios for Offline Evaluation}
+
+We have outlined basic concept and recent trends for offline evaluation so far. The goal of this paper is to provide a piratical guide in conducting offline evaluation end-to-end. Since there can be various scenarios in conducting offline evaluation, here we outline possible scenarios which we cover in this paper.
+
+In classical IR research, a typical evaluation scenario is to improve the performance of a system given a test collection and a pre-determined set of evaluation metrics. For instance, in TREC Web Track, participants are given a collection representative of the Web, and then asked to submit the results for their systems in designated format and due date, which then will be evaluated on metrics like NDCG or ERR.
+
+While academic IR research has developed well-accepted evaluation practice as above, the situation is a lot more ill-defined and varied from practitioners' standpoint. There are multiple components in a modern IR system such as web search engine, and each requires different emphases and considerations. For instance, one can think of component-level (i.e., query suggestions) evaluation as opposed to system-level evaluation. 
+
+Also, building a working system serving real users takes several stages of development. The evaluation at early stages of development would be more exploratory in nature, whereas the at later stage the focus would shift to making ship decisions and so on. We can call the former \textit{information-centric} evaluation in that the goal is to collect information helpful for system development and debugging, where the latter can be considered \textit{number-centric} in that the goal is to get reliable performance numbers for decision making.
+
+Another characteristics of IR evaluation in industry setting is that the evaluation is an on-going process which takes multiple iteration over the lifetime of the service, as opposed to one-off research project. This necessitates the development of so called \textit{evaluation pipeline} where any new system can be evaluation on a ongoing basis.  
+
+Since the goal of this paper is to meet the need of practitioners as well as academic researchers, we describe decisions one needs to face in conducting offline evaluation across various scenarios outlined above. We also focus on considerations in designing a evaluation pipeline in industry setting at Chapter \ref{c-experiment}.
 
 \section{General Framework for Offline Evaluation}
 
-In this section, we introduce a general framework for offline evaluation. The goal is to propose a general framework which can encompass diverse set of scenarios outlined above. First, here are a few definitions that will be used throughout this paper.
+In this section, we describe a general framework for offline evaluation in detail. The goal is to propose a general framework which can encompass diverse set of scenarios outlined above. 
+
+\subsection{Definitions}
+
+First, here are a few definitions that will be used throughout this paper. These comprise the components of offline evaluation.
 
 \paragraph{Search Task} A search begins with user's information needs, which we call a search task. Search task can be represented as a description of information needs, or queries user would have used in actual information seeking.
 
-\paragraph{Judging Target} Judging target denotes a result produced by an IR system to be evaluated. It can be of any granularity -- a snippet, a web document, or entire SERP.
+\paragraph{Judging Target} Judging target denotes a result produced by an IR system to be evaluated. It can be of any granularity -- a snippet, a web document, or entire SERP. 
 
 \paragraph{Human Judgment} Human judgment is a assessment of \textit{judging target} by a human judge in the context of \textit{search task} over some dimension of quality. 
 
-\paragraph{Evaluation Metric} Evaluation metric summarizes judgments into a single score. The design of evaluation metric depends on the type of judgments being collected, and the model of user behavior.
+\paragraph{Evaluation Metric} Evaluation metric (or metric in short) summarizes judgments into a single score. The design of evaluation metric depends on the type of judgments being collected, and the model of user behavior.
+
+\paragraph{Experiment} An experiment is a collection of judgments with a specific purpose. An evaluation metric summarizes the outcome of an experiment, and an appropriate statistical test needs to be accompanied to make a claim about the validity and reliability of the findings.
+
+%\paragraph{Evaluation Pipeline} 
+
+\subsection{Evaluation Process}
+Given the components above, offline evaluation for IR can be defined as the series of the following steps. We also list major decisions which need to be made for each step.
+
+\subsubsection{Designing Human Judgments}
+
+In the first step, the details of human judgment should be defined, which is the basic unit of offline evaluation. Here are major considerations in this step:
+
+\begin{enumerate}
+	\item How do you define and collect search tasks?
+	\item What should be your judging unit?
+	\item How do you design judging interface?
+	\item How do you hire and train judges?
+\end{enumerate}
+
+\subsubsection{Designing Evaluation Metrics}
+
+The second step in offline evaluation is selecting or designing a meaningful evaluation metric. This is essentially the question of how to combine labels to meaningful numbers.
+
+\begin{enumerate}
+	\item How do you transform the labels from human judges?
+	\item How do you define user models in combining labels into a metric?
+	\item How do you estimate the parameters for the user model?
+\end{enumerate}
+
+\subsubsection{Designing and Running Experiments}
+
+Lastly, judgments and metrics should be used to achieve the goal of evaluation. Since this is an iterative step which takes several stages of refinement, here we describe methods and criteria in doing so. 
+
+\begin{enumerate}
+	\item How do you size the experiment to fulfill your evaluation goal?
+	\item How do you evaluate the outcome of the experiment?
+\end{enumerate}
 
 
-\paragraph{Experiment} An experiment is a collection of judgments with a specific purpose. An evaluation metric summarizes the outcome of experiment, along with appropriate statistical test.
+\section{The Organization of this Paper}
 
-%\paragraph{Human Judge} A human judge is responsible for producing judgments.
-%Now we introduce three general components of offline evaluation. 
-%\paragraph{Judging Method} Judgment collection needs interface in which a judge can evaluate item given a search task.
-%\paragraph{Evaluation Metric} 
-%\paragraph{Experiment}
+In the following chapters, we describe each process of offline evaluation in detail so that a reader can design his or her own evaluation pipeline following the flow of this paper. Chapter~\ref{c-human-judgment} deals with gathering judgments, which need to be created for the purpose. Chapter~\ref{c-metrics} considers steps in designing an effective metric. Chapter~\ref{c-experiment} covers the methods in designing and analyzing experiments. Finally, Chapter~\ref{c-practice} describes evaluation practices from major companies in search and recommendation area.
 
-In the following chapters, we introduce a a pipeline for offline evaluation so that a reader can design his or her own evaluation pipeline following the flow of this paper. % Organization of this paper: 
-
-- Select an evaluation goal and budget: what do you want to achieve and what are the constraints?
-
-- Collect appropriate data: documents, tasks, queries, judgments.  Chapter~\ref{c-human-judgment} deals with gathering judgments, which need to be created for the purpose.
-
-- Choose a metric based on your tasks and on likely user models. Aggregate judgments, if needed, to compute the metric. Chapter~\ref{c-metrics} considers this.
-
-- Examine the metric to draw some conclusion. This is covered in Chapter~\ref{c-experiment-design}.
-
-\chapter{Collecting Human Judgments}
+\chapter{Human Judgments}
 \label{c-human-judgment}
 
 The first step in offline evaluation is collecting labels from human judges. In this chapter, we describe various considerations in collecting high-quality labels from human judges at scale. We first discuss the method for collecting search tasks, followed by the design of a judging method. We then discuss the collection of actual judgments, which is an non-trivial task to perform at scale. We also cover the trade-off and in using different types of judging resources -- in-house vs. crowd judges. (20-25 pages)
@@ -191,7 +235,7 @@ Judging Unit: URL vs. SERP-level evaluation
 
 - Side by side \cite{Thomas2006} \cite{Kim:2013}
 
-- SASI \cite{Bailey2010} 
+- Whole-page: SASI \cite{Bailey2010} 
 
 \newpar
 Judgment for Desktop vs. Mobile environment \cite{Verma:2016:CRMD}
@@ -240,7 +284,7 @@ Efficient judgment collection using Crowdsourcing
 
 - Collecting labels for non-traditional endpoints (i.e., conversational agent)
 
-\chapter{Selecting Evaluation Metrics}
+\chapter{Evaluation Metrics}
 \label{c-metrics}
 
 The second step in offline evaluation is selecting or designing a meaningful evaluation metric. This is essentially the question of how to combine labels to meaningful numbers. For traditional IR evaluation where the labels are collected at query-URL level, combining labels to a metric requires quite a few assumptions, or even a user model. In this chapter, we go over the various considerations of IR metric design, as well as the user models behind these metrics. We briefly survey some established metrics but spend more time on recent developments: explicit models of user behavior, deriving metrics from these, and open issues including session-level measurement, dealing with variation, and considering rich SERPs. (20-25 pages)
@@ -307,10 +351,10 @@ Open issues in behavior models and the corresponding metrics
 
 - Measuring things outside the SERP: query formulation, source/engine selection
 
-\chapter{Designing and Analyzing Experiments}
-\label{c-experiment-design}
+\chapter{Experiments}
+\label{c-experiment}
 
-Experiments is defined as a set of labels and metrics defined on top of them. We first look over many considerations in order to design an experiment given a budget and time constraint. We then focus on a set of analyses we can perform once the data is collected, followed by the ways of reporting experimental results. (\ensuremath{\approx} 15 pages)
+Experiments is defined as the collection of labels and metrics defined on top of them. We first look over many considerations in order to design an experiment given a budget and time constraint. We then focus on a set of analyses we can perform once the data is collected, followed by the ways of reporting experimental results. (\ensuremath{\approx} 15 pages)
 
 \section{Designing an Experiment}
 
@@ -324,6 +368,8 @@ Experiments is defined as a set of labels and metrics defined on top of them. We
 
 
 \section{Analysis of Experimental Results}
+
+Survey of research results \cite{Sakai:2016}
 
 Drawing conclusions from metrics 
 
@@ -359,6 +405,7 @@ Reporting results
 
 
 \chapter{IR Evaluation in Practice}
+\label{c-practice}
 
 In this chapter, we review evaluation practices happening in both academia and industry. We first cover evaluation practices from academia, including recent TREC tracks, data generation efforts. We also look at evaluation efforts in related area such as recommendation systems and conversational agents. We then turn to evaluation practices from industry including major players in search and recommendation based on published papers and articles.
 
