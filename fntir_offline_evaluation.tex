@@ -25,7 +25,6 @@
 	pathom@microsoft.com
 }
 
-
 \begin{document}
 
 % the following settings can be set or left blank at first
@@ -65,6 +64,8 @@ In this chapter, we survey the area and lay conceptual foundation for the rest o
 
 Evaluating a search system, or any system that supports information access such as recommendation or filtering, is a complex problem in general. The performance of a search system is dependent on various contextual factors, such as the task at hand, user's preference and location, and even the timing of the interaction. Also, the ultimate source of ground truth, the judgment from the user, is subjective, volatile, and often hard to come by.
 
+\subsection{Offline vs. Online Evaluation}
+
 In order to meet these challenges, IR researchers have built rich tradition in evaluation. Most of these work in IR evaluation has been based on a few simplifying assumptions. The document collection is static and the information need is represented as a description or a keyword query. The judgments from user has been replaced with the judgments collected from human judges, often in the form of binary or numeric-scale labels.
 
 We can define this evaluation paradigm as \textit{offline evaluation} \cite{INR-009} in that the evaluation of the system can happen without requiring actual user. This makes offline evaluation particularly suitable for early-stage evaluation of an IR system. Another typical characteristic of offline evaluation is that the test collection (a set of tasks, judgments and documents) is 'reusable', in that once built it can be used to evaluate new systems.
@@ -73,19 +74,23 @@ An evaluation paradigm contrasting with offline evaluation is called \textit{onl
 
 (more details of online evaluation / and its populaity)
 
-At this point, a reader may ask this question. Why don't we always use online evaluation? While online metrics is certainly valuable and must-have, there are scenarios / reasons why we need input from human judges: First, user simply does not exist in initial stages of development. More importantly, user behavior is often not sufficient to measure the true satisfaction of user. 
+\subsection{Hybrid Approaches}
+
+So far we have introduced two evaluation paradigms -- offline and online evaluation -- with distinctive characteristics. Offline evaluation is based on human judges, and has strengths in experimental control and reusability. Online evaluation is based on user log, and has strengths in fidelity and cost.
+
+While these two approaches comprise majority of evaluation efforts, there has been several approaches which tries to break the middle ground. People have studied click modeling \cite{chuklin2015click} or counterfactual online evaluation \cite{Li:2015, li2010contextual} where the goal is to re-use online user data for future evaluation. These approaches, while enabling the re-use of online user data, are still limited in that they are based on implicit user behavior.
+
+Another related line of work is user study \cite{Bron:2013, Liu:2014, Shah:2011}, which is widely used methodology in interactive IR \cite{kelly2009methods} literature. In such work, a group of subjects are typically brought into the lab environment and asked to perform a set of (usually predetermined) search task. It is common for this type of study to collect both the behavior and the labels from the participants to get the complete picture of search activity. 
+
+User studies bear similarities with offline evaluation in that they typically involve some form of human judgment, but their emphasis is more on understanding some aspect of users' search behavior, as opposed to comparative evaluation among search systems. However, the distinctions are getting blur as search engines increasingly serve more complex set of results, and SERP or session-level evaluation is drawing more attentions. In fact, some recent research \cite{Xu:2009} has tried to use task completion settings for system-to-system comparison. We will get to this point in Chapter~\ref{c-human-judgment}.
+
+\subsection{When to Use Offline Evaluation}
+
+At this point, a reader may ask this question. When should we use online vs. offline evaluation? While online metrics is certainly valuable and must-have, there are scenarios / reasons why we need input from human judges: First, user simply does not exist in initial stages of development. More importantly, user behavior is often not sufficient to measure the true satisfaction of user. 
 
 As an example, let's take clicks on results for evaluating a search engine. While click is certainly an indication that user is interested in the result, it is not clear whether the clicked result actually led to satisfaction. Also, click is often concentrated on the top of the page, making it difficult to interpret. That is, the ambiguity and bias inherent in user behavior often make it hard to infer true quality of our products.
 
 Another consideration is the reusability of the data collected. In offline evaluation, typically the label is collected at the level of individual information item (i.e., document) and the system is evaluated by its ability to put more relevant items on top. This means the labels can be reused to evaluate new systems that produce different rankings. By contrast, the data collected from online system is valid for the evaluation of the system user interacted with, and the data should be collected for every new system to be developed.
-
-So far we have introduced two evaluation paradigms -- offline and online evaluation -- with distinctive characteristics. Offline evaluation is based on human judges, and has strengths in experimental control and reusability. Online evaluation is based on user log, and has strengths in fidelity and cost.
-
-While these two approaches comprise majority of evaluation efforts, there has been several approaches which tries to break the middle ground. People have studied click modeling \cite{chuklin2015click} or counterfactual online evaluation \cite{Li:2015, li2010contextual} where the goal is to re-use online user data for future evaluation. These approaches, while enabling the re-use of online user data, are still limited in that they make numerous assumptions about how user behavior is interpreted.
-
-Another related line of work is user study \cite{Bron:2013, Liu:2014, Shah:2011}, which is widely used methodology in interactive IR \cite{kelly2009methods} (or HCIR) literature. In such work, a group of subjects are typically brought into the lab environment and asked to perform a set of (usually predetermined) search task. It is common for this type of study to collect both the behavior and the labels from the participants to get the complete picture of search activity. 
-
-User studies can be broadly classified into the realm of offline evaluation, and in fact some recent research \cite{Xu:2009} has tried to use similar settings for system-to-system comparison. We will get to this point in Chapter~\ref{c-human-judgment}.
 
 \section{Offline Evaluation for IR}
 
@@ -119,7 +124,9 @@ The overall outcome of this trend is the advent of new IR evaluation paradigms w
 
 There has been already new methodologies proposed to better estimate user satisfaction and behavior in judgment collection \cite{VermaY16, VermaYC16} or metric design\cite{YilmazSCR10, CarteretteKY11, ChapelleMZG09}. Also, several recent work looked at cross-metric correlation \cite{Al-Maskari2007} \cite{radl:comp10} which aim to align IR evaluation with user satisfaction or some proxy of it.
 
-As a side note, there has been an increasing efforts to combine online and offline evaluation. These include ways to use online user data for offline evaluation \cite{Li:2015} \cite{li2010contextual} \cite{chuklin2015click}, or ways to collect feedback directly from user \cite{Kim2016}.
+As a side note, there has been an increasing efforts to combine online and offline evaluation. These include ways to use online user data for offline evaluation \cite{Li:2015} \cite{li2010contextual} \cite{chuklin2015click}, or ways to collect feedback directly from user \cite{Kim2016}. 
+
+(mentions of user study / iir papers)
 
 \subsubsection{Diverse Endpoints and Search Scenarios}
 
@@ -141,7 +148,7 @@ Fortunately, crowdsourcing services such as Amazon Mechanical Turk has provided 
 
 \section{Scenarios for Offline Evaluation}
 
-We have outlined basic concept and recent trends for offline evaluation so far. The goal of this paper is to provide a piratical guide in conducting offline evaluation end-to-end. Since there can be various scenarios in conducting offline evaluation, here we outline possible scenarios which we cover in this paper.
+We have outlined basic concept and recent trends for offline evaluation so far. The goal of this paper is to provide a practical guide in conducting offline evaluation for both academic and industry practitioners. Since there can be various scenarios in conducting offline evaluation, here we outline possible ones which we cover in this paper.
 
 In classical IR research, a typical evaluation scenario is to improve the performance of a system given a test collection and a pre-determined set of evaluation metrics. For instance, in TREC Web Track, participants are given a collection representative of the Web, and then asked to submit the results for their systems in designated format and due date, which then will be evaluated on metrics like NDCG or ERR.
 
@@ -174,7 +181,12 @@ First, here are a few definitions that will be used throughout this paper. These
 %\paragraph{Evaluation Pipeline} 
 
 \subsection{Evaluation Process}
-Given the components above, offline evaluation for IR can be defined as the series of the following steps. We also list major decisions which need to be made for each step.
+Given the components above, here we discuss the general process for offline evaluation. At a high level, offline evaluation is composed of three steps 1) judgment design 2) metric design 3) experiment design. Alternatively, you can consider the whole process in terms of collecting data (judgments), combining them into meaningful numbers (metrics), drawing conclusions (experiment). Now we discuss major considerations in each step.
+
+\includegraphics[scale=0.4]{images/offline_evaluation_overview}
+
+%Offline evaluation for IR can be defined as the series of the following steps. We also list major decisions which need to be made for each step.
+
 
 \subsubsection{Designing Human Judgments}
 
@@ -214,34 +226,113 @@ In the following chapters, we describe each process of offline evaluation in det
 \chapter{Human Judgments}
 \label{c-human-judgment}
 
-The first step in offline evaluation is collecting labels from human judges. In this chapter, we describe various considerations in collecting high-quality labels from human judges at scale. We first discuss the method for collecting search tasks, followed by the design of a judging method. We then discuss the collection of actual judgments, which is an non-trivial task to perform at scale. We also cover the trade-off and in using different types of judging resources -- in-house vs. crowd judges. (20-25 pages)
+The goal of collecting a human judgment is to get an accurate measurement of  search engine results quality for given set of search tasks. A canonical example is collecting a binary relevance judgment for a document given a TREC-style search topic. The form of human judgment can be quite varied, however, depending on the type of search task and judging target.
+
+We will start with an example to make the discussion more concrete. Figure X shows a list of possible search tasks about the topic of \textit{crowdsourcing} on the left side, and a few samples from existing web search results for query 'crowdsourcing' on the right side. 
+
+\includegraphics[scale=0.5]{images/human_judgment_overview}
+
+This example presents basic ingredients in collecting human judgments -- search tasks and judging targets. From this example one can imagine a myriad of possibilities in designing a human judgment task. You can use either a (potentially ambiguous) keyword query or a well-defined topic description. You can collect judgment for a web document or any SERP element including instant answers or the list of news articles. 
+
+The rest of this chapter is to give you guidance for various decisions in designing a human judgment, in the light of recent literature on this topic. We will look over how to collect search tasks and how to determine a judging target. Various considerations in designing a judging interface will be examined, as well as the choice of judging resources.
+
+%The first step in offline evaluation is collecting labels from human judges. In this chapter, we describe various considerations in collecting high-quality labels from human judges at scale. We first discuss the method for collecting search tasks, followed by the design of a judging method. We then discuss the collection of actual judgments, which is an non-trivial task to perform at scale. We also cover the trade-off and in using different types of judging resources -- in-house vs. crowd judges. (20-25 pages)
+
 
 \section{Collecting Search Tasks}
+Before considering judgment design, one needs to collect search tasks on which search results will be evaluated. Search tasks represents users' information needs that needs to be satisfied by the search results. In an industry setting where the search engine is used by actual users, the job of collecting search tasks can be as simple as sampling from queries users issued, whereas without access to such resources one needs to create tasks based on assumptions of target users and information needs. 
 
-Collect hypothetical search tasks
+\subsection{Creating Search Tasks}
+In many cases one needs to perform offline evaluation without a working system -- in building a new product, or in academic setting. It is essential to collect hypothetical search tasks in these cases, which is called simulated search or work (where work includes search and other things) tasks. \cite{Borlund:2003} summarizes the role of  simulated work task as follows:
 
-- Examples from user study papers
+% consider non-simulated search tasks?
+
+\begin{quote}
+A simulated work task situation, which is a short `cover story', serves two main functions: 1) it triggers and develops a simulated information need by allowing for user interpretations of the situation, leading to cognitively individual information need interpretations as in real life; and 2) it is the platform against which situational relevance is judged. Further, by being the same for all test persons experimental control is provided. Hence, the concept of a simulated work task situation ensures the experiment both realism and control.	
+\end{quote}
+
+`Task' can mean different things for different people, and IR literature has long debated over the definition of the search task, as summarized in \cite{kelly2009methods}. For our purpose, it is suffice to understand it as the representation of information needs which a human judge can use to perform a search and judge the quality of results.
+
+The design of search tasks needs many considerations which can critically affect evaluation results. First, there is the question of where the task is originated from and how much the judge is interested in the task. \cite{Edwards:2016} shows that judges' interests in the task has effects on how they perceive and perform the tasks. Judges in general had more knowledge on the tasks they were interested in, expected the tasks to be easier, and had higher engagement in terms of time spent.
+
+Another dimension of task creation is the complexity, which again has many dimensions. \cite{Kelly:2015} looked at this problem using a cognitive complexity framework. They found that participants spent more efforts (queries, clicks and time to completion) in performing tasks with higher cognitive complexity (create, evaluate and analyze) than tasks with lower cognitive complexity (apply, understand, remember).
+
+In sum, these results show that the characteristics of search task is an important dimension in designing an offline evaluation. It is recommended to collect information about task characteristics and design experiments accordingly so that one can control the effect of these factors in evaluation.
+
+\subsection{Sampling Query Logs}
+Assuming you have a working search engine with real users, it is natural to collect search tasks from query log data. While this is a seemingly straightforward task, there are a few points of consideration. We list these point below, along with recommendations based on recent studies.
+
+\paragraph{Evaluation Goals} appropriate sampling strategy depends on evaluation goals. In a typical scenario, it is reasonable to start with the \textit{representative} sample of the traffic. While measurement based on this sampling strategy would lead to the characterization of \textit{average} performance, but there can be other scenarios where measuring the average is not desired. 
+
+For instance, often in the industry setting, one targets a specific query segment (e.g., queries with fresh or local search intent) and focusing on those segment would be needed to maximize the efficienty of evaluation efforts. Another scenario is focusing on \textit{hard} segment where there are more rooms for improvement. A recent paper from  \cite{Zaragoza:2010} suggested techniques to identify segments useful for measurement.
+
+\paragraph{Characteristics of Search Traffic} The characteristics of search traffic also needs to be considered. In \cite{Baeza-Yates:2015}, it is shown that the web search query logs follow the power distribution with longer tails. The authors suggest a sampling technique based on binning the queries based on the frequency, which allows the sampled queries to match the distribution of original query set. 
+
+\paragraph{Query as the Search Task} It is open to question whether the use of query as the representation of information need is optimal. Unlike search tasks, which should contain sufficient details of user information need, queries in a typical search engine are often abbreviated in form, often being ambiguous and/or containing spelling errors \cite{}.
+
+These characteristics of user queries can be a source of noise because 1) there can be many query forms for given information needs, as shown in \cite{Bailey:2015:UVI} 2) inferring true information needs from queries can be hard to interpret for a human judge. On the other hand, \cite{Yilmaz:2014:EID} argued that the choice of intent description can also cause large variability in judgment and therefore the judging should be done based on queries.
+
+\section{Determining Judging Target}
+
+Once the search tasks are collected, we are ready to design judging interface. There are several considerations in designing a judging interface.
+
+\begin{enumerate}
+	\item  How do we describe the context of search task? (user location, session history, etc.)
+	\item  What should be the target of judgment? (webpage, SERP elements or whole SERP)
+	\item  What is the quality dimension we want to measure? (relevance, usefulness, novelty, etc.)
+	\item  What should be the scale of judgment? (absolute vs. relative, likert vs. numeric)
+\end{enumerate}
+
+\subsection{Judging Context}
+Even with well-defined search task, there are many contextual variables that affects user satisfaction on a given search results. Users' knowledge and preference, the timing and location of the search, just to name a few. Providing some of these information to human judge can potentially reduce user-judge gap, thereby increasing the quality of judgment. 
+
+There has been 
+
+\subsection{Judging Target}
+Judging target defines the basic unit and type of judgment. Judging unit would be determined by the goal of evaluation.
+
+%, and can be a document, SERP elements or a whole SERP.
+
+\subsection{Judging Criteria \& Scale}
+
+\subsection{Additional Issues}
 
 \newpar
-Sample search tasks from existing system
+Judging Context: how to explain context?
 
-- Which sampling methods to use? \cite{Baeza-Yates:2015}
+- Webpage \cite{Golbus:2014:CDR}
 
-\section{Designing a Judging Method}
+- Session context \cite{Mao:2016}
 
-Judging Unit: URL vs. SERP-level evaluation
+\newpar
+Judging Unit: what level of granularity?
 
-- Preference Judgment  \cite{Chandar2013} \cite{CarteretteBCD08}
+- Document/element-level absolute \cite{Golbus:2014:CDR}
 
-- Side by side \cite{Thomas2006} \cite{Kim:2013}
+- Document/element-level pairwise \cite{CarteretteBCD08} \cite{Chandar2013} \cite{Arguello:2011}
 
-- Whole-page: SASI \cite{Bailey2010} 
+- SERP-level absolute: SASI \cite{Bailey2010} 
+
+- SERP-level pairwise: Side by side \cite{Thomas2006} \cite{Al-Maskari2007} \cite{Kim:2013}
+
+- Task-level \cite{Xu:2009}
+
+\newpar
+Decision Criteria
+
+- Judgment goal (target / decision)
+
+- Judging effort/time
+
+- Outcome reliability/intepretability
+
+- Reusability
+
+
+\section{Designing a Judging Interface}
 
 \newpar
 Judgment for Desktop vs. Mobile environment \cite{Verma:2016:CRMD}
-
-\newpar
-Judgment based on Query vs. Intent Description \cite{Yilmaz:2014:EID}
 
 \newpar
 Session/Task-based evaluation \cite{Moraveji:2011} \cite{Xu:2009}
@@ -441,18 +532,23 @@ Evaluation in related domains
 
 How are the practitioners doing? (\ensuremath{\approx}15 pages)
 
--	Google \footnote{How Search Works (Google) https://www.google.com/insidesearch/howsearchworks/thestory/} \footnote{Updating Our Search Quality Rating Guidelines
+- Google \footnote{How Search Works (Google) https://www.google.com/insidesearch/howsearchworks/thestory/} \footnote{Updating Our Search Quality Rating Guidelines
 	 https://webmasters.googleblog.com/2015/11/updating-our-search-quality-rating.html}
 
--	Bing \footnote{The Role of Content Quality in Bing Ranking (Bing)
+- Bing \footnote{The Role of Content Quality in Bing Ranking (Bing)
 	 http://bit.ly/1T1BaYN}
 
--	Netflix \cite{Gomez-Uribe2015}  \footnote{The Netflix Tech Blog: Learning a Personalized Homepage
+- Netflix \cite{Gomez-Uribe2015}  \footnote{The Netflix Tech Blog: Learning a Personalized Homepage
 	http://techblog.netflix.com/2015/04/learning-personalized-homepage.html}
 
--	Facebook \footnote{Who Controls Your Facebook Feed (Slate) http://slate.me/1T1BbvU}
+- Facebook \footnote{Who Controls Your Facebook Feed (Slate) http://slate.me/1T1BbvU}
 
-- 	Startups \footnote{The Humans Hiding Behind the Chatbots http://www.bloomberg.com/news/articles/2016-04-18/the-humans-hiding-behind-the-chatbots}
+- Pinterest \footnote{Machine Learning at Pinterest http://www.slideshare.net/HiveData/the-hive-think-tank-machine-learning-at-pinterest-by-jure-leskovec-61383413}
+
+- LinkedIn \footnote{http://www.slideshare.net/dtunkelang/search-quality-at-linkedin}
+
+- Startups \footnote{The Humans Hiding Behind the Chatbots http://www.bloomberg.com/news/articles/2016-04-18/the-humans-hiding-behind-the-chatbots}
+
 \footnote{10 Data Acquisition Strategies for Startups http://bit.ly/28IHlC7}
 
 \newpar
