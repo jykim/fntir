@@ -183,7 +183,14 @@ First, here are a few definitions that will be used throughout this paper. These
 \subsection{Evaluation Process}
 Given the components above, here we discuss the general process for offline evaluation. At a high level, offline evaluation is composed of three steps 1) judgment design 2) metric design 3) experiment design. Alternatively, you can consider the whole process in terms of collecting data (judgments), combining them into meaningful numbers (metrics), drawing conclusions (experiment). Now we discuss major considerations in each step.
 
-\includegraphics[scale=0.4]{images/offline_evaluation_overview}
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.4]{images/offline_evaluation_overview}
+		\caption{Overview of Offline Evaluation.} 
+		\label{fig:offline_evaluation_overview}
+	\end{center}
+\end{figure}
+
 
 %Offline evaluation for IR can be defined as the series of the following steps. We also list major decisions which need to be made for each step.
 
@@ -272,7 +279,9 @@ For instance, often in the industry setting, one targets a specific query segmen
 
 These characteristics of user queries can be a source of noise because 1) there can be many query forms for given information needs, as shown in \cite{Bailey:2015:UVI} 2) inferring true information needs from queries can be hard to interpret for a human judge. On the other hand, \cite{Yilmaz:2014:EID} argued that the choice of intent description can also cause large variability in judgment and therefore the judging should be done based on queries.
 
-\section{Determining Judging Target}
+All in all, despite limitations, user queries are still the most readily available sources of collecting tasks, and therefore are widely used for judging search results. One can mitigate the noise and ambiguity of the search query by training judges and presenting some references about possible meanings of the query -- i.e., SERP from commercial search engines.
+
+\section{Designing a Judging Interface}
 
 Once the search tasks are collected, we are ready to design judging interface. There are several considerations in designing a judging interface.
 
@@ -286,23 +295,34 @@ Once the search tasks are collected, we are ready to design judging interface. T
 \subsection{Judging Context}
 Even with well-defined search task, there are many contextual variables that affects user satisfaction on a given search results. Users' knowledge and preference, the timing and location of the search, just to name a few. Providing some of these information to human judge can potentially reduce user-judge gap, thereby increasing the quality of judgment. 
 
-There has been 
+The choice of judging context depends on evaluation goal -- what do you want judges to be aware about the search task given? For instance, if you think user location is crucial in judging the relevance of results (which is the case in many tasks), you should present the location of the task, too. Note that, if possible, the location information should be collected along with user queries to get a realistic sample of actual user locations.
+
+Relevance judgment can certainly get affected by what user already did during the session, so it is reasonable to present some part of user session as a judging context. In fact, recent work has proposed various types of judging context from users' session context. \cite{Chandar2013} used a document as a context with a goal to collect judgments when the context document has already been read. They proposed an evaluation framework for \cite{Golbus:2014:CDR} also experimented with using a document as a context, and found that the metrics based on conditional judgments correlate better with user preference at SERP-level.
+
+While one may assume that adding more and more context can only increase the quality of judgments, it should be noted that more context means more efforts for judges in digesting the information and applying them for judgments. Moreover, more context can increase judging cost by adding further source of variability. That is, instead of collecting judgment for every search task, now that judgments should be collected for every query and context pairs, which can potentially make the evaluation prohibitively expensive.
+
+Therefore, one should carefully consider the value-cost trade-off in adding the context to a judging task. \cite{Mao:2016} used the entire session as a judging context for collecting judgments on usefulness (as opposed to relevance) and found that usefulness metrics show higher inter-assessor agreement and better correlation with task-level user satisfaction. However, they recommend using usefulness evaluation only for post-hoc analysis of the experiments due to high cost associated with using the whole session as a context.
 
 \subsection{Judging Target}
-Judging target defines the basic unit and type of judgment. Judging unit would be determined by the goal of evaluation.
+Judging target defines the basic unit and type of judgment. Judging unit would be determined by the goal of evaluation: i.e., in what granularity do we want to collect judgments? In web search, for example, judging unit can be a webpages, SERP elements or a whole SERP, as shown in Figure \ref{fig:judging_units}. 
 
-%, and can be a document, SERP elements or a whole SERP.
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.5]{images/judging_units}
+		\caption{Various judging units for web search results.} 
+		\label{fig:judging_units}
+	\end{center}
+\end{figure}
 
-\subsection{Judging Criteria \& Scale}
+Another consideration is the type of judgment, which can be either absolute or relative. Absolute judgment asks for judgiment about a single judging target, whereas relative judgment asks for pairwise preference between two judging targets. Figure \ref{fig:judgment_types} shows two types of judgments in evaluating web search results.
 
-\subsection{Additional Issues}
-
-\newpar
-Judging Context: how to explain context?
-
-- Webpage \cite{Golbus:2014:CDR}
-
-- Session context \cite{Mao:2016}
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.5]{images/judgment_types}
+		\caption{Absolute vs. Relative judgments} 
+		\label{fig:judgment_types}
+	\end{center}
+\end{figure}
 
 \newpar
 Judging Unit: what level of granularity?
@@ -317,6 +337,11 @@ Judging Unit: what level of granularity?
 
 - Task-level \cite{Xu:2009}
 
+\subsection{Judging Criteria \& Scale}
+
+\subsection{Additional Issues}
+
+
 \newpar
 Decision Criteria
 
@@ -329,7 +354,7 @@ Decision Criteria
 - Reusability
 
 
-\section{Designing a Judging Interface}
+
 
 \newpar
 Judgment for Desktop vs. Mobile environment \cite{Verma:2016:CRMD}
