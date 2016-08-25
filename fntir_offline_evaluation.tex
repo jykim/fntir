@@ -304,7 +304,10 @@ While one may assume that adding more and more context can only increase the qua
 Therefore, one should carefully consider the value-cost trade-off in adding the context to a judging task. \cite{Mao:2016} used the entire session as a judging context for collecting judgments on usefulness (as opposed to relevance) and found that usefulness metrics show higher inter-assessor agreement and better correlation with task-level user satisfaction. However, they recommend using usefulness evaluation only for post-hoc analysis of the experiments due to high cost associated with using the whole session as a context.
 
 \subsection{Judging Target}
-Judging target defines the basic unit and type of judgment. Judging unit would be determined by the goal of evaluation: i.e., in what granularity do we want to collect judgments? In web search, for example, judging unit can be a webpages, SERP elements or a whole SERP, as shown in Figure \ref{fig:judging_units}. 
+Judging target defines the basic unit and type of judgment. 
+
+\subsubsection{Judging Unit}
+Judging unit defines the unit at which judgment should be collected: i.e., in what granularity do we want to collect judgments? In web search, for example, judging unit can be a webpages, SERP elements or a whole SERP, as shown in Figure \ref{fig:judging_units}. 
 
 \begin{figure}
 	\begin{center}
@@ -314,7 +317,16 @@ Judging target defines the basic unit and type of judgment. Judging unit would b
 	\end{center}
 \end{figure}
 
-Another consideration is the type of judgment, which can be either absolute or relative. Absolute judgment asks for judgiment about a single judging target, whereas relative judgment asks for pairwise preference between two judging targets. Figure \ref{fig:judgment_types} shows two types of judgments in evaluating web search results.
+In principle, judging unit should be determined by the goal of evaluation: if you care about the quality of ranked list, collecting judgment for each web search result seems natural. If the presentation of SERP is primary concern, SERP might be the right unit for judgment. On the other hand, it is also possible to collect judgments at smaller unit (i.e., SERP elements) and then calculate scores for large unit (i.e., whole SERP) by combining unit scores in a sensible way. So, which way is better?
+
+There is no hard and fast rule in determining right judging unit, so here we describe a few trade-offs, using the element-wise vs. whole SERP judging as an example. Smaller judging unit means simpler judging task which can be faster and more reliable individual judging task. However, the number of judgments to evaluate larger judging unit (i.e., SERP) can be quite high if the judging unit is small, making overall judging cost higher than collecting a single judgment for larger judging unit.
+
+Smaller judging unit also means better reusability of labels, because you can combine labels for each SERP element to evaluate arbitrary SERP configuration. This means that the cost of collecting judgments can be amortized over multiple experiments. In fact, query-URL relevance judgment has been so widely used in TREC and other settings because it allows the creation of test collection which can be used to evaluate any ranked list.
+
+On the other hand, smaller judging unit makes an assumption that each label can be collected independent of other element. This is hardly true in a typical search scenario where the concept and criteria of relevance can evolve over time. On this regards, larger judging unit has the benefit of providing rich context for judges. Also, larger juging unit can capture the interaction between elements -- i.e., redundancy among documents in a ranked list.
+
+\subsubsection{Absolute vs. Relative Judgment}
+Another consideration in determining a judging target is the type of judgment, which can be either absolute or relative. Absolute judgment asks for judgment about a single judging target, whereas relative judgment asks for pairwise preference between two judging targets. Figure \ref{fig:judgment_types} shows two types of judgments in evaluating web search results.
 
 \begin{figure}
 	\begin{center}
@@ -323,6 +335,10 @@ Another consideration is the type of judgment, which can be either absolute or r
 		\label{fig:judgment_types}
 	\end{center}
 \end{figure}
+
+Now, how should one choose between absolute vs. relative judgment? In general, making an absolute scale judgment requires having objective criteria among different levels, whereas relative judgment can avoid the issue. \cite{CarteretteBCD08} also suggested that relative judgment is more accurate for document-level judging. On the other hand, absolute judgments are reusable in that you can compare among any items for which you have item-level labels, whereas you need to collect labels for every pair of items. 
+
+%One way to think about this is that absolute judgment is like using between-subject experiment design (one label per experimental setting), whereas relative judgment can be linked to within-subject experiment design.
 
 \newpar
 Judging Unit: what level of granularity?
