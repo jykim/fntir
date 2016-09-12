@@ -46,7 +46,7 @@
 \mainmatter
 
 \begin{abstract}
-Offline evaluation provides characterization of an information retrieval (IR) system based on human judgments without relying on actual users in real-world environment. Offline evaluation, notably test collection based evaluation, has been dominant approaches in IR evaluation. It is no exaggeration that shared evaluation efforts such as TREC has defined the IR research over the years. The reason for this success lies in the ability to compare retrieval systems in a reusable manner.
+Offline evaluation provides characterization of an information retrieval (IR) system based on human judgments without relying on actual users in real-world environment. Offline evaluation, notably test collection based evaluation, has been the dominant approach in IR evaluation. It is no exaggeration that shared evaluation efforts such as TREC \cite{} has defined the IR research over the years. The reason for this success lies in the ability to compare retrieval systems in a reusable manner.
 
 Recently, there has been several trends which necessitates the change in the role and method of offline evaluation. First and foremost, online search engines with large-scale user base has become commonplace, enabling online evaluation based on user behavior. Also, there are many endpoints for search beyond desktop web browser such as mobile phone and conversational agents, and the types of search results has diversified beyond the list of web documents to include other results types. Finally, crowdsourcing has provided ways for human judgments of any kind to be collected at an large scale. The overall outcome of this trend is the advent of new IR evaluation paradigms which are more user-centric, diverse and agile.
 
@@ -80,9 +80,9 @@ So far we have introduced two evaluation paradigms -- offline and online evaluat
 
 While these two approaches comprise majority of evaluation efforts, there has been several approaches which tries to break the middle ground. People have studied click modeling \cite{chuklin2015click} or counterfactual online evaluation \cite{Li:2015, li2010contextual} where the goal is to re-use online user data for future evaluation. These approaches, while enabling the re-use of online user data, are still limited in that they are based on implicit user behavior.
 
-Another related line of work is user study \cite{Bron:2013, Liu:2014, Shah:2011}, which is widely used methodology in interactive IR \cite{kelly2009methods} literature. In such work, a group of subjects are typically brought into the lab environment and asked to perform a set of (usually predetermined) search task. It is common for this type of study to collect both the behavior and the labels from the participants to get the complete picture of search activity. 
+Another related line of work is user study-based evaluation \cite{Bron:2013, Liu:2014, Shah:2011}, which is widely used methodology in interactive IR \cite{kelly2009methods} literature. In such work, a group of subjects are typically brought into the lab environment and asked to perform a set of (usually predetermined) search task. It is common for this type of study to collect both the behavior and the labels from the participants to get the complete picture of search activity. 
 
-User studies bear similarities with offline evaluation in that they typically involve some form of human judgment, but their emphasis is more on understanding some aspect of users' search behavior, as opposed to comparative evaluation among search systems. However, the distinctions are getting blur as search engines increasingly serve more complex set of results, and SERP or session-level evaluation is drawing more attentions. In fact, some recent research \cite{Xu:2009} has tried to use task completion settings for system-to-system comparison. We will get to this point in Chapter~\ref{c-human-judgment}.
+User studies bear similarities with offline evaluation in that they typically involve some form of human judgment, but their emphasis is more on understanding some aspect of users' search behavior, as opposed to comparative evaluation among search systems. However, the distinctions are getting blurred as search engines increasingly serve more complex set of results, and SERP (search engine results page) or session-level evaluation is drawing more attentions. In fact, some recent research \cite{Xu:2009} has tried to use task completion settings for system-to-system comparison. We will get to this point in Chapter~\ref{c-human-judgment}.
 
 \subsection{When to Use Offline Evaluation}
 
@@ -148,15 +148,15 @@ Fortunately, crowdsourcing services such as Amazon Mechanical Turk has provided 
 
 \section{Scenarios for Offline Evaluation}
 
-We have outlined basic concept and recent trends for offline evaluation so far. The goal of this paper is to provide a practical guide in conducting offline evaluation for both academic and industry practitioners. Since there can be various scenarios in conducting offline evaluation, here we outline possible ones which we cover in this paper.
+We have outlined basic concepts and recent trends for offline evaluation so far. The goal of this paper is to provide a practical guide in conducting offline evaluation for both academic and industry practitioners. Since there can be various scenarios in conducting offline evaluation, here we outline possible ones which we cover in this paper.
 
-In classical IR research, a typical evaluation scenario is to improve the performance of a system given a test collection and a pre-determined set of evaluation metrics. For instance, in TREC Web Track, participants are given a collection representative of the Web, and then asked to submit the results for their systems in designated format and due date, which then will be evaluated on metrics like NDCG or ERR.
+In classical IR research, a typical evaluation scenario is to improve the performance of a system given a test collection and a pre-determined set of evaluation metrics. For instance, in TREC Web Track, participants are given a collection representative of the Web, and then asked to submit the results for their systems in designated format and due date, which then will be evaluated on metrics like NDCG \cite{Jarvelin:2002} or ERR \cite{ChapelleMZG09}.
 
 While academic IR research has developed well-accepted evaluation practice as above, the situation is a lot more ill-defined and varied from practitioners' standpoint. There are multiple components in a modern IR system such as web search engine, and each requires different emphases and considerations. For instance, one can think of component-level (i.e., query suggestions) evaluation as opposed to system-level evaluation. 
 
-Also, building a working system serving real users takes several stages of development. The evaluation at early stages of development would be more exploratory in nature, whereas the at later stage the focus would shift to making ship decisions and so on. We can call the former \textit{information-centric} evaluation in that the goal is to collect information helpful for system development and debugging, where the latter can be considered \textit{number-centric} in that the goal is to get reliable performance numbers for decision making.
+Also, building a working system serving real users takes several stages of development. The evaluation at early stages of development would be more exploratory in nature, whereas at later stage the focus would shift to making ship decisions and so on. We can call the former \textit{information-centric} evaluation in that the goal is to collect information helpful for system development and debugging, where the latter can be considered \textit{number-centric} in that the goal is to get reliable performance numbers for decision making.
 
-Another characteristics of IR evaluation in industry setting is that the evaluation is an on-going process which takes multiple iteration over the lifetime of the service, as opposed to one-off research project. This necessitates the development of so called \textit{evaluation pipeline} where any new system can be evaluation on a ongoing basis.  
+Another characteristics of IR evaluation in industry setting is that the evaluation is an on-going process which takes multiple iterations over the lifetime of the service, as opposed to one-off research project. This necessitates the development of so called \textit{evaluation pipeline} where any new system can be evaluation on a ongoing basis.  
 
 Since the goal of this paper is to meet the need of practitioners as well as academic researchers, we describe decisions one needs to face in conducting offline evaluation across various scenarios outlined above. We also focus on considerations in designing a evaluation pipeline in industry setting at Chapter \ref{c-experiment}.
 
@@ -172,7 +172,7 @@ First, here are a few definitions that will be used throughout this paper. These
 
 \paragraph{Judging Target} Judging target denotes a result produced by an IR system to be evaluated. It can be of any granularity -- a snippet, a web document, or entire SERP. 
 
-\paragraph{Human Judgment} Human judgment is a assessment of \textit{judging target} by a human judge in the context of \textit{search task} over some dimension of quality. 
+\paragraph{Human Judgment} Human judgment is an assessment of \textit{judging target} by a human judge in the context of \textit{search task} over some dimension of quality. 
 
 \paragraph{Evaluation Metric} Evaluation metric (or metric in short) summarizes judgments into a single score. The design of evaluation metric depends on the type of judgments being collected, and the model of user behavior.
 
@@ -265,7 +265,7 @@ In many cases one needs to perform offline evaluation without a working system -
 A simulated work task situation, which is a short `cover story', serves two main functions: 1) it triggers and develops a simulated information need by allowing for user interpretations of the situation, leading to cognitively individual information need interpretations as in real life; and 2) it is the platform against which situational relevance is judged. Further, by being the same for all test persons experimental control is provided. Hence, the concept of a simulated work task situation ensures the experiment both realism and control.	
 \end{quote}
 
-`Task' can mean different things for different people, and IR literature has long debated over the definition of the search task, as summarized in \cite{kelly2009methods}. For our purpose, it is suffice to understand it as the representation of information needs which a human judge can use to perform a search and judge the quality of results.
+`Task' can mean different things for different people, and IR literature has long debated over the definition of the search task, as summarized in \cite{kelly2009methods}. For our purpose, it is sufficient to understand it as the representation of information needs which a human judge can use to perform a search and judge the quality of results.
 
 The design of search tasks needs many considerations which can critically affect evaluation results. First, there is the question of where the task is originated from and how much the judge is interested in the task. \cite{Edwards:2016} shows that judges' interests in the task has effects on how they perceive and perform the tasks. Judges in general had more knowledge on the tasks they were interested in, expected the tasks to be easier, and had higher engagement in terms of time spent.
 
@@ -361,13 +361,29 @@ Now, how should one choose between absolute vs. relative judgment? In general, m
 
 Relative judgment has been used in various evaluation settings. \cite{Chandar2013} employed document-level pairwise judging using another document as a context, with a goal of novelty and diversity evaluation. \cite{Arguello:2011} also proposed an evaluation scheme for aggregated search based on pairwise preference judgment at element-level. \cite{Zhou:2012} used SERP-level pairwise preference judgment as a part of the evaluation framework for aggregated search.
 
-On the other hand, absolute judgments are reusable in that you can compare among any items for which you have item-level labels, whereas you need to collect labels for every pair of items. Therefore, if you want to reuse judgments in a production environment where multiple generations of ranking techniques should be compared against each other, absolute judgment might save the cost in the long run. This is also the reason that TREC has employed absolute judgiment since its inception.
+On the other hand, absolute judgments are reusable in that you can compare among any items for which you have item-level labels, whereas you need to collect labels for every pair of items. Therefore, if you want to reuse judgments in a production environment where multiple generations of ranking techniques should be compared against each other, absolute judgment might save the cost in the long run. This is also the reason that TREC has employed absolute judgment since its inception.
 
 
-\subsection{Judging Criteria \& Scale}
+\subsection{Judging Criteria}
+The central assumption of offline evaluation is that human judges can represent real users, and we often want judges to tell us if the judging target would be useful to the potential user. However, it is not a trivial task for judge given contextual and multi-faceted nature of relevance. (\cite{Borlund:2003})
+
+\newpar
+Effort based judgments \cite{Yilmaz:2014} \cite{VermaYC16}
+
+\newpar
+Relevance vs. Usefulness-based evaluation \cite{Zhou:2012} \cite{Kim2016}
+
+\newpar
+Novelty and diversity \cite{Chandar2013}
+
+\newpar
+Multi-dimensional judgment collection \cite{Golbus:2014:CDR} \cite{Kim:2013}
+
 
 \subsection{Additional Issues}
 
+\newpar
+Judging scale \cite{Turpin2015} \cite{Jarvelin:2002}
 
 \newpar
 Decision Criteria
@@ -379,20 +395,6 @@ Decision Criteria
 - Outcome reliability/intepretability
 
 - Reusability
-
-
-
-
-\newpar
-Judgment for Desktop vs. Mobile environment \cite{Verma:2016:CRMD}
-
-\newpar
-Session/Task-based evaluation \cite{Moraveji:2011} \cite{Xu:2009}
-
-\newpar
-Effort based judgments \cite{Yilmaz:2014} \cite{Verma:2016:EBJ}
-
-- Relevance vs. Usefulness-based evaluation 
 
 \section{Collecting Judgments}
 
@@ -421,11 +423,21 @@ Efficient judgment collection using Crowdsourcing
 
 \section{Open Issues}
 
-- Collecting labels for contextual / personalized search results
+Collecting labels for contextual / personalized search results
 
-- Collecting labels for whole SERP / non-document results
+- using judgments with search context?
 
-- Collecting labels for non-traditional endpoints (i.e., conversational agent)
+\newpar
+Collecting labels for whole SERP / non-document results
+
+\newpar
+Collecting labels for non-traditional endpoints (i.e., conversational agent)
+
+- Judgment for Desktop vs. Mobile environment \cite{Verma:2016:CRMD}
+
+\newpar
+Session/Task-based evaluation \cite{Moraveji:2011} \cite{Xu:2009}
+
 
 \chapter{Evaluation Metrics}
 \label{c-metrics}
