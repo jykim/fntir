@@ -8,6 +8,9 @@
 \newcommand{\now}{\textsc{now}}
 \newcommand{\newpar}{\bigskip\noindent}
 
+\usepackage{color}
+\newcommand{\paul}[1]{{\color{blue}\textit{Paul: #1}}}
+
 \title{Offline Evaluation for Information Retrieval}
 
 % THe following author list is tentative
@@ -46,13 +49,15 @@
 \mainmatter
 
 \begin{abstract}
-Offline evaluation provides characterization of an information retrieval (IR) system based on human judgments without relying on actual users in real-world environment. Offline evaluation, notably test collection based evaluation, has been the dominant approach in IR evaluation. It is no exaggeration that shared evaluation efforts such as TREC \cite{} has defined the IR research over the years. The reason for this success lies in the ability to compare retrieval systems in a reusable manner.
+Offline evaluation characterizes an information retrieval (IR) system
+% based on human judgments
+without relying on actual users in a real-world environment. \paul{This suggests that lab studies are in scope.} Offline evaluation, notably test collection based evaluation, has been the dominant approach in IR evaluationand it is no exaggeration to say that shared evaluation efforts such as TREC have defined IR research over the years. The reason for this success lies in the ability to compare retrieval systems in a reusable manner.
 
-Recently, there has been several trends which necessitates the change in the role and method of offline evaluation. First and foremost, online search engines with large-scale user base has become commonplace, enabling online evaluation based on user behavior. Also, there are many endpoints for search beyond desktop web browser such as mobile phone and conversational agents, and the types of search results has diversified beyond the list of web documents to include other results types. Finally, crowdsourcing has provided ways for human judgments of any kind to be collected at an large scale. The overall outcome of this trend is the advent of new IR evaluation paradigms which are more user-centric, diverse and agile.
+%Recently, there has been several trends which necessitates the change in the role and method of offline evaluation.
+Several recent trends however necessitate a change in the role and methods of offline evaluation. First and foremost, online search engines with large-scale user base has become commonplace, enabling online evaluation based on user behavior \paul{Doesn't this suggest offline evaluation doesn't matter? Tone this down?}. There are new endpoints for search, such as mobile phones and conversational agents, and the types of search results has diversified beyond a list of web documents to include other result types. Finally, crowdsourcing has provided ways for human judgments of any kind to be collected at a large scale. The overall outcome of this trend is the advent of new IR evaluation paradigms which are more user-centric, diverse and agile.
 
-This survey aims to provide an overview of recent research in IR evaluation pertaining to the trends above. We first introduce offline evaluation for IR, focusing on how it relates to other evaluation paradigms such as online evaluation. We also overview traditional offline evaluation for IR, and how recent trends have shaped the research so far. We then review research in offline evaluation mainly on three levels: human judgment, evaluation metric and experiment design. This organization will allow readers to follow recent developments in research from micro-level (human judgment) to macro-level (experiment). Finally, we discuss evaluation practices from industry, which has been a major driving force in research and development in IR.
+This survey aims to provide an overview of recent research in IR evaluation pertaining to the trends above. We first introduce offline evaluation for IR, focusing on how it relates to other evaluation paradigms such as online evaluation. We also overview traditional offline evaluation for IR, and how recent trends have shaped the research so far. We then review research in offline evaluation on three levels: human judgments, evaluation metrics and experiment design. This organization will allow readers to follow recent developments in research from micro-level (human judgment) to macro-level (experiment). Finally, we discuss evaluation practice in industry, which has been a major driving force in research and development in IR.
 	
-
 \end{abstract}
 
 \chapter{Introduction}
