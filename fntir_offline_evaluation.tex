@@ -10,6 +10,7 @@
 
 \usepackage{color}
 \newcommand{\paul}[1]{{\color{blue}\textit{Paul: #1}}}
+\newcommand{\note}[1]{\textit{(#1)}}
 
 \title{Offline Evaluation for Information Retrieval}
 
@@ -63,35 +64,39 @@ This survey aims to provide an overview of recent research in IR evaluation pert
 \chapter{Introduction}
 \label{c-intro}
 
-In this chapter, we survey the area and lay conceptual foundation for the rest of the paper. We first provide an overview of different approaches to IR evaluation. We then focus on offline evaluation, explaining traditional approaches and recent trends. Finally, we introduce a conceptual framework and the outline for the rest of this paper. (15-20 pages)
+In this chapter, we survey the area and lay conceptual foundations for the rest of the paper. We first provide an overview of different approaches to IR evaluation. We then focus on offline evaluation, explaining traditional approaches and recent trends. Finally, we introduce a conceptual framework and the outline for the rest of this paper. \note{15-20 pages} \paul{We have 10pp, is ``15--20'' realistic?}
 
 \section{Evaluation Paradigms in IR}
 
-Evaluating a search system, or any system that supports information access such as recommendation or filtering, is a complex problem in general. The performance of a search system is dependent on various contextual factors, such as the task at hand, user's preference and location, and even the timing of the interaction. Also, the ultimate source of ground truth, the judgment from the user, is subjective, volatile, and often hard to come by.
+Evaluating a search system, or any system that supports information access such as recommendation or filtering, is a complex problem.
+% in general.
+The performance of a search system is dependent on various contextual factors, such as the task at hand, the user's preference, abilities, location and other characteristics, and even the timing of the interaction. Also, the ultimate source of ground truth, the user's judgment, is subjective, volatile, and often hard to come by.
 
 \subsection{Offline vs. Online Evaluation}
 
-In order to meet these challenges, IR researchers have built rich tradition in evaluation. Most of these work in IR evaluation has been based on a few simplifying assumptions. The document collection is static and the information need is represented as a description or a keyword query. The judgments from user has been replaced with the judgments collected from human judges, often in the form of binary or numeric-scale labels.
+In order to meet these challenges, IR researchers have built a rich evaluation tradition. Most of this work has been based on a few simplifying assumptions. The document collection is static and the user's information need is represented as a description or a keyword query. The user's judgments in situ are replaced with judgments collected post-hoc and from third parties, often in the form of binary or numeric-scale labels.
 
-We can define this evaluation paradigm as \textit{offline evaluation} \cite{INR-009} in that the evaluation of the system can happen without requiring actual user. This makes offline evaluation particularly suitable for early-stage evaluation of an IR system. Another typical characteristic of offline evaluation is that the test collection (a set of tasks, judgments and documents) is 'reusable', in that once built it can be used to evaluate new systems.
+We can define this evaluation paradigm as \textit{offline evaluation} \citep{INR-009} in that the evaluation of the system can happen without requiring an actual user. This makes offline evaluation particularly suitable for early-stage evaluation of an IR system, when users are hard to come by. Another typical characteristic of offline evaluation is that the test collection (a set of tasks, judgments and documents) is 'reusable', in that once built it can be used to evaluate new systems; because many factors are controlled, evaluations are also commensurable across time and between researchers.
 
-An evaluation paradigm contrasting with offline evaluation is called \textit{online evaluation}. In a recent survey \cite{INR-XYZ} on this topic, online evaluation is defined as the evaluation of a fully functioning system based on implicit measurement of real users' experiences of the system in a natural usage environment. That is, online evaluation directly employs user behavior in natural environment for evaluation.
+An evaluation paradigm contrasting with offline evaluation is called \textit{online evaluation}. In a recent survey on this topic, online evaluation is defined as the evaluation of a fully functioning system based on implicit measurement of real users' experiences of the system in a natural usage environment \citep{INR-XYZ}. That is, online evaluation directly employs user behavior in natural environment for evaluation.
 
-(more details of online evaluation / and its populaity)
+\note{more details of online evaluation / and its popularity}
 
 \subsection{Hybrid Approaches}
 
-So far we have introduced two evaluation paradigms -- offline and online evaluation -- with distinctive characteristics. Offline evaluation is based on human judges, and has strengths in experimental control and reusability. Online evaluation is based on user log, and has strengths in fidelity and cost.
+So far we have introduced two evaluation paradigms -- offline and online evaluation -- with distinctive characteristics. Offline evaluation is based on human judges \paul{really? How about ``\dots is based on abstractions of real users''?}, and has strengths in experimental control and reusability. Online evaluation is based on user behavior, and has strengths in fidelity and cost.
 
-While these two approaches comprise majority of evaluation efforts, there has been several approaches which tries to break the middle ground. People have studied click modeling \cite{chuklin2015click} or counterfactual online evaluation \cite{Li:2015, li2010contextual} where the goal is to re-use online user data for future evaluation. These approaches, while enabling the re-use of online user data, are still limited in that they are based on implicit user behavior.
+While these two approaches comprise the majority of evaluation efforts, there have been several approaches trying to find a middle ground. Click modeling \citep{chuklin2015click} and counterfactual online evaluation \citep{Li:2015, li2010contextual}, for example, re-use online user data for future evaluation. These approaches, while enabling the re-use of online user data, are still limited in that they are based on implicit user behavior. \paul{how is that a limitation? need to be explicit}
 
-Another related line of work is user study-based evaluation \cite{Bron:2013, Liu:2014, Shah:2011}, which is widely used methodology in interactive IR \cite{kelly2009methods} literature. In such work, a group of subjects are typically brought into the lab environment and asked to perform a set of (usually predetermined) search task. It is common for this type of study to collect both the behavior and the labels from the participants to get the complete picture of search activity. 
+Another related line of work is user study-based evaluation \citep{Bron:2013, Liu:2014, Shah:2011}, which is widely used in interactive IR studies \citep{kelly2009methods}. In such work, a group of participants are typically brought into a lab environment and asked to perform a set of (usually predetermined) search tasks. It is common for this type of study to collect both behavior and labels from the participants to get a more complete picture of search activity. 
 
-User studies bear similarities with offline evaluation in that they typically involve some form of human judgment, but their emphasis is more on understanding some aspect of users' search behavior, as opposed to comparative evaluation among search systems. However, the distinctions are getting blurred as search engines increasingly serve more complex set of results, and SERP (search engine results page) or session-level evaluation is drawing more attentions. In fact, some recent research \cite{Xu:2009} has tried to use task completion settings for system-to-system comparison. We will get to this point in Chapter~\ref{c-human-judgment}.
+User studies bear similarities with offline evaluation in that they typically involve some form of explicit judgments, but their emphasis is more on understanding some aspect of users' search behavior, as opposed to comparative evaluation among search systems. However, the distinctions are getting blurred as search engines increasingly serve more complex set of results, and SERP (search engine results page) or session-level evaluation is drawing more attention. In fact, some recent research has tried to use task completion settings for system-to-system comparison \citep{Xu:2009}. We will return to this point in Chapter~\ref{c-human-judgment}.
 
 \subsection{When to Use Offline Evaluation}
 
-At this point, a reader may ask this question. When should we use online vs. offline evaluation? While online metrics is certainly valuable and must-have, there are scenarios / reasons why we need input from human judges: First, user simply does not exist in initial stages of development. More importantly, user behavior is often not sufficient to measure the true satisfaction of user. 
+At this point, a reader may ask: when should we use online vs. offline evaluation? While online metrics are certainly valuable,
+% and must-have,
+there are reasons we may need explicit input from human judges. First, in initial stages of system development we simply might not have real users to study. More importantly, traces of behavior are often insufficient to measure a user's true satisfaction. 
 
 As an example, let's take clicks on results for evaluating a search engine. While click is certainly an indication that user is interested in the result, it is not clear whether the clicked result actually led to satisfaction. Also, click is often concentrated on the top of the page, making it difficult to interpret. That is, the ambiguity and bias inherent in user behavior often make it hard to infer true quality of our products.
 
