@@ -9,7 +9,10 @@
 \newcommand{\newpar}{\bigskip\noindent}
 
 \usepackage{color}
-\newcommand{\paul}[1]{{\color{blue}\textit{Paul: #1}}}
+\newcommand{\authornote}[3]{\marginpar{\tiny\color{#1}#2: #3}{\color{#1}{$\star$}}}
+\newcommand{\jin}[1]{\authornote{red}{Jin}{#1}}
+\newcommand{\emine}[1]{\authornote{green}{Emine}{#1}}
+\newcommand{\paul}[1]{\authornote{blue}{Paul}{#1}}
 \newcommand{\note}[1]{\textit{(#1)}}
 
 \title{Offline Evaluation for Information Retrieval}
