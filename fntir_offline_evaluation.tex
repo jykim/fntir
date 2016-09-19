@@ -65,11 +65,13 @@ Several recent trends however necessitate a change in the role and methods of of
 
 This survey aims to provide an overview of recent research in IR evaluation pertaining to the trends above. We first introduce offline evaluation for IR, focusing on how it relates to other evaluation paradigms such as online evaluation. We also overview traditional offline evaluation for IR, and how recent trends have shaped the research so far. We then review research in offline evaluation on three levels: human judgments, evaluation metrics and experiment design. This organization will allow readers to follow recent developments in research from micro-level (human judgment) to macro-level (experiment). Finally, we discuss evaluation practice in industry, which has been a major driving force in research and development in IR.
 \emine{Maarten mentioned that since this will be like a book we should not have statements like recently (if I remember correctly)}
+\paul{Hmm---tricky. Isn't this whole effort motivated by recent changes? How should we describe them?}
 \emine{It may be better to have an organizaiton like:
 	* Importance of offline evaluation
 	* Difference from online evaluation and why it is important
 	* Components of offline evaluation
 	* Finally, organization of the paper}
+\paul{We more or less have this in \S\ref{sec:evaluation-paradigms}, I think, although probably each of the sections in Ch1 could be expanded}
 \end{abstract}
 
 \chapter{Introduction}
@@ -78,6 +80,7 @@ This survey aims to provide an overview of recent research in IR evaluation pert
 In this chapter, we survey the area and lay conceptual foundations for the rest of the paper. We first provide an overview of different approaches to IR evaluation. We then focus on offline evaluation, explaining traditional approaches and recent trends. Finally, we introduce a conceptual framework and the outline for the rest of this paper. \note{15-20 pages} \paul{We have 10pp, is ``15--20'' realistic?}
 
 \section{Evaluation Paradigms in IR}
+\label{sec:evaluation-paradigms}
 
 Evaluating a search system, or any system that supports information access such as recommendation or filtering, is a complex problem.
 % in general.
@@ -201,6 +204,7 @@ First, here are a few definitions that will be used throughout this paper. These
 
 \paragraph{Experiment} An experiment is a collection of judgments with a specific purpose. An evaluation metric summarizes the outcome of an experiment, and an appropriate statistical test needs to be accompanied to make a claim about the validity and reliability of the findings.
 \emine{I am not sure what an experiment refers to here}
+\paul{Can we refer to this as an \emph{evaluation}? ``Experiment'' has a particular meaning; and in particular, (a) we need not be varying anything when doing offline evaluation (so it's not experimental) and (b) when we do, this measurement/evaluation can be a part of the larger experiment. Calling this an ``experiment'' is I think wrong, it's a measurement tool/technique}
 
 %\paragraph{Evaluation Pipeline} 
 
@@ -254,13 +258,16 @@ Lastly, judgments and metrics should be used to achieve the goal of evaluation. 
 
 In the following chapters, we describe each process of offline evaluation in detail so that a reader can design his or her own evaluation pipeline following the flow of this paper. Chapter~\ref{c-human-judgment} deals with gathering judgments, which need to be created for the purpose. Chapter~\ref{c-metrics} considers steps in designing an effective metric. Chapter~\ref{c-experiment} covers the methods in designing and analyzing experiments. Finally, Chapter~\ref{c-practice} describes evaluation practices from major companies in search and recommendation area.
 \emine{We already had a part describing the organization. In general, this section feels a bit repetitive given the text in first page}
+\paul{I disagree, that was in the abstract; it makes sense here (as well) I think. Unless I missed something?}
 
 \chapter{Human Judgments}
 \label{c-human-judgment}
 
 The goal of collecting a human judgment is to get an accurate measurement of  search engine results quality for given set of search tasks. A canonical example is collecting a binary relevance judgment for a document given a TREC-style search topic. The form of human judgment can be quite varied, however, depending on the type of search task and judging target.
 
-We will start with an example to make the discussion more concrete. Figure \label{fig:human_judgment_overview} shows a list of possible search tasks about the topic of \textit{crowdsourcing} on the left side, and a few samples from existing web search results for query 'crowdsourcing' on the right side. \emine{Would it be better to show a more standard judging UI here? Like a query and a web page?}
+We will start with an example to make the discussion more concrete. Figure~\ref{fig:human_judgment_overview} shows a list of possible search tasks about the topic of \textit{crowdsourcing} on the left side, and a few samples from existing web search results for query `crowdsourcing' on the right side.
+\emine{Would it be better to show a more standard judging UI here? Like a query and a web page?}
+\paul{Can we use another topic? We also discuss crowdsourcing below, which may be confusing. Let's use something which is clearly from a user not a researcher, e.g. ``rules of soccer''. I like the diagram otherwise I think}
 
 \begin{figure}
 	\begin{center}
@@ -290,7 +297,9 @@ In many cases one needs to perform offline evaluation without a working system -
 A simulated work task situation, which is a short `cover story', serves two main functions: 1) it triggers and develops a simulated information need by allowing for user interpretations of the situation, leading to cognitively individual information need interpretations as in real life; and 2) it is the platform against which situational relevance is judged. Further, by being the same for all test persons experimental control is provided. Hence, the concept of a simulated work task situation ensures the experiment both realism and control.	
 \end{quote}
 
-`Task' can mean different things for different people, and IR literature has long debated over the definition of the search task, as summarized in \cite{kelly2009methods}. For our purpose, it is sufficient to understand it as the representation of information needs which a human judge can use to perform a search and judge the quality of results. \emine{Is that the definition of task? May be we should use a more proper definition?}
+`Task' can mean different things for different people, and IR literature has long debated over the definition of the search task, as summarized in \cite{kelly2009methods}. For our purpose, it is sufficient to understand it as the representation of information needs which a human judge can use to perform a search and\paul{and/or? Often no searching is done by a judge} judge the quality of results.
+\emine{Is that the definition of task? May be we should use a more proper definition?}
+\paul{task $\neq$ need, but I think this use is blessed by so much past use}
 
 The design of search tasks needs many considerations which can critically affect evaluation results. First, there is the question of where the task is originated from and how much the judge is interested in the task. \cite{Edwards:2016} shows that judges' interests in the task has effects on how they perceive and perform the tasks. Judges in general had more knowledge on the tasks they were interested in, expected the tasks to be easier, and had higher engagement in terms of time spent.
 
@@ -299,6 +308,7 @@ Another dimension of task creation is the complexity, which again has many dimen
 In sum, these results show that the characteristics of search task is an important dimension in designing an offline evaluation. It is recommended to collect information about task characteristics and design experiments accordingly so that one can control the effect of these factors in evaluation.
 
 \emine{Should we talk about how to create the tasks?}
+\paul{isn't that what we're doing?}
 
 \subsection{Sampling Query Logs}
 Assuming you have a working search engine with real users, it is natural to collect search tasks from query log data. While this is a seemingly straightforward task, there are a few considerations. We list these point below, along with recommendations based on recent studies.
