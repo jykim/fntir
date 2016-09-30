@@ -55,36 +55,33 @@
 \begin{abstract}
 Offline evaluation characterizes an information retrieval (IR) system
 % based on human judgments
-without relying on actual users in a real-world environment. \paul{This suggests that lab studies are in scope.} Offline evaluation, notably test collection based evaluation, has been the dominant approach in IR evaluation and it is no exaggeration to say that shared evaluation efforts such as the TREC conferences
-\emine{cite and expand?} \paul{probably no cites in the abstract}
-have defined IR research over the years. The reason for this success lies in the ability to compare retrieval systems in a reusable manner.
+without relying on actual users in a real-world environment. \paul{This suggests that lab studies are in scope.}\jin{I think it's hard to draw boundaries, except for its goals.} Offline evaluation, notably test collection based evaluation, has been the dominant approach in IR evaluation and it is no exaggeration to say that shared evaluation efforts such as the TREC conferences have defined IR research over the years. The reason for this success lies in the ability to compare retrieval systems in a reusable manner.
 
 %Recently, there has been several trends which necessitates the change in the role and method of offline evaluation.
-Several recent trends however necessitate a change in the role and methods of offline evaluation. First and foremost, online search engines with large-scale user base has become commonplace, enabling online evaluation based on user behavior \paul{Doesn't this suggest offline evaluation doesn't matter? Tone this down?}. There are new endpoints for search, such as mobile phones and conversational agents, and the types of search results has diversified beyond a list of web documents to include other result types. Finally, crowdsourcing has provided ways for human judgments of any kind to be collected at a large scale. The overall outcome of this trend is the advent of new IR evaluation paradigms which are more user-centric, diverse and agile.
-\emine{This feels like part of a paper, as opposed to a book}
+Several recent trends however necessitate a change in the role and methods of offline evaluation. First and foremost, online search engines with large-scale user base has become commonplace, enabling online evaluation based on user behavior \paul{Doesn't this suggest offline evaluation doesn't matter? Tone this down?}\jin{We'll talk about its limitations later}. There are new endpoints for search, such as mobile phones and conversational agents, and the types of search results has diversified beyond a list of web documents to include other result types. Finally, crowdsourcing has provided ways for human judgments of any kind to be collected at a large scale. The overall outcome of this trend is the advent of new IR evaluation paradigms which are more user-centric, diverse and agile.
 
 This survey aims to provide an overview of recent research in IR evaluation pertaining to the trends above. We first introduce offline evaluation for IR, focusing on how it relates to other evaluation paradigms such as online evaluation. We also overview traditional offline evaluation for IR, and how recent trends have shaped the research so far. We then review research in offline evaluation on three levels: human judgments, evaluation metrics and experiment design. This organization will allow readers to follow recent developments in research from micro-level (human judgment) to macro-level (experiment). Finally, we discuss evaluation practice in industry, which has been a major driving force in research and development in IR.
-\emine{Maarten mentioned that since this will be like a book we should not have statements like recently (if I remember correctly)}
-\paul{Hmm---tricky. Isn't this whole effort motivated by recent changes? How should we describe them?}
-\emine{It may be better to have an organizaiton like:
-	* Importance of offline evaluation
-	* Difference from online evaluation and why it is important
-	* Components of offline evaluation
-	* Finally, organization of the paper}
-\paul{We more or less have this in \S\ref{sec:evaluation-paradigms}, I think, although probably each of the sections in Ch1 could be expanded}
+
+%\emine{It may be better to have an organizaiton like:
+%	* Importance of offline evaluation
+%	* Difference from online evaluation and why it is important
+%	* Components of offline evaluation
+%	* Finally, organization of the paper}
+% \paul{We more or less have this in \S\ref{sec:evaluation-paradigms}, I think, although probably each of the sections in Ch1 could be expanded}
 \end{abstract}
+
+% \emine{Maarten mentioned that since this will be like a book we should not have statements like recently (if I remember correctly)}
+% \paul{Hmm---tricky. Isn't this whole effort motivated by recent changes? How should we describe them?}
 
 \chapter{Introduction}
 \label{c-intro}
 
-In this chapter, we survey the area and lay conceptual foundations for the rest of the paper. We first provide an overview of different approaches to IR evaluation. We then focus on offline evaluation, explaining traditional approaches and recent trends. Finally, we introduce a conceptual framework and the outline for the rest of this paper. \note{15-20 pages} \paul{We have 10pp, is ``15--20'' realistic?}
+In this chapter, we survey the area and lay conceptual foundations for the rest of the paper. We first provide an overview of different approaches to IR evaluation. We then focus on offline evaluation, explaining traditional approaches and recent trends. Finally, we introduce a conceptual framework and the outline for the rest of this paper.
 
 \section{Evaluation Paradigms in IR}
 \label{sec:evaluation-paradigms}
 
-Evaluating a search system, or any system that supports information access such as recommendation or filtering, is a complex problem.
-% in general.
-The performance of a search system is dependent on various contextual factors, such as the task at hand, the user's preference, abilities, location and other characteristics, and even the timing of the interaction. Also, the ultimate source of ground truth, the user's judgment, is subjective, volatile, and often hard to come by.
+Evaluating a search system, or any system that supports information access such as recommendation or filtering, is a complex problem. The performance of a search system is dependent on various contextual factors, such as the task at hand, the user's preference, abilities, location and other characteristics, and even the timing of the interaction. Also, the ultimate source of ground truth, the user's judgment, is subjective, volatile, and often hard to come by.
 
 \subsection{Offline vs. Online Evaluation}
 
@@ -94,7 +91,7 @@ We can define this evaluation paradigm as \textit{offline evaluation} \citep{INR
 
 An evaluation paradigm contrasting with offline evaluation is called \textit{online evaluation}. In a recent survey on this topic, online evaluation is defined as the evaluation of a fully functioning system based on implicit measurement of real users' experiences of the system in a natural usage environment \citep{INR-XYZ}. That is, online evaluation directly employs user behavior in natural environment for evaluation.
 
-\note{more details of online evaluation / and its popularity}
+As large-scale online services become commonplace, online evaluation became a viable option for companies who is running service with large user base. In literature, there has been a plethora of papers on methodologies for online evaluation. While online evaluation has benefits in using data readily available as a by-product of serving users, this dependence on user behavior also creates limitations for online evaluation, which we will discuss later in this section.
 
 \subsection{Hybrid Approaches}
 
@@ -108,13 +105,12 @@ User studies bear similarities with offline evaluation in that they typically in
 
 \subsection{When to Use Offline Evaluation}
 
-At this point, a reader may ask: when should we use online vs. offline evaluation? While online metrics are certainly valuable,
-% and must-have,
-there are reasons we may need explicit input from human judges. First, in initial stages of system development we simply might not have real users to study. More importantly, traces of behavior are often insufficient to measure a user's true satisfaction. 
+At this point, a reader may ask: when should we use online vs. offline evaluation? While online metrics are certainly valuable and must-have when feasible, there are reasons we may need explicit input from human judges. First, in initial stages of system development we simply might not have real users to study. More importantly, traces of behavior are often insufficient to measure a user's true satisfaction. 
 
 As an example, let's take clicks on results for evaluating a search engine. While click is certainly an indication that user is interested in the result, it is not clear whether the clicked result actually led to satisfaction. Also, click is often concentrated on the top of the page, making it difficult to interpret. That is, the ambiguity and bias inherent in user behavior often make it hard to infer true quality of our products.
 
 Another consideration is the reusability of the data collected. In offline evaluation, typically the label is collected at the level of individual information item (i.e., document) and the system is evaluated by its ability to put more relevant items on top. This means the labels can be reused to evaluate new systems that produce different rankings. By contrast, the data collected from online system is valid for the evaluation of the system user interacted with, and the data should be collected for every new system to be developed.
+
 \emine{Actually there are more reasons than that. I will send a table that contain advantages/disadvantages and we might want to include that.}
 
 \section{Offline Evaluation for IR}
@@ -153,7 +149,7 @@ The overall outcome of this trend is the advent of new IR evaluation paradigms w
 
 There has been already new methodologies proposed to better estimate user satisfaction and behavior in judgment collection \cite{VermaY16, VermaYC16} or metric design\cite{YilmazSCR10, CarteretteKY11, ChapelleMZG09}. Also, several recent work looked at cross-metric correlation \cite{Al-Maskari2007} \cite{radl:comp10} which aim to align IR evaluation with user satisfaction or some proxy of it.
 
-As a side note, there has been an increasing\emine{} efforts to combine online and offline evaluation. These include ways to use online user data for offline evaluation \cite{Li:2015} \cite{li2010contextual} \cite{chuklin2015click}, or ways to collect feedback directly from user \cite{Kim2016}. 
+As a side note, there has been an increasing efforts to combine online and offline evaluation. These include ways to use online user data for offline evaluation \cite{Li:2015} \cite{li2010contextual} \cite{chuklin2015click}, or ways to collect feedback directly from user \cite{Kim2016}. 
 
 \note{mentions of user study / iir papers}
 
@@ -171,10 +167,11 @@ Task and Session-level evaluation \cite{KanoulasCCS11, CarteretteKHC14} also dre
 
 These diverse new endpoints and scenarios for search required ways to collect labels in a more agile manner, because many of these services are new and exploratory by nature, with less investments compared to well-established ones like web search.
 
-Fortunately, crowdsourcing services such as Amazon Mechanical Turk has provided ways for human judgments of any kind to be collected at an large scale. Accompanying this new data collection method is the challenge in quality control, since the labeling work is completed by a remote worker on the internet.
+Fortunately, services such as Amazon Mechanical Turk has provided ways for human judgments of any kind to be collected at an large scale. These services are called `crowdsourcing' in that they pull the wisdom of crowd for tasks human intelligence. Accompanying this new data collection method is the challenge in quality control, since the labeling work is completed by a remote worker on the internet.
 
-\note{more on crowdsourcing for IR research}
-\emine{Should we define that crowdsourcing is and how it may be useful for offline evaluation?}
+Given this opportunities and challenges, there has been quite a few research work \cite{Alonso2012} about how to collect high-quality labels with least efforts. Popular approaches include using overlapping judgments to identify ground truth labels \cite{Venanzi:2014}, , or identifying the quality of judges based on their behaviors \cite{Kazai:2016}. We cover some of these methods in Section \ref{s-collect-jgmts}.
+
+%\emine{Should we define that crowdsourcing is and how it may be useful for offline evaluation?}
 
 \section{Scenarios for Offline Evaluation}
 
@@ -206,10 +203,11 @@ First, here are a few definitions that will be used throughout this paper. These
 
 \paragraph{Evaluation Metric} Evaluation metric (or metric in short) summarizes judgments into a single score. The design of evaluation metric depends on the type of judgments being collected, and the model of user behavior.
 
-\paragraph{Experiment} An experiment is a collection of judgments with a specific purpose. An evaluation metric summarizes the outcome of an experiment, and an appropriate statistical test needs to be accompanied to make a claim about the validity and reliability of the findings.
+\paragraph{Test Collection} A test collection is a collection of judgments with a specific evaluation goal. An evaluation metric summarizes the outcome of an experiment, and an appropriate statistical test needs to be accompanied to make a claim about the validity and reliability of the findings.
+
 \emine{I am not sure what an experiment refers to here}
 \paul{Can we refer to this as an \emph{evaluation}? ``Experiment'' has a particular meaning; and in particular, (a) we need not be varying anything when doing offline evaluation (so it's not experimental) and (b) when we do, this measurement/evaluation can be a part of the larger experiment. Calling this an ``experiment'' is I think wrong, it's a measurement tool/technique}
-
+\jin{I propose calling it Test Collection. What do you think?}
 %\paragraph{Evaluation Pipeline} 
 
 \subsection{Evaluation Process}
@@ -223,13 +221,9 @@ Given the components above, here we discuss the general process for offline eval
 	\end{center}
 \end{figure}
 
-
-%Offline evaluation for IR can be defined as the series of the following steps. We also list major decisions which need to be made for each step.
-
-
 \subsubsection{Designing Human Judgments}
 
-In the first step, the details of human judgment should be defined, which is the basic unit of offline evaluation. Here are major considerations in this step:\emine{Here we might want to summarize why we need human judgments, and what they simulate.}
+In the first step, the details of human judgment should be defined, which is the basic unit of offline evaluation. Human judgments capture the quality of the results for given search tasks. Here are major considerations in this step:
 
 \begin{enumerate}
 	\item How do you define and collect search tasks?
@@ -240,7 +234,7 @@ In the first step, the details of human judgment should be defined, which is the
 
 \subsubsection{Designing Evaluation Metrics}
 
-The second step in offline evaluation is selecting or designing a meaningful evaluation metric. This is essentially the question of how to combine labels to meaningful numbers.
+The second step in offline evaluation is selecting or designing a  evaluation metric. Metrics summarize the information from individual labels into meaningful numbers. This is essentially the question of how to combine labels to meaningful numbers.
 
 \begin{enumerate}
 	\item How do you transform the labels from human judges?
@@ -248,13 +242,13 @@ The second step in offline evaluation is selecting or designing a meaningful eva
 	\item How do you estimate the parameters for the user model?
 \end{enumerate}
 
-\subsubsection{Designing and Running Experiments}
+\subsubsection{Designing Test Collections}
 
-Lastly, judgments and metrics should be used to achieve the goal of evaluation. Since this is an iterative step which takes several stages of refinement, here we describe methods and criteria in doing so. 
+Lastly, judgments and metrics should be combined into a test collection to achieve the goal of evaluation. Since this is an iterative step which takes several stages of refinement, here we describe methods and criteria in doing so. 
 
 \begin{enumerate}
-	\item How do you size the experiment to fulfill your evaluation goal?
-	\item How do you evaluate the outcome of the experiment?
+	\item How do you size the test collection to fulfill your evaluation goal?
+	\item How do you evaluate the validity of the outcome?
 \end{enumerate}
 
 
@@ -270,8 +264,10 @@ In the following chapters, we describe each process of offline evaluation in det
 The goal of collecting a human judgment is to get an accurate measurement of  search engine results quality for given set of search tasks. A canonical example is collecting a binary relevance judgment for a document given a TREC-style search topic. The form of human judgment can be quite varied, however, depending on the type of search task and judging target.
 
 We will start with an example to make the discussion more concrete. Figure~\ref{fig:human_judgment_overview} shows a list of possible search tasks about the topic of \textit{crowdsourcing} on the left side, and a few samples from existing web search results for query `crowdsourcing' on the right side.
+
 \emine{Would it be better to show a more standard judging UI here? Like a query and a web page?}
 \paul{Can we use another topic? We also discuss crowdsourcing below, which may be confusing. Let's use something which is clearly from a user not a researcher, e.g. ``rules of soccer''. I like the diagram otherwise I think}
+\jin{@emine we do show judging I/F later. @paul let's keep it this way unless you strongly disagree -- i've used this topic throughout the chapter so it's not trivial to change}
 
 \begin{figure}
 	\begin{center}
@@ -311,8 +307,8 @@ Another dimension of task creation is the complexity, which again has many dimen
 
 In sum, these results show that the characteristics of search task is an important dimension in designing an offline evaluation. It is recommended to collect information about task characteristics and design experiments accordingly so that one can control the effect of these factors in evaluation.
 
-\emine{Should we talk about how to create the tasks?}
-\paul{isn't that what we're doing?}
+%\emine{Should we talk about how to create the tasks?}
+%\paul{isn't that what we're doing?}
 
 \subsection{Sampling Query Logs}
 Assuming you have a working search engine with real users, it is natural to collect search tasks from query log data. While this is a seemingly straightforward task, there are a few considerations. We outline some below, along with recommendations based on recent studies.
@@ -323,9 +319,10 @@ For example, a recent paper from  \cite{Zaragoza:2010} suggested techniques to i
 
 Other goals can also dictate the choice of sample. For instance, in industry one often targets a specific query segment (e.g., queries with fresh or local search intent); or perhaps on \textit{hard} queries where there is more room for improvement. In these case a sample focusing on the particular segment maximizes the evaluation efficiency.
 
-\paragraph{Characteristics of Search Traffic} The characteristics of search traffic also needs to be considered. \cite{Baeza-Yates:2015} shows that web search query logs follow a power distribution, with longer tails. He suggests a sampling technique to mitigate this issue \paul{what's the issue?}. The main idea is to bin the queries based on the frequency, which allows the sampled queries to match the distribution of original query set. \paul{so, stratified and re-balanced?}
+\paragraph{Characteristics of Search Traffic} The characteristics of search traffic also needs to be considered. \cite{Baeza-Yates:2015} shows that web search query logs follow a power distribution, with longer tails. He suggests a sampling technique to generate a sample that follows this distribution. The main idea is to bin the queries based on the frequency, which allows the sampled queries to match the distribution of original query set. 
 
-\note{more details?}
+\paul{so, stratified and re-balanced?}
+\jin{more details?}
 
 \paragraph{Query as the Search Task} While you can ask judges to imagine a search task given a query, it is open to question whether using query to represent an information need is optimal. Unlike search tasks, which should contain sufficient details of user information need, queries in a typical search engine are often abbreviated in form, often ambiguous and/or with typographical errors \cite{}. \paul{empty cite?}
 
@@ -415,10 +412,10 @@ Effort based judgments \cite{Yilmaz:2014} \cite{VermaYC16}
 Relevance vs. Usefulness-based evaluation \cite{Zhou:2012} \cite{Kim2016}
 
 \newpar
-Novelty and diversity \cite{Chandar2013}
+Multi-dimensional judgment collection \cite{Golbus:2014:CDR} \cite{Kim:2013}
 
 \newpar
-Multi-dimensional judgment collection \cite{Golbus:2014:CDR} \cite{Kim:2013}
+Novelty and diversity \cite{Chandar2013}
 
 
 \subsection{Additional Issues}
@@ -438,7 +435,7 @@ Decision Criteria
 - Reusability
 
 \section{Collecting Judgments}
-
+\label{s-collect-jgmts}
 Choosing Judges: 
 
 - Crowd vs. Expert \cite{Kazai:2013} \cite{Alonso20121053}
