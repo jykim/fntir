@@ -293,7 +293,7 @@ The rest of this chapter is to give you guidance in designing a human judgment, 
 Before considering judgment design, one needs to collect search tasks on which search results will be evaluated. Search tasks represents users' information needs that needs to be satisfied by the search results. In an industry setting where the search engine is used by actual users, the job of collecting search tasks can be as simple as sampling from queries users issued, whereas without access to such resources one needs to create tasks based on assumptions of target users and information needs. 
 
 \subsection{Creating Search Tasks}
-In many cases one needs to perform offline evaluation without a working system -- in building a new product, or in academic setting. It is essential to collect hypothetical search tasks in such cases, which is called simulated search or work (where work includes search and other things) tasks. \cite{Borlund:2003} summarizes the role of  simulated work task as follows:
+In many cases one needs to perform offline evaluation without a working system -- in building a new product, or in academic setting. It is essential to collect hypothetical search tasks in such cases, which is called simulated search or work (where work includes search and other things) tasks. \cite{Borlund:2003} summarizes the role of simulated work tasks as follows:
 
 % consider non-simulated search tasks?
 
@@ -301,7 +301,7 @@ In many cases one needs to perform offline evaluation without a working system -
 A simulated work task situation, which is a short `cover story', serves two main functions: 1) it triggers and develops a simulated information need by allowing for user interpretations of the situation, leading to cognitively individual information need interpretations as in real life; and 2) it is the platform against which situational relevance is judged. Further, by being the same for all test persons experimental control is provided. Hence, the concept of a simulated work task situation ensures the experiment both realism and control.	
 \end{quote}
 
-`Task' can mean different things for different people, and IR literature has long debated over the definition of the search task, as summarized in \cite{kelly2009methods}. For our purpose, it is sufficient to understand it as the representation of information needs which a human judge can use to perform a search and\paul{and/or? Often no searching is done by a judge} judge the quality of results.
+`Task' can mean different things for different people, and IR literature has long debated over the definition of search task (see \cite{kelly2009methods} for a summary). For our purpose, it is sufficient to understand it as the representation of information needs which a human judge can use to perform a search and\paul{and/or? Often no searching is done by a judge} judge the quality of results.
 \emine{Is that the definition of task? May be we should use a more proper definition?}
 \paul{task $\neq$ need, but I think this use is blessed by so much past use}
 
@@ -335,24 +335,24 @@ All in all, despite limitations, user queries are still the most readily availab
 
 \section{Designing a Judging Interface}
 
-Once the search tasks are collected, we are ready to design judging interface. There are several main considerations in designing a judging interface as listed below. We cover these in what follows.
+Once the search tasks are collected, we are ready to design a system to gather judgments. There are several main considerations in designing a judging interface: we cover these in what follows.
 
 \begin{enumerate}
-	\item  How do we describe the context of search task? \\(user location, session history, etc.)
-	\item  What should be the target of judgment? \\(webpage, SERP elements or whole SERP)
+	\item  How do we describe the context of a search task? \\(user location, session history, etc.)
+	\item  What should be the target of each judgment? \\(webpage, SERP elements or whole SERP)
 	\item  What is the quality dimension we want to measure? \\(relevance, usefulness, novelty, etc.)
-	\item  What should be the scale of judgment? \\(absolute vs. relative, likert vs. numeric)
+	\item  What should be the scale of judgment? \\(absolute vs. relative, Likert-type vs. Boolean vs. numeric)
 \end{enumerate}
 
 \subsection{Judging Context}
 \label{s:judging-context}
-There are many contextual variables that affects user satisfaction on a given search results. Users' knowledge and preference, the timing and the location of the search, just to name a few. Even with well-defined search task, it is hard to specify all these factors, let alone with terse keyword queries. Providing some of these information to human judge can potentially reduce user-judge gap, thereby increasing the quality of judgment. 
+There are many contextual variables that affect user satisfaction with any given search result: users' knowledge and preference, language, timing and location of the search, just to name a few. Even with well-defined search tasks, it is hard to specify all these factors, let alone with terse keyword queries. Providing some of this contextual information to judges can potentially reduce the user-judge gap, thereby increasing the judgment quality. \paul{refs?} 
 
-The choice of judging context depends on evaluation goal -- what do you want judges to be aware about the search task given? For instance, if you think user location is crucial in judging the relevance of results (which is the case in many tasks), you should present the location of the task, too. Note that, if possible, the location information should be collected along with user queries to get a realistic sample of actual user locations.
+The choice of what context to provide depends again on the evaluation goal -- what do you want judges to be know about the search task? For instance, if you think user location is crucial in judging the relevance of results (which is the case in many tasks), you should present the user's location alongside the query text. Note that, if possible, the location information should be collected along with user queries to get a realistic sample of actual user locations.
 
-Relevance judgment can certainly get affected by what user already did during the session, so it is reasonable to present some part of user session as a judging context. In fact, recent work has proposed various types of judging context from users' session context. \cite{Chandar2013} used a document as a context with a goal to collect judgments when the context document has already been read. They proposed an evaluation framework for \cite{Golbus:2014:CDR} also experimented with using a document as a context, and found that the metrics based on conditional judgments correlate better with user preference at SERP-level.
+Relevance judgments are also affected by what user already did during the session, so it is reasonable to present some part of user session as judging context. Several authors have examined this.\cite{Chandar2013} used a document as context, with the goal of collecting judgments when the context document has already been read. They proposed an evaluation framework for \paul{for what?} \cite{Golbus:2014:CDR} also experimented with using a document as a context, and found that the metrics based on conditional judgments correlate better with user preference at SERP-level. \paul{other refs?}
 
-While one may assume that adding more and more context can only increase the quality of judgments, it should be noted that more context means more efforts for judges in digesting the information and applying them for judgments. Moreover, more context can increase judging cost by adding further source of variability. That is, instead of collecting judgment for every search task, now that judgments should be collected for every query and context pairs, which can potentially make the evaluation prohibitively expensive.
+While one may assume that adding more and more context can only increase the quality of judgments, it should be noted that more context means more effort for judges in digesting and applying the information. Moreover, more context can increase judging cost by adding a further source of variability. That is, instead of collecting judgment for every search task, now that judgments should be collected for every query and context pairs, which can potentially make the evaluation prohibitively expensive. \paul{but you just suggested sampling e.g. location at the same time; so there'll be a 1:1 mapping query:context. But it's true that if you want to examine the effect of one more variable (market, location, time, \dots\ then you'll need more data)}
 
 Therefore, one should carefully consider the value-cost trade-off in adding the context to a judging task. \cite{Mao:2016} used the entire session as a judging context for collecting judgments on usefulness (as opposed to relevance) and found that usefulness metrics show higher inter-assessor agreement and better correlation with task-level user satisfaction. However, they recommend using usefulness evaluation only for post-hoc analysis of the experiments due to high cost associated with using the whole session as a context.
 
