@@ -403,7 +403,17 @@ On the other hand, absolute judgments are reusable in that you can compare among
 
 
 \subsection{Judging Criteria}
-The central assumption of offline evaluation is that human judges can represent real users, and we often want judges to tell us if the judging target would be useful to the potential user. However, it is not a trivial task for judge given contextual and multi-faceted nature of relevance. (\cite{Borlund:2003})
+The central assumption of offline evaluation is that human judges can represent real users, and we often want judges to tell us if the judging target would be relevant to the potential user. However, it is not a trivial task for judge given contextual and multi-faceted nature of relevance. (\cite{Borlund:2003}) 
+
+Also, while the concept of relevance is broad, it is still the relationship between an information problem and an object, and is not sufficient to capture the true value of the item in the context of search session. Therefore, it has been argued \cite{Belkin:2015:SAL} that IR as a field should move beyond relevance to evaluate usefulness in the context of search task. 
+
+Recent work have tried to address this problem from multiple angles. The role of user effort and effort-based judging has been proposed \cite{Yilmaz:2014} \cite{VermaYC16}, where it is shown that effort should be incorporated as an additional factor in human judgment to build retrieval systems that optimize user satisfaction. \cite{Golbus:2014:CDR} and \cite{Kim:2013} experimented with multi-dimensional judgment collection
+
+Another thread of work looked at the relevance judgment in the context of other document, or even the whole session. \cite{Chandar2013} proposed judging methods for novelty and diversity, where they employed preference-based judgment between document A and B in the context of another document (C). The resulting method has benefit of allowing the evaluation of novelty and diversity without requiring the collection of sub-topical judgments. 
+
+\cite{Mao:2016} proposed to collect usefulness judgment in the context of whole session. They showed that high relevance by assessors is a necessary but not sufficient condition for high usefulness for users, and that usefulness judgments better correlates with behavioral signals such as click cumulative gains. But since usefulness judgments are costly to collect, they advised the usefulness judgments for use in post-hoc evaluation.
+
+In overall, current literature suggests that there are many ways to set judging criteria for relevance, and different methods have different emphases. 
 
 \newpar
 Effort based judgments \cite{Yilmaz:2014} \cite{VermaYC16}
