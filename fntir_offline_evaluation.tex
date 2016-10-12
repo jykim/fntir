@@ -417,64 +417,39 @@ Another thread of work looked at the relevance judgment in the context of other 
 
 In overall, current literature suggests that there are many ways to set judging criteria for relevance, with different methods having different emphases. If the goal is to focus on query-document relevance, a simple interface as seen at the top of Figure \ref{fig:judgment_types} will do. However, you can add another document or even whole session history as a context if you want to capture the value of the item in the context of a search task.
 
-\subsection{Additional Issues}
-
-\newpar
-Effort based judgments \cite{Yilmaz:2014} \cite{VermaYC16}
-
-\newpar
-Relevance vs. Usefulness-based evaluation \cite{Zhou:2012} \cite{Kim2016}
-
-\newpar
-Multi-dimensional judgment collection \cite{Golbus:2014:CDR} \cite{Kim:2013}
-
-\newpar
-Novelty and diversity \cite{Chandar2013}
-
-\newpar
-Judging scale \cite{Turpin2015} \cite{Jarvelin:2002}
-
-\newpar
-Decision Criteria
-
-- Judgment goal (target / decision)
-
-- Judging effort/time
-
-- Outcome reliability/intepretability
-
-- Reusability
-
 \section{Collecting Judgments}
-\label{s-collect-jgmts}
-Choosing Judges: 
 
-- Crowd vs. Expert \cite{Kazai:2013} \cite{Alonso20121053}
+Once you have judging interface, now you can find judges to work with. There are quite a few options from which you can find judges, but you can roughly put them into three categories. 1) team members who work on the project 2) expert judges who typically sits in-house with the team 3) crowd judges who work remotely and can be reached via platforms like Amazon Mechanical Turk. While it is recommended to start some judging exercise with the team (Group 1) before outsourcing the judging task, we focus on expert judges (Group 2) and crowd judges (Group 3) in this paper due to scalability issues.
 
-- Query owner vs. non-owners \cite{Chouldechova:2013}
+There has been a few recent work comparing human judges of different characteristics. \cite{Bailey:2008} is a classic work where they found that judges' level of expertise on the domain can result in small yet consistent difference on system scores and rankings. Similarly, \cite{Chouldechova:2013} looked at judgments done by query owners (users who did the search themselves) vs. query non-owners, where they concluded that query owners are more consistently able to distinguish a higher quality set of search results from a lower quality set in a blind comparison.
 
-\newpar
-Reducing noise in judging: 
+However, neither finding domain experts nor using queries done by judges themselves are feasible if you need judgments at scale, or need to collect judgments from representative sample from traffic. Typically the options available are either in-house judges with some training or crowd judges. Among these groups,  \cite{Kazai:2013} found that trained judges are significantly more likely to agree with each other and with users than crowd workers. But when they compared to judgments with clicks from real users, they found that the judgments from trained judges does not show higher agreement with user clicks. They also note that a pairwise judging mode improves crowdsourcing quality close to that of trained judges.
 
-- Anchoring bias in judging \cite{Shokouhi:2015}
+Crowdsourcing has unparalled benefit in scalability, and it has gathered a lot of attention from research community, and a large body of work has been produced in IR community as well. \cite{Alonso2012} provides an comprehensive survey of research and best practice in this area. Since aggregating redundant judgments from a group of independent assessors has been standard approach in reducing errors, some of these work have focused on collecting and aggregating redundant labels.  
 
-- Multiple judgments and majority voting, etc. \cite{Venanzi:2014}
+\cite{Venanzi:2014} proposed a community-based Bayesian label aggregation model which is based on finding latent groups among crowd workers and aggregating labels based on them. \cite{Davtyan2015} proposed using textual similar to aggregate crowd judgments, where the relevance labels from similar documents are propagated. Companies such as Crowdflower \footnote{https://www.crowdflower.com/} provide services by which high quality labels are automatically calculated based on redundant judgments.
 
-\cite{aroyo2013measuring} \cite{aroyo2013crowd}
+Another approach in improving the quality of crowdsourced judgments is by improving the judging interface design workflow by which crowd judges work on judging work. This section already dealt with design decisions on judging interface design, and \cite{Kazai2012} provide further guidance in deciding the complexity of judging tasks and the amount of payment per judgment.
 
-\newpar
-Efficient judgment collection using Crowdsourcing
-
-- Design decisions that need to be tackled  \cite{Blanco:2011} \cite{Kazai2012} \cite{Alonso2012} \cite{Alonso:2015} \cite{Scholer:2013} 
-
-- Incentivising judges and how to make it more attractive (payment / I/F)
-\cite{Megorskaya2015} \cite{Davtyan2015}  \cite{Rokicki:2014}  \cite{Eickhoff:2012}
+In terms of workflow design, several recent work has investigated this issue. At microscopic level, \cite{Shokouhi:2015} and \cite{Scholer:2013} looked at the effect of previous assessment on the quality of current judgment, where they showed that the human annotators are likely to assign different relevance labels to a document, depending on the quality of the last document they had judged for the same query. At macroscopic level, \cite{Megorskaya2015} explored various parameters in designing workflow, where they argued for having a communication channel between judges and the overlap of 3 -5 for production environment.
 
 \section{Open Issues}
 
-Collecting labels for contextual / personalized search results
+So far in this section, we looked at issues in collecting human judgments, and provided guidances based on latest research. However, the problem of search is rapidly evolving and as such emerging are new areas for research. Before moving on to the next topic, here we discuss several open issues.
 
-- using judgments with search context?
+\paragraph{New Judging Target} Most of existing research considers document-level judging. But modern SERP contains rich results beyond documents such as instant answers and multimedia results. Extending document-based judging model into these new judging targets would be an interesting problem.
+
+\paragraph{New Endpoints for Search} Mobile phone is becoming a standard device for accessing the internet, and recently conversational agent has become a major focus for many tech companies. We still yet to find how this new environment can affect judgment collection. Recent work such as \cite{VermaY16} and \cite{Kiseleva:2016} provide precursor in what needs to change for these new environment.
+
+
+%Given highly personal and contextual nature of 
+
+\paragraph{New Judging Methods} Standard judging methods collect labels given a search task and result pair. However, this model may not work in environments where search is highly contextual and personal. Several recent work such as  \cite{Moraveji:2011} and \cite{Xu:2009} explored task-based judgment collection, where judges perform search given a search engine to make their judgments.
+
+%In crowdsourcing environment, several authors also explored collecting judgments in a gamified environment.
+
+\newpar
+Collecting labels for contextual / personalized search results (using judgments with search context?)
 
 \newpar
 Collecting labels for whole SERP / non-document results
@@ -487,6 +462,8 @@ Collecting labels for non-traditional endpoints (i.e., conversational agent)
 \newpar
 Session/Task-based evaluation \cite{Moraveji:2011} \cite{Xu:2009}
 
+\newpar
+Improved workflow for crowd judges \cite{Rokicki:2014}
 
 \chapter{Evaluation Metrics}
 \label{c-metrics}
@@ -555,8 +532,8 @@ Open issues in behavior models and the corresponding metrics
 
 - Measuring things outside the SERP: query formulation, source/engine selection
 
-\chapter{Experiments}
-\label{c-experiment}
+\chapter{Test Collections}
+\label{c-collection}
 
 Experiments is defined as the collection of labels and metrics defined on top of them. We first look over many considerations in order to design an experiment given a budget and time constraint. We then focus on a set of analyses we can perform once the data is collected, followed by the ways of reporting experimental results. (\ensuremath{\approx} 15 pages)
 
