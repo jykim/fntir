@@ -144,28 +144,43 @@ The traditional offline approach to IR evaluation is the test collection, or ``C
 
 In its most basic form, we can think of an information retrieval system as mediating access to a collection of documents. A user has an information need; they express this as a query; and the system will draw on the document collection to produce some set of results (Figure~\ref{fig:ir-simple}).
 
-The test collection approach extends this model to incorporate judgements and metrics (Figure~\ref{fig:ir-with-judges}). The query, document collection
+The test collection approach extends this model to incorporate judgements and metrics (Figure~\ref{fig:ir-with-judges}). The query, document collection, and retrieval system are as before but three components are added:
+
+\begin{description}
+	\item[Judges] interpret the user's information need, for example on the basis of the query or other context; and consider the extent to which each document in the collection answers this need.
+	
+	\item[Judgments] record this information for each (query, document) pair.
+	
+	\item[Evaluation] is then a matter of aggregating the recorded judgements for the set (or ranking) of documents retrieved by the system; or comparing the documents retrieved with the documents judged as relevant.
+\end{description}
+
+For example, precision can be calculated by counting the number of retrieved documents which were marked as relevant; recall can be calculated by comparing the number of retrieved documents judged relevant with the overall number judged relevant; or rank-sensitive metrics, such as average precision or reciprocal rank, can look at the judgment for each retrieved document in turn.
+
+\subsubsection{Completeness}
+
+In principle, the judgements formed are complete---that is, the collection includes a judgment for each possible (query, document) pair \dots
 
 \paul{to write past here}
 
-in theory complete; in practice not---pooling; documents fixed
+pooling
 
-judgements reusable, systems and topics comparable
+documents fixed, same for each qy and don't ever change
 
-Conceptual Model
+\subsubsection{Test Collections}
 
-- Labels/Metrics based on Query-URLs
+following this outline, a \emph{test collection} is a combo of querys (``topics'', etc), docs, qrels. can be distributed. judgements reusable, systems and topics comparable.
 
-- Test collections 
+\subsubsection{Building Collections}
 
-- Concept of relevance 
+glossed over the many questions of how to build these in practice. simulated work tasks. query variation. pooling choices. labelling choices, judge selection (g/s/b). etc. see\dots
 
-\newpar
-History
+\subsubsection{Shared Evaluation Exercises}
 
-- TREC and related evaluation venues
+real value is from re-use. TREC and related evaluation venues
 
-- Refer to \cite{borlund2003}
+\subsubsection{Relevance}
+
+\cite{borlund2003}. Recent Morgan and Claypool(?) from Tefko.
 
 \subsection{Recent Trends in Offline Evaluation}
 
