@@ -172,37 +172,27 @@ The test collection approach simulates this model by using judgements of relevan
 
 For example, precision can be calculated by counting the number of retrieved documents which were marked as relevant; recall can be calculated by comparing the number of retrieved documents judged relevant with the overall number judged relevant; or rank-sensitive metrics, such as average precision or reciprocal rank, can look at the judgment for each retrieved document in turn.
 
+\subsubsection{Abstractions}
+
+In principle, the judgements formed are complete---that is, the collection includes a judgment for each possible (query, document) pair. Although this was true of some of the earliest exercises, \paul{need ref for Cranfield II, which I believe was complete} it is clearly impossible for today's much larger document sets. Two shortcuts have allowed researchers to collect useful judgments regardless.  First, a simplifying assumption is that every search is over the same, fixed, document collection: that is, the documents do not change over time and nor are they different for different information needs (or users---as would be the case for personal or corporate collections).
+
+Even allowing for this, it is clearly impossible to judge each of millions (or billions) of documents for any arbitrary information need. \emph{Pooling} provides a common shortcut. In a pooled evaluation, each of a number of search systems provides its own ranking of documents, perhaps by running the same query on each. Every document which appears in the top~$k$ in any ranking is then judged, so if $N$~systems contribute to the pool there are at most $Nk$~judgments to be made: likely fewer, as some documents will appear in more than one list.
+
+A related assumption is that each need can be captured in a single expression: that is, most (although not all) collections include a single query for each need.  Although this is clearly a very small sample of possible inputs for the need, and although relatively small changes to a query can result in large changes in measured effectiveness~\citep{bailey15user}, a large sample of needs can still capture useful variation.
+
+Judging is also abstracted from real users in real contexts, in order to collect judgments at scale. The largest assumption here---indeed, an assumption relied upon by most effectiveness metrics---is that judgments are independent. That is, it is assumed that the extent to which a document is relevant to a need is independent of any other document which might be returned, or the order in which they are seen by the user. The notion of ``relevance'' is also normally abstracted. Although in reality complex, multi-facteted, and highly contextual \citep{borlund2003,saracevic16relevance}, judges are often given much simpler instructions which can for example boil down to what \cite{borlund2003} calls ``intellectual topicality'' alone.
+
 \subsubsection{Test Collections}
-The most common approach for evaluating the quality of retrieval systems is the test collection methodology. Forming a test collection typically involves three stages: (1) assembling a document collection, (2) creating a set of information needs (topics) and (3) identifying the set of documents relevant to the topics. We will now describe each one of these stages, the assumptions behind them, and the methods used during each stage. Below we provide a summary of the common mechanisms used in each of these stages. 
 
+following this outline, a \emph{test collection} is a combo of querys (``topics'', etc), docs, qrels. can be distributed. judgements reusable, systems and topics comparable.
 
-%\subsubsection{Test Collections}
-%
-%following this outline, a \emph{test collection} is a combo of querys (``topics'', etc), docs, qrels. can be distributed. judgements reusable, systems and topics comparable.
-%
-%\subsubsection{Building Collections}
-%
-%glossed over the many questions of how to build these in practice. simulated work tasks. query variation. pooling choices. labelling choices, judge selection %(g/s/b). etc. see\dots
-%
-%
-%\subsubsection{Completeness}
-%
-%In principle, the judgements formed are complete---that is, the collection includes a judgment for each possible (query, document) pair \dots
-%
-%\paul{to write past here}
-%
-%pooling
-%
-%documents fixed, same for each qy and don't ever change
+\subsubsection{Building Collections}
 
+glossed over the many questions of how to build these in practice. simulated work tasks. query variation. pooling choices. labelling choices, judge selection (g/s/b). etc. see\dots
 
 \subsubsection{Shared Evaluation Exercises}
 
 real value is from re-use. TREC and related evaluation venues
-
-\subsubsection{Relevance}
-
-\cite{borlund2003}. Recent Morgan and Claypool(?) from Tefko.
 
 \subsection{Recent Trends in Offline Evaluation}
 
