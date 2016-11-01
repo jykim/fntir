@@ -137,9 +137,9 @@ Given these advantages and disadvantages associated with online and offline eval
 
 \section{Offline Evaluation for IR}
 
-Information retrieval has a rich tradition of evaluation, both online and offline, and this tradition has been responsible for some of the rapid advances in search technology \paul{to cite: NIST report on economic impact of TREC}. Below we survey traditional approaches to offline evaluation, and consider trends in recent years which suggest new roles and methods.
+Information retrieval has a rich tradition of evaluation, both online and offline, and this tradition has been responsible for some of the rapid advances in search technology of the past two decades~\citep{TRECimpact}. Below we survey traditional approaches to offline evaluation, and consider trends in recent years which suggest new roles and methods.
 
-\subsection{Traditional Approaches in Offline Evaluation}
+\subsection{Traditional Approaches to Offline Evaluation}
 
 The traditional offline approach to IR evaluation is the test collection, or ``Cranfield'', approach first described by \cite{cleverdon67} and refined through exercises such as the Text REtrieval Conference (TREC; see \cite{voor:trec05} for an overview).  We will summarise this approach here, noting that \cite{INR-009} provides a historical summary and comprehensive discussion.
 
@@ -152,7 +152,7 @@ The traditional offline approach to IR evaluation is the test collection, or ``C
 	}\vspace*{3em}
 	{
 	\includegraphics[width=\textwidth]{images/ir-model-with-judges}
-	\subcaption{Extension of the model, illustrating third-party relevance judges.}
+	\subcaption{Extension of the model, illustrating third-party relevance judges and the formation of a test collection.}
 	\label{fig:ir-with-judges}
 	}\vspace*{3em}
 	\caption{Test-collection-based evaluation of an information retrieval system.}
@@ -180,23 +180,31 @@ Even allowing for this, it is clearly impossible to judge each of millions (or b
 
 A related assumption is that each need can be captured in a single expression: that is, most (although not all) collections include a single query for each need.  Although this is clearly a very small sample of possible inputs for the need, and although relatively small changes to a query can result in large changes in measured effectiveness~\citep{bailey15user}, a large sample of needs can still capture useful variation.
 
-Judging is also abstracted from real users in real contexts, in order to collect judgments at scale. The largest assumption here---indeed, an assumption relied upon by most effectiveness metrics---is that judgments are independent. That is, it is assumed that the extent to which a document is relevant to a need is independent of any other document which might be returned, or the order in which they are seen by the user. The notion of ``relevance'' is also normally abstracted. Although in reality complex, multi-facteted, and highly contextual \citep{borlund2003,saracevic16relevance}, judges are often given much simpler instructions which can for example boil down to what \cite{borlund2003} calls ``intellectual topicality'' alone.
+Judging is also abstracted from real users in real contexts, in order to collect judgments at scale. The largest assumption here---indeed, an assumption relied upon by most effectiveness metrics---is that judgments are independent. That is, it is assumed that the extent to which a document is relevant to a need is independent of any other document which might be returned, or the order in which they are seen by the user. The notion of ``relevance'' is also normally abstracted. Although in reality relevance is complex, multi-facteted, and highly contextual \citep{borlund2003,saracevic16relevance}, judges are often given much simpler instructions which can for example boil down to what \cite{borlund2003} calls ``intellectual topicality'' alone.
 
 \subsubsection{Test Collections}
 
-following this outline, a \emph{test collection} is a combo of querys (``topics'', etc), docs, qrels. can be distributed. judgements reusable, systems and topics comparable.
+A \emph{test collection}, then, is a combination of 
 
-\subsubsection{Building Collections}
+\begin{itemize}
+	\item a fixed set of documents; 
+	\item a set of information needs or topics, typically each with an associated query; and 
+	\item a set of relevance judgments which detail the relevance of at least some documents to each need.
+\end{itemize}
 
-glossed over the many questions of how to build these in practice. simulated work tasks. query variation. pooling choices. labelling choices, judge selection (g/s/b). etc. see\dots
+Because they involve a static representation of an information-seeking session, test collections can be distributed; the judgments therein are reusable; and, in combination with one or more effectiveness metrics, they make it simple to compare systems.
+
+%\subsubsection{Building Collections}
+%
+%\paul{to do?} glossed over the many questions of how to build these in practice. simulated work tasks. query variation. pooling choices. labelling choices, judge selection (g/s/b). etc. see\dots
 
 \subsubsection{Shared Evaluation Exercises}
 
-real value is from re-use. TREC and related evaluation venues
+Test collections have been especially valuable for evaluation as they are easy to re-use: typically the limiting factor is just physical (or network) distribution of the documents themselves. Since they are so abstracted, they are self-contained, and it is trivial to compare results across systems, times, or laboratories.
+
+A noteworthy example of this is the Text REtrieval Conference (TREC) series, run annually by the (U.S.) National Institute of Standards and Technology (NIST). Since 1992 these conferences have been based around shared evaluations, using test collections so that each participating system can be directly compared to others~\cite{voor:trec05}. The model has been adopted by a number of other conferences \paul{refs}. These collections now include genera such as the web, microblogs, genomics, tourism, email, and others and in virtue of their scope and portability have become standard tools for information retrieval research.
 
 \subsection{Recent Trends in Offline Evaluation}
-
-\paul{perhaps: developments since TREC got established}
 
 So far we have looked at traditional approaches in IR evaluation. While this tradition has served the community well for the past few decades, there has been several trends which necessitates the change in the role and method of IR evaluation. In this section, we outline recent trends and delve into their implications for offline evaluation.
 
@@ -259,7 +267,7 @@ First, here are a few definitions that will be used throughout this paper. These
 
 \paragraph{Evaluation Metric} Evaluation metric (or metric in short) summarizes judgments into a single score. The design of evaluation metric depends on the type of judgments being collected, and the model of user behavior.
 
-\paragraph{Test Collection} A test collection is a collection of judgments with a specific evaluation goal. An evaluation metric summarizes the outcome of an experiment, and an appropriate statistical test needs to be accompanied to make a claim about the validity and reliability of the findings.
+\paragraph{Test Collection} \paul{see \S 1.2.1 above} A test collection is a collection of judgments with a specific evaluation goal. An evaluation metric summarizes the outcome of an experiment, and an appropriate statistical test needs to be accompanied to make a claim about the validity and reliability of the findings.
 
 \emine{I am not sure what an experiment refers to here}
 \paul{Can we refer to this as an \emph{evaluation}? ``Experiment'' has a particular meaning; and in particular, (a) we need not be varying anything when doing offline evaluation (so it's not experimental) and (b) when we do, this measurement/evaluation can be a part of the larger experiment. Calling this an ``experiment'' is I think wrong, it's a measurement tool/technique}
