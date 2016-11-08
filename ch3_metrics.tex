@@ -1,0 +1,66 @@
+\chapter{Evaluation Metrics}
+\label{c-metric}
+
+The second step in offline evaluation is selecting or designing a meaningful evaluation metric. This is essentially the question of how to combine labels to meaningful numbers. For traditional IR evaluation where the labels are collected at query-URL level, combining labels to a metric requires quite a few assumptions, or even a user model. In this chapter, we go over the various considerations of IR metric design, as well as the user models behind these metrics. We briefly survey some established metrics but spend more time on recent developments: explicit models of user behavior, deriving metrics from these, and open issues including session-level measurement, dealing with variation, and considering rich SERPs. (20-25 pages)
+
+\section{Basic IR evaluation metrics}
+
+- Metrics based on absolute judgments (e.g. \cite{cooper73selecting})
+
+- Metrics based on preference-based judgments, including e.g.\ aggregated in-situ side-by-side \cite{Thomas2006}
+
+- Ranking-based metrics (Tau/TauAP)
+
+- Criticisms: especially reproducability/replicability
+
+\section{Metrics based on simple aggregation of labels/qrels}
+
+- Set-based: P, R
+
+- Rank-based: P@$k$, AP, RR
+
+- Criticisms: what tasks and behaviors are modeled here?
+
+\section{Models of behavior}
+
+Evaluation metrics that are based on explicit models of user behavior
+
+- The cascade model and variants
+
+- Weights, the C/L/W framework \citep{Moffat2013}
+
+- ERR, EBU, GAP, Time-biased gain, etc.
+
+- Weighted precision metrics such as RBP, INST; notion of residual \citep{Moffat08,Moffat15}
+
+- $\alpha$-NDCG, IA metrics, etc.
+
+- Cost-based/economic models and the prospects of metrics from these
+
+- Session-level metrics \cite{kanoulas2011evaluating} \cite{Järvelin2008}
+
+\section{Model fitting}
+
+Fit of metrics to models; estimating the distribution of parameters/metric values based on user data
+
+\cite{CarteretteKY11}, \cite{Moffat2013}
+
+\section{Open issues}
+
+Open issues in behavior models and the corresponding metrics
+
+- Whole-page quality
+
+- Caption effects
+
+- Variation between users: behaviors, learning styles, cognitive styles, topic expertise, search system expertise, expectations of the system, query variation, \dots
+
+- Duplication in SERPs
+
+- Learning (?)
+
+- Non-traditional tasks and novel UIs
+
+- Choosing between metrics; sensitivity; finding evidence any of them correlates with user behavior or other important dependent variables
+
+- Measuring things outside the SERP: query formulation, source/engine selection
