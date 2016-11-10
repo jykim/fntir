@@ -21,11 +21,13 @@ As large-scale online services become commonplace, online evaluation became a vi
 
 \subsection{Hybrid Approaches}
 
-So far we have introduced two evaluation paradigms -- offline and online evaluation -- with distinctive characteristics. Offline evaluation is based on human judges \paul{really? How about ``\dots is based on abstractions of real users''?}, and has strengths in experimental control and reusability. Online evaluation is based on user behavior, and has strengths in fidelity and cost.
+So far we have introduced two evaluation paradigms -- offline and online evaluation -- with distinctive characteristics. Offline evaluation is based on human judges as substitution of real users, and has strengths in experimental control and reusability. Online evaluation is based on user behavior, and has strengths in fidelity and cost.
+
+% \paul{really? How about ``\dots is based on abstractions of real users''?}
 
 While these two approaches comprise the majority of evaluation efforts, there have been several approaches trying to find a middle ground. Click modeling \citep{chuklin2015click} and counterfactual online evaluation \citep{Li:2015, li2010contextual}, for example, re-use online user data for future evaluation. These approaches, while enabling the re-use of online user data, are still limited in that they are based on implicit signals from user behavior. For instance, it is not possible to decide with certainty whether a user indeed found the clicked document relevant or not, even with all the contextual information.
 
-\paul{how is that a limitation? need to be explicit}\jin{I tried to explain}
+%\paul{how is that a limitation? need to be explicit}\jin{I tried to explain}
 
 Another related line of work is user study-based evaluation \citep{Bron:2013, Liu:2014, Shah:2011}, which is widely used in interactive IR studies \citep{kelly2009methods}. In such work, a group of participants are typically brought into a lab environment and asked to perform a set of (usually predetermined) search tasks. It is common for this type of study to collect both behavior and labels from the participants to get a more complete picture of search activity. 
 
@@ -47,17 +49,21 @@ At this point, a reader may ask: when should we use online vs. offline evaluatio
 
 Figure~\ref{onlinevsoffline} summarizes the advantages and disadvantages of online vs. offline evaluation. Offline evaluation typically requires access to explicit judgments of relevance obtained from relevance assessors, or judges. Obtaining judgments of relevance is an expensive procedure; hence, online evaluation tends to be cheaper compared to offline evaluation. Furthermore, online evaluation is based on signals that directly come from real users, which can enable us to get a more realistic signal of user satisfaction. 
 
-On the other hand, online evaluation requires the need for going online as it is based on signals from real users. First, in initial stages of system development we simply might not have real users to study. Furthermore, small companies and academics may not have access to a large volume of users to be able to collect reliable signals. More importantly, signals obtained from real users tend to be noisy and traces of user behavior are often insufficient to measure a user's true satisfaction. As an example, let's take clicks on results for evaluating a search engine. While click is certainly an indication that user is interested in the result, it is not clear whether the clicked result actually led to satisfaction. Also, click is often concentrated on the top of the page, making it difficult to interpret. That is, the ambiguity and bias inherent in user behavior often make it hard to infer true quality of our products. 
+On the other hand, online evaluation requires the need for going online as it is based on signals from real users. First, in initial stages of system development we simply might not have real users to study. Furthermore, small companies and academics may not have access to a large volume of users to be able to collect reliable signals. On the other hand, with the availability of various crowdsourcing services, it is relatively easy to collect labels from human judges.
 
-Another major problem in online evaluation is that usually a signifant amount of usage data is needed before one can reach reliable signals of satisfaction. Hence, online evaluation tends to be very slow, which may not be suitable for evaluating the quality of new methodologies quickly. 
+Another major problem in online evaluation is that usually a significant amount of usage data is needed before one can reach reliable signals of satisfaction. Hence, online evaluation tends to be very slow, which may not be suitable for evaluating the quality of new methodologies quickly. On top of this, online evaluation necessitates the maintenance of a production system with large user base along with experimental infrastructure, which is possible for large corporations.
+
+More importantly, signals obtained from real users tend to be noisy and traces of user behavior are often insufficient to measure a user's true satisfaction. As an example, let's take clicks on results for evaluating a search engine. While click is certainly an indication that user is interested in the result, it is not clear whether the clicked result actually led to satisfaction. Also, click is often concentrated on the top of the page, making it difficult to interpret. That is, the ambiguity and bias inherent in user behavior often make it hard to infer true quality of our products. 
 
 Another consideration is the reusability of the data collected. In offline evaluation, typically the label is collected at the level of individual information item (i.e., document) and the system is evaluated by its ability to put more relevant items on top. This means the labels can be reused to evaluate new systems that produce different rankings. By contrast, the data collected from online system is only valid for the evaluation of the system user interacted with, and the data should be collected for every new system to be developed.
 
 Offline evaluation, on the other hand, tends to be fast once explicit judgments of relevance are obtained from relevance assessors. Hence, there is an amortised cost of collecting relevance judgments in offline evaluation but once these judgments are collected, they can be used to evaluate the quality of sytems quickly, which makes offline evaluation very suitable for trying new ideas. Furthermore, offline evaluation mechanisms can be used to evaluate the quality of new systems; hence, they tend to be reusable and portable. 
 
-One major drawback of offline evaluation is the need for explicit judgments of relevence, or the ground truth. Obtaining relevance judgments tenfd to be quite slow and expensive. Furthermore, these explicit judgments of relevance tends to come from a relevance assessor, as opposed to the real user of the system. Hence, the assessor may have a different understanding than an actual user as to what document should be considered as relevant. Furthermore, different relevance assessors can also disagree with each other, leading to inconsistencies in judgments. Finally, offline evaluation metrics tend to be based on \emph{models} of user behavior, as opposed to behavior signals obtained from real users and modelling users can be quite challenging due to the variance in behavior and expectations of real users. Hence, evaluation metrics based on user models may not necessarily reflect user satisfaction.
+One major drawback of offline evaluation is the need for explicit judgments of relevance, or the ground truth. Obtaining relevance judgments tend to be quite slow and expensive. Furthermore, these explicit judgments of relevance tends to come from a relevance assessor, as opposed to the real user of the system. Hence, the assessor may have a different understanding than an actual user as to what document should be considered as relevant. Furthermore, different relevance assessors can also disagree with each other, leading to inconsistencies in judgments. 
 
-Given these advantages and disadvantages associated with online and offline evaluation, most large scale companies tend to use a combination of both mechanisms. Offline evaluation mechanisms tend to be used for quickly measuring quality of new methods and the algorithms that show promising results tend to be deployed to some selected subset of real users, using online evaluation mechanisms to make the final decision about the deployment of these algorithms. However, offline evaluation tends to be the primary mechanism used by smaller companies with limited users and academic researchers. 
+Finally, offline evaluation metrics tend to be based on \emph{models} of user behavior, as opposed to behavior signals obtained from real users and modeling users can be quite challenging due to the variance in behavior and expectations of real users. Hence, evaluation metrics based on user models may not necessarily reflect user satisfaction. Many of recent work in offline evaluation focus on this issue, which we will review later this paper.
+
+Given these advantages and disadvantages associated with online and offline evaluation, it is no wonder that most large scale companies tend to use a combination of both mechanisms. Offline evaluation mechanisms tend to be used for quickly measuring the quality of new methods and  algorithms that show promising results are deployed to some selected subset of real users, where  online evaluation mechanisms are used to make the final decision about the full-scale deployment. On the other hand, among smaller companies with limited users and academic researchers, offline evaluation remains to be the only evaluation mechanism. 
 
 \section{Offline Evaluation for IR}
 
@@ -104,11 +110,13 @@ Even allowing for this, it is clearly impossible to judge each of millions (or b
 
 A related assumption is that each need can be captured in a single expression: that is, most (although not all) collections include a single query for each need.  Although this is clearly a very small sample of possible inputs for the need, and although relatively small changes to a query can result in large changes in measured effectiveness~\citep{bailey15user}, a large sample of needs can still capture useful variation.
 
-Judging is also abstracted from real users in real contexts, in order to collect judgments at scale. The largest assumption here---indeed, an assumption relied upon by most effectiveness metrics---is that judgments are independent. That is, it is assumed that the extent to which a document is relevant to a need is independent of any other document which might be returned, or the order in which they are seen by the user. The notion of ``relevance'' is also normally abstracted. Although in reality relevance is complex, multi-facteted, and highly contextual \citep{borlund2003,saracevic16relevance}, judges are often given much simpler instructions which can for example boil down to what \cite{borlund2003} calls ``intellectual topicality'' alone.
+Judging is also abstracted from real users in real contexts, in order to collect judgments at scale. The largest assumption here---indeed, an assumption relied upon by most effectiveness metrics---is that judgments are independent. That is, it is assumed that the extent to which a document is relevant to a need is independent of any other document which might be returned, or the order in which they are seen by the user. A notable exceptions are \cite{Golbus:2014:CDR,Chandar2013}, where they used relevance judgments based on other documents.
 
-\subsubsection{Test Collections}
+The notion of ``relevance'' is also normally abstracted. Although in reality relevance is complex, multi-facteted, and highly contextual \citep{borlund2003,saracevic16relevance}, judges are often given much simpler instructions which can for example boil down to what \cite{borlund2003} calls ``intellectual topicality'' alone. Recent literature such as \cite{Mao:2016,VermaYC16} also aimed at extending this narrow definition of relevance. We later delve into this in Chapter \ref{c-human-judgment}.
 
-A \emph{test collection}, then, is a combination of 
+\subsubsection{Test Collections and TREC}
+
+A central concept in traditional IR evaluation is \emph{test collection}. A test collection is the combination of 
 
 \begin{itemize}
 	\item a fixed set of documents; 
@@ -122,7 +130,7 @@ Because they involve a static representation of an information-seeking session, 
 %
 %\paul{to do?} glossed over the many questions of how to build these in practice. simulated work tasks. query variation. pooling choices. labelling choices, judge selection (g/s/b). etc. see\dots
 
-\subsubsection{Shared Evaluation Exercises}
+%\subsubsection{Shared Evaluation Exercises}
 
 Test collections have been especially valuable for evaluation as they are easy to re-use: typically the limiting factor is just physical (or network) distribution of the documents themselves. Since they are so abstracted, they are self-contained, and it is trivial to compare results across systems, times, or laboratories.
 
@@ -158,7 +166,7 @@ These diverse new endpoints and scenarios for search required ways to collect la
 
 Fortunately, services such as Amazon Mechanical Turk has provided ways for human judgments of any kind to be collected at an large scale. These services are called `crowdsourcing' in that they pull the wisdom of crowd for tasks human intelligence. Accompanying this new data collection method is the challenge in quality control, since the labeling work is completed by a remote worker on the internet.
 
-Given this opportunities and challenges, there has been quite a few research work \cite{Alonso2012} about how to collect high-quality labels with least efforts. Popular approaches include using overlapping judgments to identify ground truth labels \cite{Venanzi:2014}, , or identifying the quality of judges based on their behaviors \cite{Kazai:2016}. We cover some of these methods in Section \ref{s-collect-jgmts}.
+Given this opportunities and challenges, there has been quite a few research work \cite{Alonso2012} about how to collect high-quality labels with least efforts. Popular approaches include using overlapping judgments to identify ground truth labels \cite{Venanzi:2014}, , or identifying the quality of judges based on their behaviors \cite{Kazai:2016}. We cover some of these methods in Section \ref{s-human-judgment}.
 
 %\emine{Should we define that crowdsourcing is and how it may be useful for offline evaluation?}
 
@@ -187,29 +195,29 @@ First, here are a few definitions that will be used throughout this paper. These
 \paragraph{Search Task} A search begins with user's information needs, which we call a search task. Search task can be represented as a description of information needs, or queries user would have used in actual information seeking.
 
 \paragraph{Judging Target} Judging target denotes a result produced by an IR system to be evaluated. It can be of any granularity -- a snippet, a web document, or entire SERP. 
+
 \paragraph{Human Judgment} Human judgment is an assessment of \textit{judging target} by a human judge in the context of \textit{search task} over some dimension of quality. 
 
 \paragraph{Evaluation Metric} Evaluation metric (or metric in short) summarizes judgments into a single score. The design of evaluation metric depends on the type of judgments being collected, and the model of user behavior.
 
 \paragraph{Test Collection} \paul{see \S 1.2.1 above} A test collection is a collection of judgments with a specific evaluation goal. An evaluation metric summarizes the outcome of an experiment, and an appropriate statistical test needs to be accompanied to make a claim about the validity and reliability of the findings.
 
-\emine{I am not sure what an experiment refers to here}
-\paul{Can we refer to this as an \emph{evaluation}? ``Experiment'' has a particular meaning; and in particular, (a) we need not be varying anything when doing offline evaluation (so it's not experimental) and (b) when we do, this measurement/evaluation can be a part of the larger experiment. Calling this an ``experiment'' is I think wrong, it's a measurement tool/technique}
-\jin{I propose calling it Test Collection. What do you think?}
+%\emine{I am not sure what an experiment refers to here}
+%\paul{Can we refer to this as an \emph{evaluation}? ``Experiment'' has a particular meaning; and in particular, (a) we need not be varying anything when doing offline evaluation (so it's not experimental) and (b) when we do, this measurement/evaluation can be a part of the larger experiment. Calling this an ``experiment'' is I think wrong, it's a measurement tool/technique}
+%\jin{I propose calling it Test Collection. What do you think?}
 %\paragraph{Evaluation Pipeline} 
 
 \subsection{Evaluation Process}
 Given the components above, here we discuss the general process for offline evaluation. At a high level, offline evaluation is composed of three steps 1) judgment design 2) metric design 3) experiment design. Alternatively, you can consider the whole process in terms of collecting data (judgments), combining them into meaningful numbers (metrics), build a test collection to drawing conclusions from (test collection). Now we discuss major considerations in each step.
 
-\begin{figure}
-	\begin{center}
-		\includegraphics[scale=0.4]{images/offline_evaluation_overview}
-		\caption{Overview of Offline Evaluation.} 
-		\label{fig:offline_evaluation_overview}
-	\end{center}
-\end{figure}
-
-\emine{This figure shows as though the metric is part of the test collection so we might need to change that}
+%\begin{figure}
+%	\begin{center}
+%		\includegraphics[scale=0.4]{images/offline_evaluation_overview}
+%		\caption{Overview of Offline Evaluation.} 
+%		\label{fig:offline_evaluation_overview}
+%	\end{center}
+%\end{figure}
+%\emine{This figure shows as though the metric is part of the test collection so we might need to change that}
 \subsubsection{Designing Human Judgments}
 
 In the first step, the details of human judgment should be defined, which is the basic unit of offline evaluation. Human judgments capture the quality of the results for given search tasks. Here are major considerations in this step:
@@ -245,5 +253,5 @@ Lastly, judgments and metrics should be combined into a test collection to achie
 
 In the following chapters, we describe each process of offline evaluation in detail so that a reader can design his or her own evaluation pipeline following the flow of this paper. Chapter~\ref{c-human-judgment} deals with gathering judgments, which need to be created for the purpose. Chapter~\ref{c-metric} considers steps in designing an effective metric. Chapter~\ref{c-collection} covers the methods in designing and analyzing test collections. Finally, Chapter~\ref{c-practice} describes evaluation practices from major companies in search and recommendation area.
 
-\emine{We already had a part describing the organization. In general, this section feels a bit repetitive given the text in first page}
-\paul{I disagree, that was in the abstract; it makes sense here (as well) I think. Unless I missed something?}
+%\emine{We already had a part describing the organization. In general, this section feels a bit repetitive given the text in first page}
+%\paul{I disagree, that was in the abstract; it makes sense here (as well) I think. Unless I missed something?}
