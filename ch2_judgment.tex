@@ -146,10 +146,10 @@ Relative judgments have been used in various evaluation settings. \cite{Chandar2
 
 On the other hand, the number of relative judgments grows with the square of the number of items. Since preferences may be weak, and may also be nontransitive, in principle each possible pair needs to be labeled. On the other hand, absolute judgments are reusable in that you can compare among any items for which you have item-level labels. Therefore, if you want to reuse judgments in an environment where multiple generations of ranking techniques should be compared against each other, absolute judgments may save cost in the long run. This is also the reason that TREC has employed absolute judgment since its inception.
 
-\subsection{Scales}
+%\subsection{Scales}
 
-\paul{I'll add notes on: different types of scales, e.g. Likert-type vs numeric, Falk's work on magnitude estimation, IIiX paper on semantic differentials?}
-\paul{I'll add notes on: Diane et al.\ on the effect of question mode? Can't remember if this is relevant}
+%\paul{I'll add notes on: different types of scales, e.g. Likert-type vs numeric, Falk's work on magnitude estimation, IIiX paper on semantic differentials?}
+%\paul{I'll add notes on: Diane et al.\ on the effect of question mode? Can't remember if this is relevant}
 
 \subsection{Judging Criteria}
 The central assumption of offline evaluation is that human judges can represent real users, and we often want judges to tell us if the judging target would be relevant to the potential user. However, this is not a trivial task for judges given the contextual and multi-faceted nature of relevance \citep{Borlund:2003}, and for example \cite{Chouldechova:2013} report increased judging quality when done by query owners (users who did the search themselves) compared to query non-owners.
@@ -175,7 +175,7 @@ Once you have judging interface, now you need to find judges to work with. There
 How should we decide on which option to choose? First, it is recommended to start some judging exercise with the team (Group 1) before outsourcing the judging task, because you need to make sure you provide high-quality interfaces and descriptions to get judgments of reasonable quality. But this approach soon hits scalability issues, so we focus on expert judges (Group 2) and crowd judges (Group 3) in this paper.
 %\emine{Why do we have to start with the team? Why does it have scalability issues? This part is not clear to me} \paul{I'd always pilot internally first, I think that's all Jin's saying here}\jin{Yes, exactly}
 
-There has been some recent work comparing human judges of different characteristics. \cite{Bailey:2008} is a classic work\paul{thanks :)} where they found that judges' level of expertise on the domain can result in small yet consistent difference on system scores and rankings. Similarly, \cite{Chouldechova:2013} looked at judgments done by query owners (users who did the search themselves) vs. query non-owners, where they concluded that query owners are can distinguish a higher quality set of search results from a lower quality set in a blind comparison.
+There has been some recent work comparing human judges of different characteristics. \cite{Bailey:2008} is a classic work where they found that judges' level of expertise on the domain can result in small yet consistent difference on system scores and rankings. Similarly, \cite{Chouldechova:2013} looked at judgments done by query owners (users who did the search themselves) vs. query non-owners, where they concluded that query owners are can distinguish a higher quality set of search results from a lower quality set in a blind comparison.
 
 However, neither finding domain experts nor using queries done by judges themselves are feasible if you need judgments at scale, or need to collect judgments from representative sample from traffic. Typically the options available are either in-house judges with some training or crowd judges. Among these groups,  \cite{Kazai:2013} found that trained judges are significantly more likely to agree with each other and with users than crowd workers. But when they compared third-party judgments with clicks from real users, they found that the judgments from trained judges does not show higher agreement with user clicks.%\paul{I've paraphrased slightly here, is it still correct?}\jin{Yes}
 

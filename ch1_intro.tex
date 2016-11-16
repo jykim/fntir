@@ -40,11 +40,11 @@ However, the distinctions are getting blurred as search engines increasingly ser
 \begin{figure}
 	\centering
 	{
-	\includegraphics[width=0.9\textwidth]{images/online_vs_offline}
+	\includegraphics[width=1\textwidth]{images/online_vs_offline}
 	}\vspace*{3em}
 	\caption{Pros and cons of offline vs. online evaluation}
 \end{figure}\label{onlinevsoffline}
-\paul{Figure~\ref{onlinevsoffline}---perhaps retype? The screen grab is pixellated. Also NB capitals in ``Cost/Reusability''}
+\paul{Figure~\ref{onlinevsoffline}---perhaps retype? The screen grab is pixellated. Also NB capitals in ``Cost/Reusability''}\jin{fixed the typo. Not sure what to do about pixellation, though}
 
 At this point, a reader may ask: when should we use online vs. offline evaluation? While online metrics are certainly valuable and must-have when feasible, there are reasons we may need explicit input from human judges. 
 
@@ -62,7 +62,7 @@ Offline evaluation, on the other hand, tends to be fast once explicit judgments 
 
 One major drawback of offline evaluation is the expense of collecting these explicit judgments, or the ground truth. Obtaining relevance judgments tends to be quite slow and expensive. Furthermore, these explicit judgments of relevance tends to come from a third-party assessor, as opposed to the real user of the system. Hence, the assessor may have a different understanding than an actual user as to what documents should be considered relevant. Furthermore, different relevance assessors can also disagree with each other, leading to inconsistencies in judgments. 
 
-Finally, offline evaluation metrics tend to be based on \emph{models} of user behavior, as opposed to behavior signals obtained from real users and modeling users can be quite challenging due to the variance in behavior and expectations of real users. Hence, evaluation metrics based on user models may not necessarily reflect user satisfaction. Much recent work in offline evaluation focuses on this issue, which we will review later this paper.\paul{where? need ref}
+Finally, offline evaluation metrics tend to be based on \emph{models} of user behavior, as opposed to behavior signals obtained from real users and modeling users can be quite challenging due to the variance in behavior and expectations of real users. Hence, evaluation metrics based on user models may not necessarily reflect user satisfaction. Much recent work in offline evaluation focuses on this issue, which we will review later in Section~\ref{c-human-judgment}. %\paul{where? need ref}
 
 Given these advantages and disadvantages associated with online and offline evaluation, it is no wonder that most large scale companies tend to use a combination of both mechanisms. Offline evaluation mechanisms tend to be used for quickly measuring the quality of new methods, and algorithms that show promising results are deployed to some selected subset of real users. Online evaluation mechanisms are then used to make the final decision about full-scale deployment. On the other hand, among smaller companies with limited users, and among academic researchers, offline evaluation remains the only feasible mechanism. 
 
@@ -202,10 +202,10 @@ First, here are a few definitions that will be used throughout this paper. These
 
 \paragraph{Evaluation Metric} An evaluation metric (or metric in short) summarizes judgments into a single score. The design of an evaluation metric depends on the type of judgments being collected, and the model of user behavior.
 
-\paragraph{Test Collection} A test collection is a collection of tasks, targets, and judgments with a specific evaluation goal. An evaluation metric summarizes the outcome of an experiment with a test coollection, and an appropriate statistical test can make a claim about the validity and reliability of the findings.
+\paragraph{Experiment} We define an experiment as a collection of tasks, targets, and judgments with a specific evaluation goal. An evaluation metric summarizes the outcome of an experiment with a test coollection, and an appropriate statistical test can be used to make a claim about the validity and reliability of the findings.
 
 \subsection{Evaluation Process}
-Given the components above, here we discuss the general process for offline evaluation. At a high level, offline evaluation is composed of three steps: 1) judgment design, 2) metric design and 3) experiment design. Alternatively, you can consider the whole process in terms of collecting data (judgments), combining them into meaningful numbers (metrics), build a test collection to drawing conclusions from (test collection). Now we discuss major considerations in each step.\paul{surely you need a collection, or at least 2/3 of it -- tasks and docs -- to get the judgements in the first place. Perhaps ``\dots, carry out experiments to test hypotheses and draw conclusions''?}
+Given the components above, here we discuss the general process for offline evaluation. At a high level, offline evaluation is composed of three steps: 1) judgment design, 2) metric design and 3) experiment design. Alternatively, you can consider the whole process in terms of collecting data (judgments), combining them into meaningful numbers (metrics), carry out experiments to test hypotheses and draw conclusions (test collection). Now we discuss major considerations in each step.%\paul{surely you need a collection, or at least 2/3 of it -- tasks and docs -- to get the judgements in the first place. Perhaps ``\dots, carry out experiments to test hypotheses and draw conclusions''?}
 
 %\begin{figure}
 %	\begin{center}
@@ -223,7 +223,7 @@ In the first step, the details of human judgment should be defined, which is the
 	\item How do you define and collect search tasks?
 	\item What should be your judging unit?
 	\item How do you design judging interface?
-	\item How do you hire and train judges?\paul{we don't cover training in ch2}
+	\item How do you hire and manage judges?%\paul{we don't cover training in ch2}
 \end{enumerate}
 
 \subsubsection{Designing Evaluation Metrics}
@@ -238,7 +238,8 @@ The second step in offline evaluation is selecting or designing a  evaluation me
 
 \subsubsection{Designing Experiments}
 
-\paul{was ``designing test collections'', please check you're happy with the re-wording}
+%\paul{was ``designing test collections'', please check you're happy with the re-wording}
+%\jin{Makes sense. ``Test collection'' seems a bit narrower.}
 
 Lastly, judgments and metrics should be combined to achieve the goal of evaluation. Since this is an iterative step which takes several stages of refinement, here we describe methods and criteria in doing so. 
 
