@@ -18,7 +18,7 @@ We can define this evaluation paradigm as \textit{offline evaluation} \citep{INR
 An evaluation paradigm contrasting with offline evaluation is called \textit{online evaluation}. In a recent survey on this topic, online evaluation is defined as the evaluation of a fully functioning system based on measurement of real users' interactions with the system in a natural environment \citep{INR-XYZ}. That is, online evaluation directly employs user behavior in natural environment for evaluation.
 
 As large-scale online services are commonplace now, online evaluation has become a viable option for companies with running services with large user bases. In the literature, there has been a plethora of papers on methodologies for online evaluation. While online evaluation has benefits in using data readily available as a by-product of serving users, this dependence on user behavior also creates limitations for online evaluation, which we will discuss later in this section.
-
+\mdr{The relation between online and offline evaluation needs a more thorough treatment. The discussion would have to include correlations between offline metrics and online metrics.}
 \subsection{Hybrid Approaches}
 
 So far we have introduced two evaluation paradigms -- offline and online evaluation -- with distinctive characteristics. Offline evaluation is based on human judges as substitution of real users, and has strengths in experimental control and reusability. Online evaluation is based on user behavior, and has strengths in fidelity and cost.
@@ -58,7 +58,7 @@ On the other hand, online evaluation requires a running system as it is based on
 
 Another major problem in online evaluation is that usually a significant amount of usage data is needed before one can reach reliable signals of satisfaction. \mdr{please qualify, see early work by Joachims} Hence, online evaluation tends to be very slow, which may not be suitable for evaluating the quality of new methodologies quickly. %On top of this, online evaluation necessitates the maintenance of a production system with a large user base along with experimental infrastructure, which is possible for large corporations but challenging otherwise.
 
-More importantly, signals obtained from real users tend to be noisy and traces of user behavior are often insufficient to measure a user's true satisfaction. As an example, let's take clicks on results for evaluating a search engine. While a click is certainly an indication that the user is interested in the result, it is not clear whether the clicked result was actually satisfying. \cite{} Also, clicks are often concentrated on the top of the page regardless of result quality  \cite{} making them difficult to interpret. All in all, the ambiguity and bias inherent in user behavior often make it hard to infer the true quality of our products. \mdr{What is "true quality"? In the eyes of the users? Of the judges? Of the managers?}
+More importantly, signals obtained from real users tend to be noisy and traces of user behavior are often insufficient to measure a user's true satisfaction. As an example, let's take clicks on results for evaluating a search engine. While a click is certainly an indication that the user is interested in the result, it is not clear whether the clicked result was actually satisfying. \cite{} Also, clicks are often concentrated on the top of the page regardless of result quality  \cite{} making them difficult to interpret. All in all, the ambiguity and bias inherent in user behavior often make it hard to infer the true quality of search engine. \mdr{What is "true quality"? In the eyes of the users? Of the judges? Of the managers?}
 
 Another consideration is the reusability of the data collected. In offline evaluation, typically the label is collected at the level of individual information item (i.e., document) and the system is evaluated by its ability to put more relevant items on top. This means the labels can be reused to evaluate new systems that produce different rankings of the same items. By contrast, the data collected from online system is typically valid for the evaluation of the system user interacted with, although there are new research to address these issues.
 
@@ -68,7 +68,7 @@ One major drawback of offline evaluation is the expense of collecting these expl
 
 Finally, offline evaluation metrics tend to be based on \emph{models} of user behavior, as opposed to behavior signals obtained from real users and modeling users can be quite challenging due to the variance in behavior and expectations of real users. Hence, evaluation metrics based on user models may not necessarily reflect user satisfaction. Much recent work in offline evaluation focuses on this issue, which we will review later in Chapter~\ref{c-human-judgment}. %\paul{where? need ref}
 
-Given these advantages and disadvantages associated with online and offline evaluation, it is no wonder that most large scale companies tend to use a combination of both mechanisms, as we will go over in Chapter~\ref{c-practice}. Offline evaluation mechanisms tend to be used for quickly measuring the quality of new methods, and algorithms that show promising results are deployed to some selected subset of real users. Online evaluation mechanisms are then used to make the final decision about full-scale deployment. On the other hand, among smaller companies with limited users, and among academic researchers, offline evaluation remains the most viable mechanism.\jin{softened the argument}
+Given these advantages and disadvantages associated with online and offline evaluation, it is no wonder that most large scale companies tend to use a combination of both mechanisms, as we will go over in Chapter~\ref{c-practice}. Offline evaluation mechanisms tend to be used for quickly measuring the quality of new methods, and algorithms that show promising results are deployed to some selected subset of real users. Online evaluation mechanisms are then used to make the final decision about full-scale deployment. On the other hand, among smaller companies with limited users, and among academic researchers, offline evaluation remains the most viable mechanism.
 
 \section{Offline Evaluation for IR}
 
@@ -205,7 +205,7 @@ In this section, we describe in detail a framework for offline evaluation. The g
 
 First, here are a few definitions that will be used throughout this paper. These comprise the components of offline evaluation.
 
-\paragraph{Search Task}  A search task is the user's information needs. And it is represented as a description or as a query.
+\paragraph{Search Task}  A search task is the user's information needs. And it is typically represented as a description or as a query.
 
 \paragraph{Judging Target} Judging target denotes a result produced by an IR system, and the item which is evaluated. It can be of any granularity -- a snippet, a web document, or entire SERP. 
 
