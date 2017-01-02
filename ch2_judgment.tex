@@ -79,6 +79,24 @@ These characteristics of user queries can be a significant source of noise becau
 All in all, despite limitations, user queries are still the most readily available sources of task information, and therefore are widely used for judging search results. One can mitigate the noise and ambiguity of the search query by training judges and presenting possible meanings of the query -- i.e., a SERP from a commercial search engine. We discuss this in detail in Section~\ref{s:judging-context}.
 \mdr{I did not find a discussion of noise and ambiguity in 2.2.1}
 
+\subsection{Summary}
+In summary, here is our list of recommendations for collecting tasks for human judgments.
+
+\begin{enumerate}
+	\item Decide whether to create search task or sample from query logs. 
+	\begin{enumerate}
+		\item If query logs are available and queries are easy to understand, using query as the search task would be fine. 
+		\item If query logs are available yet queries are not easy to understand, consider using queries to generate simulated search tasks.
+		\item If query logs are not available, consider reaching out potential users to collect search tasks.
+	\end{enumerate}
+	\item In sampling queries from logs, use appropriate sampling strategy. 
+	\begin{enumerate}
+		\item If the goal is to collect a representative sample of traffic, use random sampling.
+		\item If the goal is to collect a biased sample of traffic according to certain criteria, use stratified sampling.
+	\end{enumerate}
+	\item Always collect metadata (task type, user cotext, etc.) along with search tasks to facilitate further analysis. User context can also be presented as a part of the search task.
+\end{enumerate}
+
 \section{Designing a Judging Interface}
 
 Once the search tasks are collected, we are ready to design a system to gather judgments. There are several main considerations in designing a judging interface: we cover these in what follows.
@@ -179,6 +197,19 @@ Another thread of work looked at relevance judgments in the context of other ite
 
 Overall, the current literature suggests many ways to set judging criteria for relevance, with different methods having different emphases. If the goal is to focus on query-document relevance, a simple interface as seen at the top of Figure~\ref{fig:judgment_types} will do. However, one can add another document or even whole session history as a context if the goal is to capture the value of the item in the context of a broader search task. \mdr{In terms of practical hands on advice on setting up label collection efforts, this is a bit vague.}
 
+
+\subsection{Summary}
+In summary, here is our list of recommendations for designing an interface for human judgments collection.
+
+\begin{enumerate}
+	\item Present each search task with context to reduce variability of the results.
+	\item Use the smallest judging unit at the beginning to collect fine-grained information with least amount of noise. 
+	\item Consider collecting more set-level (coarse-grained) judgments as well to capture interactions among items.
+	\item Use absolute rating scale when it is possible to define clear criteria for each rating. Use relative rating scale otherwise, especially when employing crowd judges.
+	\item Judging interface design is an iterative process. Test multiple versions with small group of judges before scaling up.
+\end{enumerate}
+
+
 \section{Collecting Judgments}
 
 Once the judging interface is designed, the next task is to find judges to work with. There are quite a few options from which you can find judges, but you can roughly put them into four categories: 1) team members who work on the project, 2) expert judges who typically sit in-house with the team, 3) crowd judges who work remotely and can be reached via platforms like Amazon Mechanical Turk, 4) people who actually use the system. %\paul{you're ruling out users themselves? they're discussed a couple of paragraphs below}
@@ -190,7 +221,7 @@ There has been some recent work comparing human judges of different characterist
 
 However, neither finding domain experts nor using search tasks from judges themselves are feasible if you need judgments at large scale, or the goal is to collect judgments from representative sample of user traffic. Typically the options available are either in-house judges with some form of training or crowd judges. 
 
-Among these groups,  \cite{Kazai:2013} found that trained judges are significantly more likely to agree with each other and with users than crowd workers. But when they compared third-party judgments with clicks from real users, they found that the judgments from trained judges does not necessily show higher agreement with metrics based on user clicks.%\paul{I've paraphrased slightly here, is it still correct?}\jin{Yes}
+Among these groups,  \cite{Kazai:2013} found that trained judges are significantly more likely to agree with each other and with users than crowd workers. But when they compared third-party judgments with clicks from real users, they found that the judgments from trained judges does not necessarily show higher agreement with metrics based on user clicks.%\paul{I've paraphrased slightly here, is it still correct?}\jin{Yes}
 \mdr{Implications for setting up your own labeling effort?}
 
 \subsection{Crowdsourcing Relevance Judgments}
@@ -205,6 +236,15 @@ Along with the availability of cheap workforce from across the globe, the challe
 Another approach to improving the quality of crowdsourced judgments is by improving the judging interface design workflow by which crowd judges work on judging work. This section already dealt with design decisions on judging interface design, and \cite{Kazai2012} provide further guidance in deciding the complexity of judging tasks and the amount of payment per judgment.
 
 Several authors have recently investigated workflow design for crowdsourcing. At microscopic level, \cite{Scholer:2013} and \cite{Shokouhi:2015} looked at the effect of previous assessments on the quality of a judgment, and showed that the human annotators are likely to assign different relevance labels to a document depending on the quality of the last document they had judged for the same query. At a macroscopic level, \cite{Megorskaya2015} explored various parameters in designing workflow, and argue for having a communication channel between judges and 3--5-way overlap in a production environment.
+
+\subsection{Summary}
+In summary, here is our list of recommendations for collecting human judgments.
+
+\begin{enumerate}
+	\item Always start the judging task internally and with small number of judges before scaling up to avoid wasting judging efforts.
+	\item For simpler judging tasks, consider crowdsourcing. Vary the amount of overlap to find the right trade-off between the judging cost and the precision of the outcome.
+	\item For more involved judging tasks, consider hiring in-house judges. Try to hire people with domain expertise to further improve the quality.
+\end{enumerate}
 
 \section{Open Issues}
 
