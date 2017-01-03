@@ -19,6 +19,7 @@ An evaluation paradigm contrasting with offline evaluation is called \textit{onl
 
 As large-scale online services are commonplace now, online evaluation has become a viable option for companies with running services with large user bases. In the literature, there has been a plethora of papers on methodologies for online evaluation. While online evaluation has benefits in using data readily available as a by-product of serving users, this dependence on user behavior also creates limitations for online evaluation, which we will discuss later in this section.
 \mdr{The relation between online and offline evaluation needs a more thorough treatment. The discussion would have to include correlations between offline metrics and online metrics.}
+
 \subsection{Hybrid Approaches}
 
 So far we have introduced two evaluation paradigms -- offline and online evaluation -- with distinctive characteristics. Offline evaluation is based on human judges as substitution of real users, and has strengths in experimental control and reusability. Online evaluation is based on user behavior, and has strengths in fidelity and cost.
@@ -35,22 +36,29 @@ Another related line of work is user study-based evaluation \citep{Bron:2013, Li
 User studies bear similarities with offline evaluation in that they typically involve some form of explicit judgments, but their emphasis is more on understanding some aspect of users' search behavior, as opposed to comparative evaluation among search systems. Also, user studies tend to be limited in scale (typically less than 100 participants) and based on a biased, possibly not representative, sample of participants (typically people within the same institution).
 \mdr{but then TREC is even worse off, just a handful of assessors...}
 \jin{Crowdsourcing can help here...}
+
 However, the distinctions are getting blurred as search engines increasingly serve more complex results, and SERP (search engine results page) or session-level evaluation is drawing more attention. In fact, some recent research has tried to use task completion settings for system-to-system comparison \citep{Xu:2009}. Also, crowdsourcing techniques are reducing barriers in getting access to a large number of subjects with diverse backgrounds. We will return to this point in Chapter~\ref{c-human-judgment}.
 
 \subsection{When to Use Offline Evaluation}
 
-\begin{figure}
+\begin{table}
 	\centering
-	{
-	\includegraphics[width=1\textwidth]{images/online_vs_offline}
-	}\vspace*{3em}
+	\footnotesize
 	\caption{Pros and cons of offline vs. online evaluation}
-\label{onlinevsoffline}
-\end{figure}
-\mdr{please use normal latex tables}
-%\paul{Figure~\ref{onlinevsoffline}---perhaps retype? The screen grab is pixellated. Also NB capitals in ``Cost/Reusability''}\jin{fixed the typo. Not sure what to do about pixellation, though}
+	\begin{tabular}{|l|l|l|} \hline
+ & Online & Offline \\ \hline
+ Pros & Very little marginal cost & No need for production system \\
+ & Based on actual user behavior & Easy to try new ideas \\
+ &  & Amortized cost / reusability \\ \hline
+ Cons & Need for production system & High marginal cost of label collection \\
+ & Need for large-scale data & Need for judging infrastructure \\
+ & Noisy interpretation of behavior & Need for `ground truth' judgments \\
+ & & Difficult to model real users\ behavior \\
+	\hline\end{tabular}
+	\label{onlinevsoffline}
+\end{table}
 
-At this point, a reader may ask: when should we use online vs. offline evaluation? While online metrics are certainly valuable and must-have when feasible, there are reasons we may need explicit input from human judges. 
+Table \ref{onlinevsoffline} summarizes relative pros and cons of offline vs. online evaluation. At this point, a reader may ask: when should we use online vs. offline evaluation? While online metrics are certainly valuable and must-have when feasible, there are reasons we may need explicit input from human judges. 
 
 Figure~\ref{onlinevsoffline} summarizes the advantages and disadvantages of online vs. offline evaluation. Offline evaluation typically requires access to explicit judgments of relevance obtained from relevance assessors, or judges. Obtaining judgments is an expensive procedure; hence, online evaluation tends to be cheaper compared to offline evaluation. Furthermore, online evaluation is based on signals that directly come from real users, which can enable us to get a more realistic signal of user satisfaction. 
 
@@ -69,6 +77,9 @@ One major drawback of offline evaluation is the expense of collecting these expl
 Finally, offline evaluation metrics tend to be based on \emph{models} of user behavior, as opposed to behavior signals obtained from real users and modeling users can be quite challenging due to the variance in behavior and expectations of real users. Hence, evaluation metrics based on user models may not necessarily reflect user satisfaction. Much recent work in offline evaluation focuses on this issue, which we will review later in Chapter~\ref{c-human-judgment}. %\paul{where? need ref}
 
 Given these advantages and disadvantages associated with online and offline evaluation, it is no wonder that most large scale companies tend to use a combination of both mechanisms, as we will go over in Chapter~\ref{c-practice}. Offline evaluation mechanisms tend to be used for quickly measuring the quality of new methods, and algorithms that show promising results are deployed to some selected subset of real users. Online evaluation mechanisms are then used to make the final decision about full-scale deployment. On the other hand, among smaller companies with limited users, and among academic researchers, offline evaluation remains the most viable mechanism.
+
+\subsection{Summary}
+
 
 \section{Offline Evaluation for IR}
 
@@ -95,7 +106,7 @@ The traditional offline approach to IR evaluation is the test collection, or ``C
 \mdr{That's a narrow view of IR: why not "provide the right information to the right person in the right way". So this could be about documents, but it could also be about answers, entities, etc.}\jin{done}
 In its most basic form, we can think of an information retrieval system as providing the right information to the right person in the right way. A user has an information need; they express this as a query; and the system will draw on the collection of information to produce some set of results (Figure~\ref{fig:ir-simple}).
 
-The test collection approach simulates this model by using judgements of relevance and evaluation metrics that aim at measuring the quality of the results presented to the user  (Figure~\ref{fig:ir-with-judges}). The query, document collection, and retrieval system are as before but three components are added:
+The test collection approach simulates this model by using the judgments of relevance and evaluation metrics that aim at measuring the quality of the results presented to the user  (Figure~\ref{fig:ir-with-judges}). The query, document collection, and retrieval system are as before but three components are added:
 
 \mdr{Should you not more explicitly and formally define what these core concepts are: need, query, inut for a need, test collection plus the relation between them?}
 
@@ -182,7 +193,12 @@ Given these opportunities and challenges, there has been quite a good deal of re
 
 %\emine{Should we define that crowdsourcing is and how it may be useful for offline evaluation?}
 
-\section{Scenarios for Offline Evaluation}
+
+\section{General Framework for Offline Evaluation}
+
+In this section, we describe in detail a framework for offline evaluation. The goal is to propose a general framework which can encompass the diverse set of scenarios outlined above. \mdr{Vague: "diverse set of scenarios outlined above"}
+
+\subsection{Scenarios for Offline Evaluation}
 
 We have outlined basic concepts and recent trends for offline evaluation so far. The goal of this paper is to provide a practical guide to conducting offline evaluation for both academic and industry practitioners. Since there can be various scenarios in conducting offline evaluation, here we outline possible ones which we cover in this paper.
 
@@ -197,9 +213,6 @@ Another characteristics of IR evaluation in industry settings is that the evalua
 
 Since the goal of this paper is to meet the need of practitioners as well as academic researchers, we describe decisions one needs to face in conducting offline evaluation across various scenarios outlined above. We also focus on considerations in designing a evaluation pipeline in industry settings at Chapter~\ref{c-practice}.
 
-\section{General Framework for Offline Evaluation}
-
-In this section, we describe in detail a framework for offline evaluation. The goal is to propose a general framework which can encompass the diverse set of scenarios outlined above. \mdr{Vague: "diverse set of scenarios outlined above"}
 
 \subsection{Definitions}
 
