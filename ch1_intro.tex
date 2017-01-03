@@ -20,26 +20,10 @@ An evaluation paradigm contrasting with offline evaluation is called \textit{onl
 As large-scale online services are commonplace now, online evaluation has become a viable option for companies with running services with large user bases. In the literature, there has been a plethora of papers on methodologies for online evaluation. While online evaluation has benefits in using data readily available as a by-product of serving users, this dependence on user behavior also creates limitations for online evaluation, which we will discuss later in this section.
 \mdr{The relation between online and offline evaluation needs a more thorough treatment. The discussion would have to include correlations between offline metrics and online metrics.}
 
-\subsection{Hybrid Approaches}
+%\subsection{Pros and Cons of Offline vs. Online Evaluation}
 
-So far we have introduced two evaluation paradigms -- offline and online evaluation -- with distinctive characteristics. Offline evaluation is based on human judges as substitution of real users, and has strengths in experimental control and reusability. Online evaluation is based on user behavior, and has strengths in fidelity and cost.
-
-% \paul{really? How about ``\dots is based on abstractions of real users''?}
-
-While these two approaches comprise the majority of evaluation efforts, there have been several approaches trying to find a middle ground. Click modeling \citep{chuklin2015click} and counterfactual online evaluation \citep{Li:2015, li2010contextual}, for example, re-use online user data for future evaluation. These approaches, while enabling the re-use of online user data, are still limited in that they are based on implicit signals from user behavior. For instance, it is not trivial to decide whether a user indeed found the clicked document relevant or not, even with all the contextual information.
-\mdr{Not sure. You want to make this argument. The exact same thing can/should be said about expert judges. They are not not real users so their judgments aren't necessarily an indication that users will find a document relevant/useful.}
-\jin{The argument has been softened a bit}
-%\paul{how is that a limitation? need to be explicit}\jin{I tried to explain}
-
-Another related line of work is user study-based evaluation \citep{Bron:2013, Liu:2014, Shah:2011}, which is widely used in interactive IR studies \citep{kelly2009methods}. In such work, a group of participants are typically brought into a lab environment and asked to perform a set of (usually predetermined) search tasks. It is common for this type of study to collect both behavior and labels from the participants to get a more complete picture of search activity. 
-
-User studies bear similarities with offline evaluation in that they typically involve some form of explicit judgments, but their emphasis is more on understanding some aspect of users' search behavior, as opposed to comparative evaluation among search systems. Also, user studies tend to be limited in scale (typically less than 100 participants) and based on a biased, possibly not representative, sample of participants (typically people within the same institution).
-\mdr{but then TREC is even worse off, just a handful of assessors...}
-\jin{Crowdsourcing can help here...}
-
-However, the distinctions are getting blurred as search engines increasingly serve more complex results, and SERP (search engine results page) or session-level evaluation is drawing more attention. In fact, some recent research has tried to use task completion settings for system-to-system comparison \citep{Xu:2009}. Also, crowdsourcing techniques are reducing barriers in getting access to a large number of subjects with diverse backgrounds. We will return to this point in Chapter~\ref{c-human-judgment}.
-
-\subsection{When to Use Offline Evaluation}
+Now, let us compare two evaluation paradigms -- offline and online evaluation. 
+Table~\ref{onlinevsoffline} summarizes the advantages and disadvantages of online vs. offline evaluation. %Now, when should we use online vs. offline evaluation? %While, we believe that these are complementary approaches , understanding relative pros and cons %While online metrics are certainly valuable and must-have when feasible, there are reasons we may need explicit input from human judges. 
 
 \begin{table}
 	\centering
@@ -58,9 +42,7 @@ However, the distinctions are getting blurred as search engines increasingly ser
 	\label{onlinevsoffline}
 \end{table}
 
-Table \ref{onlinevsoffline} summarizes relative pros and cons of offline vs. online evaluation. At this point, a reader may ask: when should we use online vs. offline evaluation? While online metrics are certainly valuable and must-have when feasible, there are reasons we may need explicit input from human judges. 
-
-Figure~\ref{onlinevsoffline} summarizes the advantages and disadvantages of online vs. offline evaluation. Offline evaluation typically requires access to explicit judgments of relevance obtained from relevance assessors, or judges. Obtaining judgments is an expensive procedure; hence, online evaluation tends to be cheaper compared to offline evaluation. Furthermore, online evaluation is based on signals that directly come from real users, which can enable us to get a more realistic signal of user satisfaction. 
+Offline evaluation typically requires access to explicit judgments of relevance obtained from relevance assessors, or judges. Obtaining judgments is an expensive procedure; hence, online evaluation tends to be cheaper compared to offline evaluation. Furthermore, online evaluation is based on signals that directly come from real users, which can enable us to get a more realistic signal of user satisfaction. 
 
 On the other hand, online evaluation requires a running system as it is based on signals from real users. First, in initial stages of system development we simply might not have real users to study. Furthermore, small companies and academics may not have access to a large volume of users to be able to collect reliable signals. On the other hand, with the availability of various crowdsourcing services, it is relatively easy to collect labels from human judges.
 
@@ -78,8 +60,37 @@ Finally, offline evaluation metrics tend to be based on \emph{models} of user be
 
 Given these advantages and disadvantages associated with online and offline evaluation, it is no wonder that most large scale companies tend to use a combination of both mechanisms, as we will go over in Chapter~\ref{c-practice}. Offline evaluation mechanisms tend to be used for quickly measuring the quality of new methods, and algorithms that show promising results are deployed to some selected subset of real users. Online evaluation mechanisms are then used to make the final decision about full-scale deployment. On the other hand, among smaller companies with limited users, and among academic researchers, offline evaluation remains the most viable mechanism.
 
-\subsection{Summary}
 
+\subsection{Hybrid Approaches}
+
+So far we have compared two evaluation paradigms -- offline and online evaluation -- with distinctive characteristics. Offline evaluation is based on human judges as substitution of real users, and has strengths in experimental control and reusability. Online evaluation is based on user behavior, and has strengths in fidelity and cost.
+
+% \paul{really? How about ``\dots is based on abstractions of real users''?}
+
+While these two approaches comprise the majority of evaluation efforts, there have been several approaches trying to find a middle ground. Click modeling \citep{chuklin2015click} and counterfactual online evaluation \citep{Li:2015, li2010contextual}, for example, re-use online user data for future evaluation. These approaches, while enabling the re-use of online user data, are still limited in that they are based on implicit signals from user behavior. For instance, it is not trivial to decide whether a user indeed found the clicked document relevant or not, even with all the contextual information.
+
+\mdr{Not sure. You want to make this argument. The exact same thing can/should be said about expert judges. They are not not real users so their judgments aren't necessarily an indication that users will find a document relevant/useful.}
+\jin{The argument has been softened a bit}
+%\paul{how is that a limitation? need to be explicit}\jin{I tried to explain}
+
+Another related line of work is user study-based evaluation \citep{Bron:2013, Liu:2014, Shah:2011}, which is widely used in interactive IR studies \citep{kelly2009methods}. In such work, a group of participants are typically brought into a lab environment and asked to perform a set of (usually predetermined) search tasks. It is common for this type of study to collect both behavior and labels from the participants to get a more complete picture of search activity. 
+
+User studies bear similarities with offline evaluation in that they typically involve some form of explicit judgments, but their emphasis is more on understanding some aspect of users' search behavior, as opposed to comparative evaluation among search systems. Also, user studies tend to be limited in scale (typically less than 100 participants) and based on a biased, possibly not representative, sample of participants (typically people within the same institution).
+
+\mdr{but then TREC is even worse off, just a handful of assessors...}
+\jin{Crowdsourcing can help here...}
+
+However, the distinctions are getting blurred as search engines increasingly serve more complex results, and SERP (search engine results page) or session-level evaluation is drawing more attention. In fact, some recent research has tried to employ task completion environment with human subjects for system-to-system comparison \citep{Xu:2009}. Also, crowdsourcing techniques are reducing barriers in getting access to a large number of subjects with diverse backgrounds. We will return to this point in Chapter~\ref{c-human-judgment}.
+
+\subsection{Summary}
+So far we have looked at various approaches in IR evaluation. Online evaluation based on user data and offline evaluation based on human judgments are two dominant approaches, and there many approaches which has the characteristics of both. In summary, here is our list of recommendations for deciding on which approach, or combination of approaches to use.
+
+\begin{enumerate}
+	\item Start with offline evaluation when usage data is not available, or the amount of user data is not sufficient to draw meaningful conclusions.
+	\item Even if sufficient usage data is available, consider offline evaluation if you want to impose certain policy on evaluation results, or if there a certain area which online evaluation cannot cover.
+	\item Consider user study if certain aspect of user behavior needs to be better understood, or detailed feedback of user experience is required.
+	\item In order to make behavioral data more valuable, find ways to build a user model so that the data can be reused for another purposes.
+\end{enumerate}
 
 \section{Offline Evaluation for IR}
 
@@ -193,6 +204,7 @@ Given these opportunities and challenges, there has been quite a good deal of re
 
 %\emine{Should we define that crowdsourcing is and how it may be useful for offline evaluation?}
 
+\subsection{Summary}
 
 \section{General Framework for Offline Evaluation}
 
@@ -272,6 +284,7 @@ Lastly, judgments and metrics should be combined to achieve the goal of evaluati
 	\item How do you evaluate the validity of the outcome?
 \end{enumerate}
 
+\subsection{Summary}
 
 \section{The Organization of this Survey}
 
