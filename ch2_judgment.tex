@@ -55,8 +55,9 @@ The design of search tasks takes a few considerations which can critically affec
 Another dimension of task creation is complexity, which again has many aspects. \cite{Kelly:2015} looked at this problem using a cognitive complexity framework. They found that participants spent more effort (queries, clicks and time to completion) in performing tasks with higher cognitive complexity (create, evaluate and analyze) than tasks with lower cognitive complexity (apply, understand, remember). In order to ensure the representativeness of the evaluation outcome, it would be sensible to balance the tasks of varying complexity in a way that matches actual users' workloads.
 %\paul{how is this relevant to collecting/creating tasks for offline evaluation?}
 
-In summary, these results show that the characteristics of search task can affect the quality of corresponding human judgments, and therefore is an important dimension in designing an offline evaluation. It is recommended to collect information about task characteristics and design experiments accordingly so that one can control the effect of these factors in evaluation.
+In summary, these results show that the characteristics of search task can affect the quality of corresponding human judgments, and therefore is an important dimension in designing an offline evaluation. Unless you have good understanding of your target users, it is a good idea to interview potential users to find out what the target distribution of tasks should be. It is also recommended to collect information about task characteristics and design experiments accordingly so that one can control the effect of these factors in evaluation.
 \mdr{Can you make this more precise? Give more details? What does "important" mean? This is all fairly abstract?}
+\jin{some details added}
 
 \subsection{Sampling Query Logs}
 Assuming you have a working search engine with real users, it is natural to collect search tasks from query log data. While this is a seemingly straightforward task, there are a few considerations. We outline some below, along with recommendations based on recent studies.
@@ -70,6 +71,8 @@ Other goals can also dictate the choice of sample. For instance, in industry one
 
 \paragraph{Characteristics of Search Traffic} The characteristics of search traffic also needs to be considered. \cite{Baeza-Yates:2015} shows that web search query logs follow a power distribution, with longer tails. He suggests a sampling technique to generate a sample that follows this distribution. The main idea is to bin the queries based on the frequency, which allows the sampled queries to match the distribution of original query set. 
 
+Generally speaking, this is a form of stratified sampling using the query frequency as criteria, which can be extended to another query characteristics such as location, time and user cohorts. For instance, one can imagine binning the traffic by location and then sample equally across the bins to get the sample of traffic with balanced geographic representation.
+
 %\paul{so, stratified and re-balanced?}
 %\jin{more details?}
 
@@ -77,8 +80,9 @@ Other goals can also dictate the choice of sample. For instance, in industry one
 
 These characteristics of user queries can be a significant source of noise because 1) there can be many query forms for the same information need~\citep{Bailey:2015:UVI}, and 2) inferring true information needs from queries can be hard. On the other hand, \cite{Yilmaz:2014:EID} argued that the choice of intent descriptions can also cause large variability in evaluation results and therefore the judging should be done based on queries.
 
-All in all, despite limitations, user queries are still the most readily available sources of task information, and therefore are widely used for judging search results. One can mitigate the noise and ambiguity of the search query by training judges and presenting possible meanings of the query -- i.e., a SERP from a commercial search engine. We discuss this in detail in Section~\ref{s:judging-context}.
-\mdr{I did not find a discussion of noise and ambiguity in 2.2.1}
+All in all, despite limitations, user queries are still the most readily available sources of task information, and therefore are widely used for judging search results. One can mitigate the noise and ambiguity of the search query by training judges and presenting possible meanings of the query -- i.e., a SERP from a commercial search engine. Alternatively, generating and using a set of task descriptions corresponding to each query would be an more expensive yet potentially better way to mitigate this ambiguity issue. % We discuss this in detail in Section~\ref{s:judging-context}.
+
+%\mdr{I did not find a discussion of noise and ambiguity in 2.2.1}
 
 \subsection{Summary}
 In summary, here is our list of recommendations for collecting tasks for human judgments.
@@ -87,13 +91,13 @@ In summary, here is our list of recommendations for collecting tasks for human j
 	\item Decide whether to create search task or sample from query logs. 
 	\begin{enumerate}
 		\item If query logs are available and queries are easy to understand, using query as the search task would be fine. 
-		\item If query logs are available yet queries are not easy to understand, consider using queries to generate simulated search tasks.
+		\item If query logs are available yet queries are not easy to understand, consider using seed queries to generate simulated search tasks.
 		\item If query logs are not available, consider reaching out potential users to collect search tasks.
 	\end{enumerate}
-	\item In sampling queries from logs, use appropriate sampling strategy. 
+	\item In sampling queries from logs, use an appropriate sampling strategy. 
 	\begin{enumerate}
 		\item If the goal is to collect a representative sample of traffic, use random sampling.
-		\item If the goal is to collect a biased sample of traffic according to certain criteria, use stratified sampling.
+		\item If the goal is to collect a biased sample of traffic according to certain criteria, use stratified sampling based on that criteria.
 	\end{enumerate}
 	\item Always collect metadata (task type, user con text, etc.) along with search tasks to facilitate further analysis. User context can also be presented as a part of the search task.
 \end{enumerate}
@@ -115,8 +119,7 @@ There are many contextual variables that affect user satisfaction with any given
 
 The choice of what context to provide depends again on the evaluation goal -- what do you want judges to know about the search task? For instance, if you think user location is crucial in judging the relevance of results (which is the case in many tasks), you should present the user's location alongside the query text. Note that, if possible, the location information should be collected along with user queries to get a realistic sample of actual user locations.
 
-Relevance judgments are also affected by what user already did during the session, so it is reasonable to present some part of user session as judging context. Several authors have examined this. \cite{Chandar2013} used a document as context, with the goal of collecting judgments when the context document has already been read. They proposed an evaluation framework for novelty and diversity evaluation which captures
-subtopics implicitly and at finer-grained levels. \cite{Golbus:2014:CDR} also experimented with using a document as a context, and found that the metrics based on conditional judgments correlate better with user preference at SERP-level. 
+Relevance judgments are also affected by what user already did during the session, so it is reasonable to present some part of user session as judging context. Several authors have examined this. \cite{Chandar2013} used a document as context, with the goal of collecting judgments when the context document has already been read. They proposed an evaluation framework for novelty and diversity evaluation which captures subtopics implicitly and at finer-grained levels. \cite{Golbus:2014:CDR} also experimented with using a document as a context, and found that the metrics based on conditional judgments correlate better with user preference at SERP-level. 
 
 While one may assume that adding more and more context can only increase the quality of judgments by reducing the user-judge gap further, it should be noted that more context means more effort for judges in digesting and applying the information. Moreover, more context can increase judging cost by adding a further source of variability. That is, instead of collecting judgment for every search task, these judgments should now be collected for every query and context pairs, which can potentially make the evaluation prohibitively expensive.
 %\paul{but you just suggested sampling e.g. location at the same time; so there'll be a 1:1 mapping query:context. But it's true that if you want to examine the effect of one more variable (market, location, time, \dots\ then you'll need more data)}\jin{Yes, judging based on query+context will add variance, which necessitates more data}
@@ -137,22 +140,23 @@ The judging unit is the unit at which judgments should be collected, i.e., at wh
 	\end{center}
 \end{figure}
 
-The judging unit should be determined by the goal of evaluation: if you care about the quality of a ranked list, collecting judgments for each individual result seems like a natural choice. If the presentation of the whole SERP is a primary concern, the entire SERP might be the right unit.
+The judging unit should be determined by the goal of evaluation: if you care about the quality of a ranked list, collecting judgments for each individual result seems like a natural choice. If the presentation of the whole SERP is a primary concern, the entire SERP might be the right unit to collect judgments at.
 
 On the other hand, if the judging target is reasonably complex with multiple sub-components, it is also possible to collect judgments at smaller units (i.e., SERP elements) and then calculate scores for large unit (i.e., the whole SERP) by combining unit scores in a sensible way. This is how most IR evaluation metrics (i.e., MAP or NDCG) work.
 
 Now, if we want to collect judgments for SERPs, should we collect element-wise judgments and then combine, or collect single SERP-level judgments? This question can be generalized into the decision of judging unit when the judging target is complex. There is no hard and fast rule to determine the right judging unit, but here we describe a few trade-offs. 
 
-A smaller judging unit means a simpler judging task, which can be faster and more reliable \paul{reference? or other evidence?}. However, the number of judgments to evaluate a larger unit (i.e., a SERP) can be quite high if the judging unit is small, making overall judging cost higher than collecting a single judgment for the whole larger unit.\cite{}
-
+A smaller judging unit means a simpler judging task, which can be faster and more reliable. However, the number of judgments to evaluate a larger unit (i.e., a SERP) can be quite high if the judging unit is small, making overall judging cost higher than collecting a single judgment for the whole larger unit. Studying this trade-off would be an interesting venue for research.
+\paul{reference? or other evidence?}\jin{I don't know of any.}
+ 
 A smaller judging unit also means better reusability of individual labels, because you can combine labels for each SERP element to evaluate arbitrary configurations (e.g., arbitrary rankings of URLs on a SERP). This means that the cost of collecting judgments can be amortized over multiple experiments. In fact, query-URL relevance judgments have been so widely used in TREC and other settings because it allows the creation of test collection which can be used to evaluate any ranked list.
 
 On the other hand, using a smaller judging unit makes an assumption that each label can be collected independent of other elements -- for example, that the quality of an item at rank~2 on a SERP can be assessed without knowing anything about ranks 1 or~3. This is hardly true in a typical search scenario where the concept and criteria of relevance can evolve over time. In this regards, larger judging units have the benefit of providing rich context for judges. 
 
 More importantly, larger judging units can capture various set-level properties -- including the comprehensiveness, redundancy between elements. For instance, SERP-level judging can reveal whether the SERP captures all the reasonable intents for a given query. Also, the redundancy among documents in a ranked list can be captured only at the list-level. 
 
-In past work, as briefly mentioned above, document-level judgment is most prevalent. However, there has been some works that focus work SERP-level evaluation. \cite{Bailey2010} introduce a judgment scheme which can capture the interaction among SERP elements as well as element-level quality. 
-%
+In literature, as briefly mentioned above, document-level judgment has been most prevalent. However, there has been some works that focus work SERP-level evaluation. \cite{Bailey2010} introduce a judgment scheme which can capture the interaction among SERP elements as well as element-level quality. 
+
 SERP-level judgments were introduced by \cite{Thomas2006}, who propose a pairwise judging interface in order to minimize the complexity of defining judging criteria (more about this in the following section). Several other works including  \cite{Kim:2013} refined this idea to include dimensional relevance judgments as well as overall SERP-level comparison.
 % \cite{Al-Maskari2007} and
 \paul{I will add work by Falk et al.\ on judging snippets}
@@ -178,8 +182,8 @@ On the other hand, the number of relative judgments grows with the square of the
 
 %\subsection{Scales}
 
-%\paul{I'll add notes on: different types of scales, e.g. Likert-type vs numeric, Falk's work on magnitude estimation, IIiX paper on semantic differentials?}
-%\paul{I'll add notes on: Diane et al.\ on the effect of question mode? Can't remember if this is relevant}
+\paul{I'll add notes on: different types of scales, e.g. Likert-type vs numeric, Falk's work on magnitude estimation, IIiX paper on semantic differentials?}
+\paul{I'll add notes on: Diane et al.\ on the effect of question mode? Can't remember if this is relevant}
 
 \subsection{Judging Criteria}
 The central assumption of offline evaluation is that human judges can represent real users, and we often want judges to tell us if the judging target would be relevant to the potential user. \mdr{Should relevance be the core criterion here? Why not "utility" (see eg Belkin).} However, this is not a trivial task for judges given the contextual and multi-faceted nature of relevance \citep{Borlund:2003}, and for example \cite{Chouldechova:2013} report increased judging quality when done by query owners (users who did the search themselves) compared to query non-owners.
@@ -203,9 +207,8 @@ Overall, the current literature suggests many ways to set judging criteria for r
 In summary, here is our list of recommendations for designing an interface for human judgments collection.
 
 \begin{enumerate}
-	\item Present each search task with context to reduce variability of the results.
-	\item Use the smallest judging unit at the beginning to collect fine-grained information with least amount of noise. 
-	\item Consider collecting more set-level (coarse-grained) judgments as well to capture interactions among items.
+	\item Consider presenting each search task with context to reduce variability of the results.
+	\item Use the smallest judging unit at the beginning to collect fine-grained information with least amount of noise, yet consider collecting more coarse-grained (set-level) judgments as well to capture interactions among items.
 	\item Use absolute rating scale when it is possible to define clear criteria for each rating. Use relative rating scale otherwise, especially when employing crowd judges.
 	\item Judging interface design is an iterative process. Test multiple versions with small group of judges before scaling up.
 \end{enumerate}
@@ -213,7 +216,11 @@ In summary, here is our list of recommendations for designing an interface for h
 
 \section{Collecting Judgments}
 
-Once the judging interface is designed, the next task is to find judges to work with. There are quite a few options from which you can find judges, but you can roughly put them into four categories: 1) team members who work on the project, 2) expert judges who typically sit in-house with the team, 3) crowd judges who work remotely and can be reached via platforms like Amazon Mechanical Turk, 4) people who actually use the system. %\paul{you're ruling out users themselves? they're discussed a couple of paragraphs below}
+Once the judging interface is designed, the next task is to find judges to work with. Here we discuss considerations in choosing judge groups. Recently crowdsourcing has become a standard way to collect judgments at large-scale. Since quality control is more challenging when working with crowd judges, we also discuss considerations in crowdsourcing human judgments. 
+
+
+\subsection{Choosing Judge Groups}
+There are quite a few options from which you can find judges, but you can roughly put them into four categories: 1) team members who work on the project, 2) expert judges who typically sit in-house with the team, 3) crowd judges who work remotely and can be reached via platforms like Amazon Mechanical Turk, 4) people who actually use the system. %\paul{you're ruling out users themselves? they're discussed a couple of paragraphs below}
 
 How should we decide on which option to choose? First, it is recommended to start some judging exercise with the team (Group 1) before outsourcing the judging task, because you need to make sure you provide high-quality interfaces and descriptions to get judgments of reasonable quality. But this approach soon hits scalability issues\mdr{Please explain. How many judges are needed? You don't say this?}, so we focus on expert judges (Group 2) and crowd judges (Group 3) in this paper.
 %\emine{Why do we have to start with the team? Why does it have scalability issues? This part is not clear to me} \paul{I'd always pilot internally first, I think that's all Jin's saying here}\jin{Yes, exactly}
@@ -224,6 +231,7 @@ However, neither finding domain experts nor using search tasks from judges thems
 
 Among these groups,  \cite{Kazai:2013} found that trained judges are significantly more likely to agree with each other and with users than crowd workers. But when they compared third-party judgments with clicks from real users, they found that the judgments from trained judges does not necessarily show higher agreement with metrics based on user clicks.%\paul{I've paraphrased slightly here, is it still correct?}\jin{Yes}
 \mdr{Implications for setting up your own labeling effort?}
+\jin{I would say avoid this as much as possible.}
 
 \subsection{Crowdsourcing Relevance Judgments}
 \label{s-crowdsourcing}
@@ -237,6 +245,8 @@ Along with the availability of cheap workforce from across the globe, the challe
 Another approach to improving the quality of crowdsourced judgments is by improving the judging interface design workflow by which crowd judges work on judging work. This section already dealt with design decisions on judging interface design, and \cite{Kazai2012} provide further guidance in deciding the complexity of judging tasks and the amount of payment per judgment.
 
 Several authors have recently investigated workflow design for crowdsourcing. At microscopic level, \cite{Scholer:2013} and \cite{Shokouhi:2015} looked at the effect of previous assessments on the quality of a judgment, and showed that the human annotators are likely to assign different relevance labels to a document depending on the quality of the last document they had judged for the same query. At a macroscopic level, \cite{Megorskaya2015} explored various parameters in designing workflow, and argue for having a communication channel between judges and 3--5-way overlap in a production environment.
+
+
 
 \subsection{Summary}
 In summary, here is our list of recommendations for collecting human judgments.
