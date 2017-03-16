@@ -42,7 +42,7 @@ Table~\ref{onlinevsoffline} summarizes the advantages and disadvantages of onlin
 	\label{onlinevsoffline}
 \end{table}
 
-Offline evaluation typically requires access to explicit judgments of relevance obtained from relevance assessors, or judges. Obtaining judgments is an expensive procedure; hence, online evaluation tends to be cheaper compared to offline evaluation. Furthermore, online evaluation is based on signals that directly come from real users, which can enable us to get a more realistic signal of user satisfaction. 
+Offline evaluation typically requires access to explicit judgments of relevance obtained from relevance assessors, or judges. Obtaining judgments is an expensive procedure; hence, online evaluation tends to be cheaper than offline evaluation. Furthermore, online evaluation is based on signals that directly come from real users, which can enable us to get a more realistic signal of user satisfaction. 
 
 On the other hand, online evaluation requires a running system as it is based on signals from real users. First, in initial stages of system development we simply might not have real users to study. Furthermore, small companies and academics may not have access to a large volume of users to be able to collect reliable signals. On the other hand, with the availability of various crowdsourcing services, it is relatively easy to collect labels from human judges.
 
@@ -67,41 +67,44 @@ So far we have compared two evaluation paradigms -- offline and online evaluatio
 % \paul{really? How about ``\dots is based on abstractions of real users''?}
 
 While these two approaches comprise the majority of evaluation efforts, there have been several approaches trying to find a middle ground. Click modeling \citep{chuklin2015click} and counterfactual online evaluation \citep{Li:2015, li2010contextual}, for example, re-use online user data for future evaluation. These approaches, while enabling the re-use of online user data, are still limited in that they are based on implicit signals from user behavior. For instance, it is not trivial to decide whether a user indeed found the clicked document relevant or not, even with all the contextual information.
-
+%
 \mdr{Not sure. You want to make this argument. The exact same thing can/should be said about expert judges. They are not not real users so their judgments aren't necessarily an indication that users will find a document relevant/useful.}
 \jin{The argument has been softened a bit}
+\paul{We've also mentioned exactly this in \S1.1.1, just above}
 %\paul{how is that a limitation? need to be explicit}\jin{I tried to explain}
 
 Another related line of work is \textit{user study-based evaluation} \citep{Bron:2013, Liu:2014, Shah:2011}, which is widely used in interactive IR studies \citep{kelly2009methods}. In such work, a group of participants are typically brought into a lab environment and asked to perform a set of (usually predetermined) search tasks. It is common for this type of study to collect both behavior and labels from the participants to get a more complete picture of search activity. 
 
-User studies bear similarities with offline evaluation in that they typically involve some form of explicit judgments, but their emphasis is more on understanding some aspect of users' search behavior, as opposed to comparative evaluation among search systems. Also, user studies tend to be limited in scale (typically less than 100 participants) and based on a biased, possibly not representative, sample of participants (typically people within the same institution).
-
-\mdr{but then TREC is even worse off, just a handful of assessors...}
-\jin{Crowdsourcing can help here...}
+User studies bear similarities with offline evaluation in that they typically involve some form of explicit judgments, but their emphasis is more on understanding some aspect of users' search behavior, as opposed to comparative evaluation among search systems. Also, user studies tend to be limited in scale (typically fewer than 100~participants) and based on a biased, possibly not representative, sample of participants (typically people within the same institution).
+%
+\mdr{but then TREC is even worse off, just a handful of assessors\dots}
+\jin{Crowdsourcing can help here\dots}
+\paul{If we're talking about newer forms of offline evaluation, it would be surprising to only have 7~assessors! (I think the TREC number's been that low at times.) So the text seems ok to me I think.}
 
 However, the distinctions are getting blurred as search engines increasingly serve more complex results, and SERP (search engine results page) or session-level evaluation is drawing more attention. In fact, some recent research has tried to employ task completion environment with human subjects for system-to-system comparison \citep{Xu:2009}. Also, crowdsourcing techniques are reducing barriers in getting access to a large number of subjects with diverse backgrounds. We will return to this point in Chapter~\ref{c-human-judgment}.
 
 \subsection{Combining Approaches for Evaluation}
-\jin{Paul/Emine -- please review this new section more carefully...}
-Given a variety of options for evaluation -- online, offline and even hybrid ones, one may be confused to choose which one. However, the very existence of these different approaches predicate the multifaceted nature of the problem. Then, it makes sense to combine approaches for evaluation in order to get a full picture of the quality. Here we describe two approaches in combining multiple approaches in evaluation.  %In fact, there are vast range of IR problem with different properties and quality criteria.
+\jin{Paul/Emine -- please review this new section more carefully...}\paul{Done, made some small changes}
+Given a variety of options for evaluation -- online, offline and even hybrid ones, it may not be clear which to choose. However, the very existence of these different approaches predicate\paul{``predicate''?} the multifaceted nature of the problem. Then, it makes sense to combine approaches for evaluation in order to get a full picture of the quality. Here we describe two ways to combine multiple approaches for evaluation.  %In fact, there are vast range of IR problem with different properties and quality criteria.
 
 %Given these advantages and disadvantages associated with online and offline evaluation, it is no wonder that most large scale companies tend to use a combination of both mechanisms, as we will go over in Chapter~\ref{c-practice}. Offline evaluation mechanisms tend to be used for quickly measuring the quality of new methods, and algorithms that show promising results are deployed to some selected subset of real users. Online evaluation mechanisms are then used to make the final decision about full-scale deployment. On the other hand, among smaller companies with limited users, and among academic researchers, offline evaluation remains the most viable mechanism.
 
 \subsection{Funnel Approach for Combination}
-In fact, it has been a common practice for IR evaluation in industry settings to combine offline and online evaluation in sequence. Since the number of algorithms approved for final deployment is many fewer than the algorithm sent for initial test, this whole process is sometimes called \textit{evaluation funnel}. 
+In industrial settings, it has been common to combine offline and online evaluation in sequence. Since many more algorithms are sent for tests than are finally deployed, this process is sometimes called the \textit{evaluation funnel}. 
 
-The process starts with a set of new search algorithms which are candidates for deployment. First, they are evaluated against existing ranking technique (baseline) using an offline evaluation method. This ensures that the new techniques meet the minimal quality bar before they are exposed to users, and the cost of evaluation at this can be kept low if the labels can be reused across evaluations.
+The process starts with a set of new search algorithms which are candidates for deployment. First, they are evaluated against the existing technique (baseline) using an offline evaluation method. This ensures that the new techniques meet a minimal quality bar before they are exposed to users, and the cost of evaluation can be kept low if the offline labels can be reused across evaluations.
 
-Once we have a subset of algorithms which passes the bar using offline evaluation, they are ready for online evaluation, which can be done by showing them to the user in a controlled experiment setting. This step ensures that the new algorithm does make positive user impact measured in the gain of various online metrics, which then would be `shipped' to the users. 
+Once we have a subset of algorithms which passes the bar using offline evaluation, they are ready for online evaluation, which can be done by showing them to the user in a controlled experiment. This step ensures that the new algorithm does have a positive impact, measured in the gain of various online metrics. It then would be `shipped' to users.
 
-Now, for this funnel approach to work, it is important that the evaluation results earlier at the funnel (offline evaluation) should be show reasonable agreement with the results at the later stages (online evaluation). Ideally, the offline evaluation results should be a lenient filter which includes all the techniques with positive online evaluation results, so that it can reduce the number of algorithms sent for online evaluation.
+For this funnel approach to work, it is important that the evaluation results earlier at the funnel (offline evaluation) show reasonable agreement with the results at the later stages (online evaluation). Ideally, the offline evaluation results should be a lenient filter which includes all the techniques with positive online evaluation results, so that it can reduce the number of algorithms sent for online evaluation.\paul{A ``lenient'' filter would let more pass; ``includes all'' does not imply ``reduce the number''.}
 
-For this reason, understanding the relationship between online and offline evaluation methods is important, and there has been several studies examining this issue. \cite{Huffman:2007} examines the relationship per-query relevance measures and session-level user satisfaction, finding that the relationship is quite strong, and that including the session-level information makes it even stronger. 
+For this reason, it is important to understand the relationship between online and offline evaluation methods, and there have been several studies examining this issue. \cite{Huffman:2007} examined the relationship between per-query relevance measures and session-level user satisfaction, finding that the relationship is quite strong, and that including the session-level information makes it even stronger. 
 \mdr{The relation between online and offline evaluation needs a more thorough treatment. The discussion would have to include correlations between offline metrics and online metrics.}
 \jin{Discussion added here}
+\paul{Still needs extension I think; e.g. work by Hansen/Turpin, Turpin/Scholer, and responses. Al-Maskari, Sanderson, per notes in the source?}
 %\citep{Al-Maskari2007,Sanderson2010} looked at the relationship between retrieval evaluation measures and user preference measures, showing reasonable correlation between two measures. 
 
-\cite{Radlinski:2008} showed that paired experimental design for online evaluation (i.e., by interleaving two ranked lists) gives reasonable agreement with retrieval quality. \cite{radl:comp10} further develops this idea to compare the sensitivity between metrics, showing that offline evaluation based on 5,000 judges queries have sensitivity equivalent to 50,000 user impressions.
+\cite{Radlinski:2008} showed that paired experimental design for online evaluation (i.e., by interleaving two ranked lists) gives reasonable agreement with retrieval quality. \cite{radl:comp10} further developed this idea to compare the sensitivity between metrics, showing that offline evaluation based on 5,000 judges queries have sensitivity equivalent to 50,000 user impressions.
 
 \subsection{User Modeling Approach for Combination}
 
